@@ -6,38 +6,29 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public class TrainPlanner : IPlannerSchedule
+    public class TrainPlanner 
     {
+        public TimeTable timeTable { get; private set; }
+
+
         public TrainPlanner(Train train)
         {
             this.train = train;
         }
         public Train train { get; set; }
 
-        public IPlannerSchedule FollowSchedule(TimeTable schedule)
+        public IPlannerSchedule FollowSchedule(TimeTable timeTable)
         {
-            return this;
+            
+            return timeTable;
         }
-        public IPlannerSchedule StartTrainAt(string startTime)
-        {
-            Console.WriteLine(startTime);
-            return this;
-        }
-        public IPlannerSchedule StopTrainAt(string stopTime)
-        {
-            Console.WriteLine(stopTime);
-            return this;
-        }
-        public TrainPlan ToPlan()
-        {
-            return new TrainPlan();
-        }
+     
 
     }
     public interface IPlannerSchedule 
     {
         public IPlannerSchedule StartTrainAt(string startTime);
         public IPlannerSchedule StopTrainAt(string stopTime);
-        public TrainPlan ToPlan();
+        public TimeTable ToPlan();
     }
 }
