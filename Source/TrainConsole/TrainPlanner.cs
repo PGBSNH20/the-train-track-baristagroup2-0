@@ -14,13 +14,30 @@ namespace TrainConsole
         }
         public Train train { get; set; }
 
-        public TrainPlanner FollowSchedule()
+        public IPlannerSchedule FollowSchedule(TimeTable schedule)
         {
-            
+            return this;
         }
+        public IPlannerSchedule StartTrainAt(string startTime)
+        {
+            Console.WriteLine(startTime);
+            return this;
+        }
+        public IPlannerSchedule StopTrainAt(string stopTime)
+        {
+            Console.WriteLine(stopTime);
+            return this;
+        }
+        public TrainPlan ToPlan()
+        {
+            return new TrainPlan();
+        }
+
     }
     public interface IPlannerSchedule 
     {
-        public TrainPlanner FollowSchedule();
+        public IPlannerSchedule StartTrainAt(string startTime);
+        public IPlannerSchedule StopTrainAt(string stopTime);
+        public TrainPlan ToPlan();
     }
 }
