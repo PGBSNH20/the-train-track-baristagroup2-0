@@ -9,14 +9,18 @@ namespace TrainConsole
     public interface ITrainPlan
     {
         public Train train { get; set; }
-        public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
+        public TimeTable timeTable { get; set; }
+
+        //public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
         public void Save(string filePath);
         public void Load(string filePath);
     }
     public class TrainPlan : ITrainPlan
     {
         public Train train { get; set; }
-        public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
+        public TimeTable timeTable { get; set; }
+
+        //public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
         public void Save(string filePath) { }
         public void Load(string filePath) { }
     }
