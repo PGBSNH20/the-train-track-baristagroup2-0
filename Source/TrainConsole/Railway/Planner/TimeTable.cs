@@ -4,22 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrainConsole 
+namespace TrainConsole
 {
-    
-    public class TimeTable : IPlannerSchedule
+    public class Stop
     {
-        public int TrainId { get; set; }
-        public int StationId { get; set; }
+        public Station Station { get; set; }
         public string DepartureTime { get; set; }
         public string ArrivalTime { get; set; }
+    }
 
-        public IPlannerSchedule StartTrainAt(string startTime)
+    public class TimeTable
+    {
+        public int TrainId { get; set; }
+        public List<Stop> Stops { get; set; }
+
+        //public int StationId { get; set; }
+        //public string DepartureTime { get; set; }
+        //public string ArrivalTime { get; set; }
+
+        public TimeTable StartTrainAt(string startTime)
         {
             Console.WriteLine(startTime);
             return this;
         }
-        public IPlannerSchedule StopTrainAt(string stopTime)
+        public TimeTable StopTrainAt(string stopTime)
         {
             Console.WriteLine(stopTime);
             return this;

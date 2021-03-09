@@ -9,32 +9,6 @@ namespace TrainConsole
 {
    public class file
     {
-
-        public static string timeTableFilePath = @"TextFiles\timetable.txt";
-        public static string trainsFilePath = @"TextFiles\trains.txt";
-        public static string stationsFilePath = @"TextFiles\stations.txt";
-        //public static string passengerFilePath = @"TextFiles\passengers.txt";
-
-        public List<TimeTable> filePathTimeTable(string timeTableFilePath)
-        {
-             var timeTable = new List<TimeTable>();
-             string[] lines = File.ReadAllLines(timeTableFilePath);
-
-            foreach (var line in lines)
-            {
-                string[] parts = line.Split(',');
-
-                var trainTimeTable = new TimeTable
-                {
-                    TrainId = int.Parse(parts[0]),
-                    StationId = int.Parse(parts[1]),
-                    DepartureTime = parts[2],
-                    ArrivalTime = parts [3]
-                };
-                timeTable.Add(trainTimeTable);
-            }
-            return timeTable;
-        }
         public List<Train> filePathTrains(string trainsFilePath)
         {
             var trainList = new List<Train>();
@@ -62,7 +36,7 @@ namespace TrainConsole
 
             foreach (var line in lines)
             {
-                string[] parts = line.Split(',');
+                string[] parts = line.Split('|');
 
                 var stationsInList = new Station
                 {
