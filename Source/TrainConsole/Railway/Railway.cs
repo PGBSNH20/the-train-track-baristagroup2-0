@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface IRailwayPart { public int id { get; set; } }
     public static class Railway
     {
         public static string Name { get; set; } = "Malmbanan";
@@ -14,7 +13,7 @@ namespace TrainConsole
         public static List<TimeTable> timeTables { get; set; } = new List<TimeTable>();
         public static IRailwayPart GetPartFromId(int id)
         {
-            return (IRailwayPart)RailwayParts.Select(x => x.id == id);
+            return (IRailwayPart)RailwayParts.Select(x => x.Id == id);
         }
         public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
         public static void ClockTick()

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface IStation: IEndPoint, IRailwayPart
+    public interface IRailwayPart
     {
-        public string StationName { get; set; }
-        public bool EndStation { get; set; }
+        public int Id { get; set; }
     }
+
 }

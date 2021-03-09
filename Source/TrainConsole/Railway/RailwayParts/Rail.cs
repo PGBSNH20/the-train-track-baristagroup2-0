@@ -12,9 +12,4 @@ namespace TrainConsole
         public IEndPoint EndPointA { get; set; }
         public IEndPoint EndPointB { get; set; }
     }
-
-    public interface IEndPoint
-    {
-        
-    }
 }

@@ -1,38 +1,46 @@
 using System;
+using System.Linq;
 using Xunit;
-
+using TrainConsole;
 namespace TrainEngine.Tests
 {
     public class TrackOrmTests
     {
-        [Fact]
-        public void When_OnlyAStationIsProvided_Expect_TheResultOnlyToContainAStationWithId1()
-        {
-            // Arrange
-            string track = "[1]";
-            TrackOrm trackOrm = new TrackOrm();
+        //[Fact]
+        //public void When_OnlyAStationIsProvided_Expect_TheResultOnlyToContainAStationWithId1()
+        //{
+        //    // Arrange
+        //    string track = "[1]";
+        //    TrackOrm trackOrm = new TrackOrm();
 
-            // Act
-            var result = trackOrm.ParseTrackDescription(track);
+        //    // Act
+        //    var result = trackOrm.ParseTrackDescription(track);
 
-            // Assert
-            //Assert.IsType<Station>(result.TackPart[0]);
-            //Station s = (Station)result.TackPart[0];
-            //Assert.Equal(1, s.Id);
-        }
+        //    // Assert
+        //    //Assert.IsType<Station>(result.TackPart[0]);
+        //    //Station s = (Station)result.TackPart[0];
+        //    //Assert.Equal(1, s.Id);
+        //}
 
-        [Fact]
-        public void When_ProvidingTwoStationsWithOneTrackBetween_Expect_TheTrackToConcistOf3Parts()
-        {
-            // Arrange
-            string track = "[1]-[2]";
-            TrackOrm trackOrm = new TrackOrm();
+        //[Fact]
+        //public void When_ProvidingTwoStationsWithOneTrackBetween_Expect_TheTrackToConcistOf3Parts()
+        //{
+        //    // Arrange
+        //    string track = "[1]-[2]";
+        //    TrackOrm trackOrm = new TrackOrm();
             
-            // Act
-            var result = trackOrm.ParseTrackDescription(track);
+        //    // Act
+        //    var result = trackOrm.ParseTrackDescription(track);
 
-            // Assert
-            Assert.Equal(3, result.NumberOfTrackParts);
+        //    // Assert
+        //    Assert.Equal(3, result.NumberOfTrackParts);
+        //}
+        [Fact]
+        public void Select_TimeTable_ExpectTimeTable()
+        {
+            TimeTableLoader.Load(FilePath.timeTableFilePath);
+            var x = Railway.timeTables.Select(x => x.TrainId == 2);
+            Assert.IsNotType<TimeTable>(x);
         }
     }
 }

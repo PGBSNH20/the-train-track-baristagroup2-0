@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public class TimeTableLoader
+    public static class TimeTableLoader
     {
-        public void Load(string timeTableFilePath)
+        public static void Load(string timeTableFilePath)
         {
             //var timeTable = new List<TimeTable>();
             string[] lines = File.ReadAllLines(timeTableFilePath);

@@ -14,9 +14,7 @@ namespace TrainConsole
             var bulider = new RailwayBuilder();
             var firstStation = bulider.BuildStation("Gothenburg", true);
             var endStation = bulider.BuildStation("Alingsås", true);
-            
             bulider.BuildRail(firstStation, endStation);
-            var railway = bulider.Build();
 
             var vasttåg = Factory.BuildTrain(5, "Västtåg", 120, false, currentPosition: firstStation);
 
