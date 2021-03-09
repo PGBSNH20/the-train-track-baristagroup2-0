@@ -6,29 +6,43 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
+    public interface ITrainPlan
+    {
+        public Train train { get; set; }
+        public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
+        public void Save(string filePath);
+        public void Load(string filePath);
+    }
+    public class TrainPlan : ITrainPlan
+    {
+        public Train train { get; set; }
+        public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
+        public void Save(string filePath) { }
+        public void Load(string filePath) { }
+    }
     public class TrainPlanner 
     {
-        public TimeTable timeTable { get; private set; }
-
+        private TrainPlan trainPlan = new TrainPlan();
 
         public TrainPlanner(Train train)
         {
-            this.train = train;
+            this.trainPlan.train = train;
         }
-        public Train train { get; set; }
-
-        public IPlannerSchedule FollowSchedule(TimeTable timeTable)
+        public TrainPlanner FollowSchedule(TimeTable timeTable)
         {
-            
-            return timeTable;
+            return this;
         }
-     
-
-    }
-    public interface IPlannerSchedule 
-    {
-        public IPlannerSchedule StartTrainAt(string startTime);
-        public IPlannerSchedule StopTrainAt(string stopTime);
-        public TimeTable ToPlan();
+        public TrainPlanner StartTrainAt(string startTime)
+        {
+            return this;
+        }
+        public TrainPlanner StopTrainAt(string stopTime)
+        {
+            return this;
+        }
+        public TrainPlan ToPlan()
+        {
+            return this.trainPlan;
+        }
     }
 }
