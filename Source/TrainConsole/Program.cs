@@ -5,17 +5,10 @@ namespace TrainConsole
 {
     class Program
     {
-        public static string timeTableFilePath = @"TextFiles\timetable.txt";
-        public static string trainsFilePath = @"TextFiles\trains.txt";
-        public static string stationsFilePath = @"TextFiles\stations.txt";
-        //public static string passengerFilePath = @"TextFiles\passengers.txt";
+     
         static void Main(string[] args)
         {
-            string[] test = File.ReadAllLines(timeTableFilePath);
-            foreach (var i in test)
-            {
-                Console.WriteLine(i);
-            }
+        
             Console.WriteLine("Train track!");
 
             var plan = new TrainPlanner(new Train())
