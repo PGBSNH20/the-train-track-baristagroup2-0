@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public static class TrainTrack //Railway?
+    public class TrainTrackBuilder
     {
-        public static string Name { get; set; }
-        public static List<Station> TrainStations { get; set; }
+        private TrainTrack trainTrack = new TrainTrack();
     }
 }
