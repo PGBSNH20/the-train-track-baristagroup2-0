@@ -14,7 +14,7 @@ namespace TrainConsole
         }
         public static ITrain BuildTrain(int id, string name, int maxSpeed, bool operated, IRailwayPart currentPosition)
         {
-            return new Train() { Id = id, Name = name, MaxSpeed = maxSpeed, Operated = operated, CurrentPosition = currentPosition};
+            return new Train() { Id = id, Name = name, MaxSpeed = maxSpeed, Operated = operated, CurrentPart = currentPosition};
         }
 
         public static IStation BuildStation(int id, string stationName, bool endStation )
