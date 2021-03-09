@@ -8,7 +8,7 @@ namespace TrainConsole
 {
     public interface ITrainPlan
     {
-        public Train train { get; set; }
+        public ITrain train { get; set; }
         public TimeTable timeTable { get; set; }
 
         //public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
@@ -17,7 +17,7 @@ namespace TrainConsole
     }
     public class TrainPlan : ITrainPlan
     {
-        public Train train { get; set; }
+        public ITrain train { get; set; }
         public TimeTable timeTable { get; set; }
 
         //public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
@@ -28,7 +28,7 @@ namespace TrainConsole
     {
         private TrainPlan trainPlan = new TrainPlan();
 
-        public TrainPlanner(Train train)
+        public TrainPlanner(ITrain train)
         {
             this.trainPlan.train = train;
         }
