@@ -13,7 +13,7 @@ namespace TrainConsole
         public static List<TimeTable> timeTables { get; set; } = new List<TimeTable>();
         public static IRailwayPart GetPartFromId(int id)
         {
-            return (IRailwayPart)RailwayParts.Select(x => x.Id == id);
+            return RailwayParts.Find(x => x.Id == id);
         }
         public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
         public static void ClockTick()

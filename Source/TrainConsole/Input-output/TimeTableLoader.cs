@@ -31,9 +31,9 @@ namespace TrainConsole
             {
                 string[] parts = line.Split(',');
                 var trainId = int.Parse(parts[0]);
+                var timeTable = timeTables.Find(x => x.TrainId == trainId);
 
-                int index = timeTables.FindIndex(x => x.TrainId == trainId);
-                timeTables[index].Stops.Add(new Stop()
+                timeTable.Stops.Add(new Stop()
                 {
                     Station = (Station)Railway.GetPartFromId(int.Parse(parts[1])),
                     DepartureTime = parts[2],
