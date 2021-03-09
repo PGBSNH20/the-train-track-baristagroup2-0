@@ -9,6 +9,10 @@ namespace TrainConsole
     public class Factory
 
     {
+        public static IRail BuildRail(int id, IEndPoint endPointA, IEndPoint endPointB)
+        {
+            return new Rail() { Id = id, EndPointA = endPointA, EndPointB = endPointB };
+        }
         public static ITrain BuildTrain(int id, string name, int maxSpeed, bool operated)
         {
             return new Train() { Id = id, Name = name, MaxSpeed = maxSpeed, Operated = operated };

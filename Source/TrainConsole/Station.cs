@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-   public class Station : IStation
+   public class Station : IStation, IEndPoint
     {
         public int Id { get; set; }
         public string StationName { get; set; }
