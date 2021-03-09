@@ -12,9 +12,9 @@ namespace TrainConsole
         {
             return new Rail() { Id = id, EndPointA = endPointA, EndPointB = endPointB };
         }
-        public static ITrain BuildTrain(int id, string name, int maxSpeed, bool operated)
+        public static ITrain BuildTrain(int id, string name, int maxSpeed, bool operated, IRailwayPart currentPosition)
         {
-            return new Train() { Id = id, Name = name, MaxSpeed = maxSpeed, Operated = operated };
+            return new Train() { Id = id, Name = name, MaxSpeed = maxSpeed, Operated = operated, CurrentPosition = currentPosition};
         }
 
         public static IStation BuildStation(int id, string stationName, bool endStation )

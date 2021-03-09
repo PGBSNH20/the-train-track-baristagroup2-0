@@ -13,18 +13,16 @@ namespace TrainConsole
 
             var bulider = new RailwayBuilder();
             var firstStation = bulider.BuildStation("Gothenburg", true);
-            var secondStation = bulider.BuildStation("Alingsås", true);
-            bulider.BuildRail(firstStation, secondStation);
+            var endStation = bulider.BuildStation("Alingsås", true);
+            
+            bulider.BuildRail(firstStation, endStation);
             var railway = bulider.Build();
 
-            var vasttåg = Factory.BuildTrain(5, "Västtåg", 120, false);
-            
-
+            var vasttåg = Factory.BuildTrain(5, "Västtåg", 120, false, currentPosition: firstStation);
 
             var plan = new TrainPlanner(vasttåg)
-                
-                .StartTrainAt("kl 10:00")
-                .StopTrainAt("kl 13:00")
+                .AddStop("11:00", firstStation)
+                .AddStop("11:30", endStation)
                 .ToPlan();
 
 

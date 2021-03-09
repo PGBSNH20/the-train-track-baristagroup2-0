@@ -6,24 +6,8 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface ITrainPlan
-    {
-        public ITrain train { get; set; }
-        public TimeTable timeTable { get; set; }
 
-        //public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
-        public void Save(string filePath);
-        public void Load(string filePath);
-    }
-    public class TrainPlan : ITrainPlan
-    {
-        public ITrain train { get; set; }
-        public TimeTable timeTable { get; set; }
 
-        //public List<(int StationId, string DepatureTime, string ArrivalTime)> StationTimes { get; set; }
-        public void Save(string filePath) { }
-        public void Load(string filePath) { }
-    }
     public class TrainPlanner 
     {
         private TrainPlan trainPlan = new TrainPlan();
@@ -36,12 +20,9 @@ namespace TrainConsole
         {
             return this;
         }
-        public TrainPlanner StartTrainAt(string startTime)
+        public TrainPlanner AddStop(string departureTime, IStation station)
         {
-            return this;
-        }
-        public TrainPlanner StopTrainAt(string stopTime)
-        {
+            trainPlan.stationStop.Add(station, departureTime);
             return this;
         }
         public TrainPlan ToPlan()

@@ -12,5 +12,7 @@ namespace TrainConsole
         public string Name { get; set; }
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
+        public IRailwayPart CurrentPosition { get; set; }
+        public void Start();
     }
 }
