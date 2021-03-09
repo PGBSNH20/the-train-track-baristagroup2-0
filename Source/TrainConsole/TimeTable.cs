@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrainConsole 
 {
+    
     public class TimeTable : IPlannerSchedule
     {
         public int TrainId { get; set; }
