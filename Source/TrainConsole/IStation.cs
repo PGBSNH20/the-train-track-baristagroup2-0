@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-   public class Station : IStation
+    public interface IStation: IEndPoint, IRailwayItem
     {
         public int Id { get; set; }
         public string StationName { get; set; }
         public bool EndStation { get; set; }
-
     }
 }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public static class TrainTrack 
+    public interface IRailwayItem{}
+    public class Railway
     {
-        public static string Name { get; set; }
-        public static List<Station> TrainStations { get; set; }
+        public string Name { get; set; } = "Malmbanan";
+        public List<IRailwayItem> RailwayParts { get; set; }
     }
 }
