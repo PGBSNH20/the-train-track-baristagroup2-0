@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface IStation: IEndPoint, IRailwayPart
+    public interface IStation: IRailwayItem, IRailwayPart
     {
         public string StationName { get; set; }
         public bool EndStation { get; set; }

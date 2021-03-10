@@ -8,9 +8,11 @@ namespace TrainConsole
 {
     public class Stop
     {
-        public Station Station { get; set; }
+        public IStation Station { get; set; }
         public string DepartureTime { get; set; }
         public string ArrivalTime { get; set; }
+        public bool HasArrived { get; set; }
+        public bool HasDeparted { get; set; }
     }
 
     public class TimeTable

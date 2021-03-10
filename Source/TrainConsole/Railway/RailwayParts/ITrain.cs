@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface ITrain
+    public interface ITrain : IRailwayItem
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
-        public IRailwayPart CurrentPart { get; set; }
-        public IRailwayPart NextPart { get; set; }
-        public void Move();        
+        public bool IsBetweenStops { get; set; }
+        public List<Stop> Stops { get; set; }
+        public void MoveForward();        
     }
 }

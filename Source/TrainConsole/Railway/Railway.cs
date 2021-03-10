@@ -9,19 +9,30 @@ namespace TrainConsole
     public static class Railway
     {
         public static string Name { get; set; } = "Malmbanan";
-        public static List<IRailwayPart> RailwayParts { get; set; } = new List<IRailwayPart>();
+        public static List<IRailwayItem> RailwayItems { get; set; } = new List<IRailwayItem>();
         public static List<TimeTable> timeTables { get; set; } = new List<TimeTable>();
-        public static IRailwayPart GetPartFromId(int id)
+        public static IRailwayItem GetPartFromId(int id)
         {
-            return RailwayParts.Find(x => x.Id == id);
+            return RailwayItems.Find(x => x.Id == id);
         }
-        public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
-        public static void ClockTick()
+
+        public static int SetIdAddId(int? id, IRailwayItem newPart)
         {
-            foreach (var trainPlan in TrainPlans)
+            if (RailwayItems.Select(x => x.Id).ToList().Contains((int)id) == true)
+                throw new Exception($"Id already exists for {newPart.GetType()}");
+
+            if(id == null)
             {
-                
+                int highest = RailwayItems.Select(x => x.Id).OrderBy(x => x).Last();
+                newPart.Id = highest++;
+                return highest++;
+            }
+            else
+            {
+                newPart.Id = (int)id;
+                return (int)id;
             }
         }
+        public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
     }
 }

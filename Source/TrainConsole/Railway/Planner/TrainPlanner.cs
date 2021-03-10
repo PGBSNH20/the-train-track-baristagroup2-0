@@ -10,24 +10,32 @@ namespace TrainConsole
 
     public class TrainPlanner 
     {
-        private TrainPlan trainPlan = new TrainPlan();
-
+        private ITrain Train { get; set; }
+        private List<Stop> Stops { get; set; }
         public TrainPlanner(ITrain train)
         {
-            this.trainPlan.train = train;
+            this.Train = train;
         }
         public TrainPlanner FollowSchedule(TimeTable timeTable)
         {
+            //TODO: use timetable reader
             return this;
         }
-        public TrainPlanner AddStop(string departureTime, IStation station)
+        public TrainPlanner AddStop(string arrivalTime, string departureTime, IStation station)
         {
-            trainPlan.stationStop.Add(station, departureTime);
+            var stop = new Stop()
+            {
+                ArrivalTime = arrivalTime,
+                DepartureTime = departureTime,
+                Station = station
+            };
+            Stops.Add(stop);
             return this;
         }
-        public TrainPlan ToPlan()
+        public ITrain SendToTrain()
         {
-            return this.trainPlan;
+            Train.Stops = this.Stops;
+            return this.Train;
         }
     }
 }

@@ -11,6 +11,6 @@ namespace TrainConsole
         public int Id { get; set; }
         public string StationName { get; set; }
         public bool EndStation { get; set; }
-
+        public List<IRailwayPart> Connections { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿
 namespace TrainConsole
 {
-    public interface IEndPoint
+    public interface IRailwayItem
     {
-
+        public int Id { get; set; }
     }
 }
