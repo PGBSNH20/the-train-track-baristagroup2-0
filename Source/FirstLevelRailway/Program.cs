@@ -3,13 +3,20 @@ using System.Transactions;
 
 namespace FirstLevelRailway
 {
+    
     class Program
     {
         static void Main(string[] args)
         {
-            Thread trainOne = new Thread(new ThreadStart(() => TrainThread("Red dragon")));
-           // Thread trainTwo = new Thread(new ThreadStart(TrainThread));
-            trainOne.Start();
+            Train redDragon = new Train();
+            Train blackDragon = new Train();
+
+            Thread redDragonThread = new Thread(new ThreadStart(() => TrainThread("Red dragon")));
+            Thread blackDragonThread = new Thread(new ThreadStart(() => TrainThread("Black dragon")));
+            
+            
+            redDragonThread.Start();
+            blackDragonThread.Start();
             //trainTwo.Start();
         }
         static void TrainThread(string name)
@@ -20,7 +27,7 @@ namespace FirstLevelRailway
             foreach (var m in train1.Route)
             {
                 train1.Move();
-                Thread.Sleep(400);
+                Thread.Sleep(500);
             }
         }
     }
