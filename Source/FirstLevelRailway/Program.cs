@@ -7,18 +7,16 @@ namespace FirstLevelRailway
     {
         static void Main(string[] args)
         {
-           
-            Thread trainOne = new Thread(new ThreadStart(TrainThread));
-            Thread trainTwo = new Thread(new ThreadStart(TrainThread));
+            Thread trainOne = new Thread(new ThreadStart(() => TrainThread("Red dragon")));
+           // Thread trainTwo = new Thread(new ThreadStart(TrainThread));
             trainOne.Start();
-            trainTwo.Start();
-            
-
+            //trainTwo.Start();
         }
-        static void TrainThread()
+        static void TrainThread(string name)
         {
 
-            Train train1 = new Train();
+            Train train1 = new Train()
+            { Name = name };
             foreach (var m in train1.Route)
             {
                 train1.Move();
