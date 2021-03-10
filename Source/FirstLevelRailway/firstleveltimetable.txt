@@ -1,11 +1,11 @@
-﻿Name,Calls
-Red Dragon,"Avgår från Alingsås"
-Red Dragon,"Nästa anhalt Partille"
-Red Dragon,"Stannar i Partille"
-Red Dragon,"Nästa anhalt Göteborg"
-Red Dragon,"Stannar i Göteborg"
-Black Dragon,"Avgår från Uddevalla"
-Black Dragon,"Nästa anhalt Munkedal"
-Black Dragon,"Stannar i Munkedal"
-Black Dragon,"Nästa anhalt Dingle"
-Black Dragon,"Stannar i Dingle"
+﻿TrainName,Calls
+Red Dragon,Avgår från Alingsås
+Red Dragon,Nästa anhalt Partille
+Red Dragon,Stannar i Partille
+Red Dragon,Nästa anhalt Göteborg
+Red Dragon,Stannar i Göteborg
+Black Dragon,Avgår från Uddevalla
+Black Dragon,Nästa anhalt Munkedal
+Black Dragon,Stannar i Munkedal
+Black Dragon,Nästa anhalt Dingle
+Black Dragon,Stannar i Dingle

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Transactions;
 
 namespace FirstLevelRailway
@@ -8,25 +9,34 @@ namespace FirstLevelRailway
     {
         static void Main(string[] args)
         {
-            Train redDragon = new Train();
-            Train blackDragon = new Train();
+            var trainData = TrainCallLoader.Load();
+            var trains = Train.GenerateFrom(trainData);
+            var trainThreads = new List<Thread>();
+            foreach (var train in trains)
+            {
+                trainThreads.Add( new Thread(new ThreadStart(() => TrainThread(train))));
+            }
+            foreach (var thread in trainThreads)
+            {
+                thread.Start();
+            }
+            //Thread.CurrentThread.
+            //Train redDragon = new Train();
+            //Train blackDragon = new Train();
 
-            Thread redDragonThread = new Thread(new ThreadStart(() => TrainThread("Red dragon")));
-            Thread blackDragonThread = new Thread(new ThreadStart(() => TrainThread("Black dragon")));
+            //Thread redDragonThread = new Thread(new ThreadStart(() => TrainThread("Red dragon")));
+            //Thread blackDragonThread = new Thread(new ThreadStart(() => TrainThread("Black dragon")));
             
             
-            redDragonThread.Start();
-            blackDragonThread.Start();
+            //redDragonThread.Start();
+            //blackDragonThread.Start();
             //trainTwo.Start();
         }
-        static void TrainThread(string name)
+        static void TrainThread(Train train)
         {
-
-            Train train1 = new Train()
-            { Name = name };
-            foreach (var m in train1.Route)
+            foreach (var m in train.Route)
             {
-                train1.Move();
+                train.Move();
                 Thread.Sleep(500);
             }
         }
