@@ -8,7 +8,7 @@ namespace FirstLevelRailway
 {
     public static class TrainCallLoader
     {
-        public static string timeTablePath = @"C:\Users\axels\Google Drive\Code\VS Code\Code-Dataatkomster-dotnet\the-train-track-baristagroup2-0\Source\FirstLevelRailway\firstleveltimetable.txt";
+        public static string timeTablePath = @"firstleveltimetable.txt";
         public static List<(string TrainName, string Call)> Load()
         {
             var listOfTraincall = new List<(string TrainName, string Call)>();

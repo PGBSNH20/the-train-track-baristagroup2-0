@@ -9,3 +9,6 @@ Black Dragon,Nästa anhalt Munkedal
 Black Dragon,Stannar i Munkedal
 Black Dragon,Nästa anhalt Dingle
 Black Dragon,Stannar i Dingle
+Yellow Dragon,Avgår från Strömstad
+Yellow Dragon,Nästa anhalt Skee
+Yellow Dragon,Stannar i Skee
