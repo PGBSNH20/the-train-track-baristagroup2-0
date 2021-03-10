@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace FirstLevelRailway
 {
@@ -7,6 +8,12 @@ namespace FirstLevelRailway
     {
         static void Main(string[] args)
         {
+            Train train1 = new Train();
+            foreach (var m in train1.Route)
+            {
+            train1.Move();
+            Thread.Sleep(400);
+            }
 
         }
     }
@@ -16,13 +23,18 @@ namespace FirstLevelRailway
         public List<string> Route { get; set; } = new List<string>
         {
             "Avgår från Alingsås",
+            "Nästa anhalt Partille",
+            "Stannar i Partille",
             "Nästa anhalt Göteborg",
             "Stannar i Göteborg"
         };
         public void Move()
         {
-            Console.WriteLine(Route[position]);
-            position++;
+            
+                
+                Console.WriteLine(Route[position]);
+                position++;
+            
         }
     }
     /*
