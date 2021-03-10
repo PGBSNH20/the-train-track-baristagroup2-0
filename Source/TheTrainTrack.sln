@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainEngine.Tests", "TrainE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainConsole", "TrainConsole\TrainConsole.csproj", "{88566411-609D-43F1-A332-D3D006243C26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstLevelRailway", "FirstLevelRailway\FirstLevelRailway.csproj", "{BC871876-D080-408F-8405-CE0B110BB70D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{88566411-609D-43F1-A332-D3D006243C26}.Release|x64.Build.0 = Release|Any CPU
 		{88566411-609D-43F1-A332-D3D006243C26}.Release|x86.ActiveCfg = Release|Any CPU
 		{88566411-609D-43F1-A332-D3D006243C26}.Release|x86.Build.0 = Release|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Release|x64.Build.0 = Release|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC871876-D080-408F-8405-CE0B110BB70D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
