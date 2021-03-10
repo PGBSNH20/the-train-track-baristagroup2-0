@@ -8,20 +8,18 @@ namespace TrainConsole
      
         static void Main(string[] args)
         {
-        
+
             Console.WriteLine("Train track!");
 
-            var AlingsasC = Factory.AddStation(null, "Alingsas Centralstation");
-            var GoteborgC = Factory.AddStation(null, "Goteborg Centralstation");
+            //var AlingsasC = Factory.AddStation(null, "Alingsas Centralstation");
+            //var GoteborgC = Factory.AddStation(null, "Goteborg Centralstation");
 
-            new RailwayEngineer()
-                .Connect(AlingsasC)
-                .Connect(GoteborgC)
-                .Build();
-
-            
-
-
+            //new RailwayEngineer()
+            //    .Connect(AlingsasC)
+            //    .Connect(GoteborgC)
+            //    .Build();
+            var charCoord = TraintrackReader.Read();
+            ConsoleWriter.Write(charCoord);
 
             Console.ReadLine();
 
