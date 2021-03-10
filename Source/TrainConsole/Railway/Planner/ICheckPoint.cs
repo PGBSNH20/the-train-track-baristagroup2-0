@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public class Rail : IRail
+    public interface ICheckPoint
     {
-        public int Id { get; set; }
-        public List<IRailwayPart> Connections { get; set; }
+        public IRailwayPart location { get; set; }
     }
 }

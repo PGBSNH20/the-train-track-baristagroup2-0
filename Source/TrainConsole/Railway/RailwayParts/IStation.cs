@@ -9,6 +9,5 @@ namespace TrainConsole
     public interface IStation: IRailwayItem, IRailwayPart
     {
         public string StationName { get; set; }
-        public bool EndStation { get; set; }
     }
 }

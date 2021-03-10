@@ -6,19 +6,12 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public class Stop
-    {
-        public IStation Station { get; set; }
-        public string DepartureTime { get; set; }
-        public string ArrivalTime { get; set; }
-        public bool HasArrived { get; set; }
-        public bool HasDeparted { get; set; }
-    }
+
 
     public class TimeTable
     {
         public int TrainId { get; set; }
-        public List<Stop> Stops { get; set; }
+        public List<CheckPoint> Stops { get; set; }
 
         //public int StationId { get; set; }
         //public string DepartureTime { get; set; }

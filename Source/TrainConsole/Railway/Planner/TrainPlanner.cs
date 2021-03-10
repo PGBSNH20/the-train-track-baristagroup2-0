@@ -11,7 +11,7 @@ namespace TrainConsole
     public class TrainPlanner 
     {
         private ITrain Train { get; set; }
-        private List<Stop> Stops { get; set; }
+        private List<CheckPoint> CheckPoints { get; set; }
         public TrainPlanner(ITrain train)
         {
             this.Train = train;
@@ -23,18 +23,16 @@ namespace TrainConsole
         }
         public TrainPlanner AddStop(string arrivalTime, string departureTime, IStation station)
         {
-            var stop = new Stop()
+            var stop = new CheckPoint()
             {
-                ArrivalTime = arrivalTime,
-                DepartureTime = departureTime,
-                Station = station
+
             };
-            Stops.Add(stop);
+            CheckPoints.Add(stop);
             return this;
         }
         public ITrain SendToTrain()
         {
-            Train.Stops = this.Stops;
+            Train.Stops = this.CheckPoints;
             return this.Train;
         }
     }

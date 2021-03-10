@@ -14,7 +14,7 @@ namespace TrainConsole
         public bool Operated { get; set; }
         public IRailwayPart CurrentLocation { get; set; }
         public List<IRailwayPart> Route { get; set; }
-        public List<Stop> Stops { get; set; }
+        public List<CheckPoint> Stops { get; set; }
         public bool IsBetweenStops { get; set; }
 
         public void MoveForward()

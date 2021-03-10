@@ -32,7 +32,7 @@ namespace TrainConsole
                 var trainId = int.Parse(parts[0]);
                 var timeTable = timeTables.Find(x => x.TrainId == trainId);
 
-                timeTable.Stops.Add(new Stop()
+                timeTable.Stops.Add(new CheckPoint()
                 {
                     Station = (Station)Railway.GetPartFromId(int.Parse(parts[1])),
                     DepartureTime = parts[2],

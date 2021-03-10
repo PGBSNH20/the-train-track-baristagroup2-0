@@ -9,10 +9,8 @@ namespace TrainConsole
     public interface ITrain : IRailwayItem
     {
         public string Name { get; set; }
-        public int MaxSpeed { get; set; }
-        public bool Operated { get; set; }
         public bool IsBetweenStops { get; set; }
-        public List<Stop> Stops { get; set; }
-        public void MoveForward();        
+        public List<CheckPoint> Stops { get; set; }
+        public void MoveForward();
     }
 }

@@ -19,8 +19,11 @@ namespace TrainConsole
             var buildList = RailwayParts.SkipLast(1).ToList();
             for (int i = 0; i < buildList.Count; i++)
             {
-                var newRail = Factory.AddRail(null, buildList[i], buildList[i + 1]);
-
+                var pointA = buildList[i];
+                var pointB = buildList[i + 1];
+                var rail = Factory.AddRail(null, pointA, pointB);
+                pointA.Connections.Add(rail);
+                pointB.Connections.Add(rail);
             }
         }
     }

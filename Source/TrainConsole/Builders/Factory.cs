@@ -16,7 +16,6 @@ namespace TrainConsole
 
             return train;
         }
-
         public static IStation AddStation(int? id, string stationName)
         {
             var station = new Station() { StationName = stationName};
@@ -27,10 +26,8 @@ namespace TrainConsole
         }
         public static IRail AddRail(int? id, IRailwayPart A, IRailwayPart B)
         {
-            var rail = new Rail { EndPointA = A, EndPointB = B };
+            var rail = new Rail { Connections = new List<IRailwayPart>() { A, B } };
             Railway.SetIdAddId(id, rail);
-            A.Connections.Add(B);
-            B.Connections.Add(A);
             return rail;
         }
     }
