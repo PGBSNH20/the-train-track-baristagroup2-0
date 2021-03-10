@@ -20,17 +20,6 @@ namespace FirstLevelRailway
             {
                 thread.Start();
             }
-            //Thread.CurrentThread.
-            //Train redDragon = new Train();
-            //Train blackDragon = new Train();
-
-            //Thread redDragonThread = new Thread(new ThreadStart(() => TrainThread("Red dragon")));
-            //Thread blackDragonThread = new Thread(new ThreadStart(() => TrainThread("Black dragon")));
-            
-            
-            //redDragonThread.Start();
-            //blackDragonThread.Start();
-            //trainTwo.Start();
         }
         static void TrainThread(Train train)
         {
@@ -41,27 +30,4 @@ namespace FirstLevelRailway
             }
         }
     }
-    /*
-     * Tåg
-     * Startpunkt
-     * Slutpunkt
-     * 
-     * object
-     *      tåg
-     *      station
-     *      räls/spår
-     *      Rutt
-     *      
-     *      station
-     *      räls
-     *      station
-     *      
-     *      Avgår från Alingsås
-     *      Nästa anhalt Göteborg
-     *      Stannar i Göteborg
-     */
-
-
-
-
 }
