@@ -85,5 +85,23 @@ namespace TrainEngine.Tests
             var x = timeTables.First(x => x.TrainId == 1);
             Assert.IsType<TimeTable>(x);
         }
+        [Fact]
+        public void Char_Compare_ExpectNoEquaility()
+        {
+            var test = (int)'1';
+            Assert.False(test == 1);
+        }
+        [Fact]
+        public void Char_Compare_Expect48()
+        {
+            var test = (int)'0';
+            Assert.True(test == 48);
+        }
+        [Fact]
+        public void Char_Compare_Expect57()
+        {
+            var test = (int)'9';
+            Assert.True(test == 57);
+        }
     }
 }

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface ITrain : IRailwayItem
+    public interface IStation: IRailwayItem, IRailwayPart
     {
         public string Name { get; set; }
-        public bool IsBetweenStops { get; set; }
-        public List<CheckPoint> Stops { get; set; }
-        public void MoveForward();
     }
 }

@@ -5,22 +5,16 @@ namespace TrainConsole
 {
     class Program
     {
-     
+
         static void Main(string[] args)
         {
 
             Console.WriteLine("Train track!");
+            var partData = TrainTrackReader.Read();
+            var railParts = RailwayPartGenerator.Generate(partData);
+            RailwayAssembler.Assemble(railParts);
 
-            //var AlingsasC = Factory.AddStation(null, "Alingsas Centralstation");
-            //var GoteborgC = Factory.AddStation(null, "Goteborg Centralstation");
-
-            //new RailwayEngineer()
-            //    .Connect(AlingsasC)
-            //    .Connect(GoteborgC)
-            //    .Build();
-            var charCoord = TraintrackReader.Read();
-            ConsoleWriter.Write(charCoord);
-
+            ConsoleWriter.Write(partData);
             Console.ReadLine();
 
             // Step 1:

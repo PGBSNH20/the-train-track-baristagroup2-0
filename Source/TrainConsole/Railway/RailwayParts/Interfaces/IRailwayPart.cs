@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface IStation: IRailwayItem, IRailwayPart
+    public interface IRailwayPart : IRailwayItem
     {
-        public string StationName { get; set; }
+        public List<IRailwayPart> Connections { get; set; }
     }
 }

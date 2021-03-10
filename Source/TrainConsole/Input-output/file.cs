@@ -22,8 +22,6 @@ namespace TrainConsole
                 {
                     Id = int.Parse(parts[0]),
                     Name = parts[1],
-                    MaxSpeed = int.Parse(parts[2]),
-                    Operated = bool.Parse(parts[3])
                 };
                 trainList.Add(trainsInList);
             }
@@ -41,8 +39,7 @@ namespace TrainConsole
                 var stationsInList = new Station
                 {
                     Id = int.Parse(lines[0]),
-                    StationName = lines[1],
-                    EndStation = bool.Parse(lines[2])
+                    Name = lines[1],
                 };
                 stationList.Add(stationsInList);
             }

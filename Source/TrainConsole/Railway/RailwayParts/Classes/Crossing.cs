@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public interface IRailwayPart : IRailwayItem
+    public class Crossing : ICrossing
     {
+        public int Id { get; set; }
+        public char Char { get; set; }
+        public int CoordinateX { get; set; }
+        public int CoordinateY { get; set; }
         public List<IRailwayPart> Connections { get; set; }
     }
-
 }

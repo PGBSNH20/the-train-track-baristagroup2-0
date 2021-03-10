@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public class Rail : IRail
+    public interface IRailwayEngineer
     {
-        public int Id { get; set; }
-        public List<IRailwayPart> Connections { get; set; }
+        public List<IRailwayPart> RailwayParts { get; set; }
+        public void Build();
     }
 }

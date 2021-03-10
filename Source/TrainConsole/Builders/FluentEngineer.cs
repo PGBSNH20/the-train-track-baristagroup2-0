@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-    public class RailwayEngineer
+    public class FluentEngineer : IRailwayEngineer
     {
-        private List<IRailwayPart> RailwayParts = new List<IRailwayPart>();
-        public RailwayEngineer Connect(IRailwayPart part)
+        public List<IRailwayPart> RailwayParts { get; set; } = new List<IRailwayPart>();
+        public FluentEngineer Connect(IRailwayPart part)
         {
             RailwayParts.Add(part);
             return this;
@@ -21,7 +21,7 @@ namespace TrainConsole
             {
                 var pointA = buildList[i];
                 var pointB = buildList[i + 1];
-                var rail = Factory.AddRail(null, pointA, pointB);
+                var rail = Factory.AddRail(null, new List<IRailwayPart>() { pointA, pointB });
                 pointA.Connections.Add(rail);
                 pointB.Connections.Add(rail);
             }

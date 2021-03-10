@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-   public class Station : IStation
+    public class RailSwitch : IRailSwitch
     {
         public int Id { get; set; }
-        public string StationName { get; set; }
-        public bool EndStation { get; set; }
+        public char Char { get; set; }
+        public int CoordinateX { get; set; }
+        public int CoordinateY { get; set; }
         public List<IRailwayPart> Connections { get; set; }
     }
 }
