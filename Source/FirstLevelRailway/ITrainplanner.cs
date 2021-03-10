@@ -9,24 +9,32 @@ namespace FirstLevelRailway
         ITrainplanner FollowSchedule(TrainPlanner timeTable);
         ITrainplanner StartTrainAt(string departureStation, string startTime);
         ITrainplanner ArriveTrainAt(string arriveAtStation, string arrivalTime);
-        ITrainplanner GeneratePlan();
+        ITrainplanner ToPlan();
     }
 
     public class TrainPlanner : ITrainplanner
     {
-        public string DepartureAt;
+        public Train Train { get; }
+        public string DepartureAtStation;
         public string StartTime { get; set; }
         public string ArriveAtStation { get; set; }
         public string ArrivalTime { get; set; }
 
+        public TrainPlanner(Train train)
+        {
+            Train = train;
+        }
+
         public ITrainplanner StartTrainAt(string departureStation, string startTime)
         {
-            new TrainPlanner() { DepartureAt = departureStation, StartTime = startTime };
+            DepartureAtStation = departureStation;
+            StartTime = startTime;
             return this;
         }
         public ITrainplanner ArriveTrainAt(string arriveAtStation, string time)
         {
-            new TrainPlanner() { ArriveAtStation = arriveAtStation, ArrivalTime = time };
+            ArriveAtStation = arriveAtStation;
+            ArrivalTime = time; 
             return this;
         }
 
@@ -35,10 +43,9 @@ namespace FirstLevelRailway
             throw new NotImplementedException();
         }
 
-        public ITrainplanner GeneratePlan()
+        public ITrainplanner ToPlan()
         {
             Console.WriteLine("You time table have been saved");
-
             // trainplan.save();
             return this;
         }
