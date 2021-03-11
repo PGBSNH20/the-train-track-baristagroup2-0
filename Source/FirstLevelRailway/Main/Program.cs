@@ -12,10 +12,16 @@ namespace FirstLevelRailway
         {
             Console.CursorVisible = false;
 
-            var clock = new DigitalClock(leftPosition: (5, 5), tick_ns: 1);
+            var clock = new DigitalClock(leftPosition: (5, 5), tick_ns: 200);
+            var charMover = new CharMover('x', (1, 1));
+            
+            clock.CharMover = charMover;
+
             clock.StartClock(maxTicks: 200000);
 
             Console.ReadLine();
+
+           
             //var trainData = TrainCallLoader.Load();
             //var trains = Train.GenerateFrom(trainData);
             //var trainThreads = new List<Thread>();

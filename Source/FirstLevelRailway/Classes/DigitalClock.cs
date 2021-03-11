@@ -9,7 +9,7 @@ namespace FirstLevelRailway
     {
         (int x, int y) LeftPosition;
         int Tick_ns;
-
+        public  CharMover CharMover;
         SingleDigit singleMinute;
         SingleDigit tenMinute;
         SingleDigit singleHour;
@@ -58,14 +58,29 @@ namespace FirstLevelRailway
                     }
                 }
                 testTimeString = $"{tenHourDigit}{singleHourDigit}:{tenMinuteDigit}{singleMinuteDigit}"; 
-                if (testTimeString == "12:30")
+                if (testTimeString == "00:30")
                 {
-                    ConsoleWriter.Write('x',(10,10));
+                    this.CharMover.MoveRight();
+                    //ConsoleWriter.Write('x',(10,10));
 
                 }
+                if (testTimeString == "00:31")
+                {
+                    this.CharMover.MoveRight();
+                    //ConsoleWriter.Write('x',(10,10));
+
+                }
+                if (testTimeString == "00:32")
+                {
+                    this.CharMover.MoveRight();
+                    //ConsoleWriter.Write('x',(10,10));
+
+                }
+
                 tick++;
             }
         }
+
         
     }
 }
