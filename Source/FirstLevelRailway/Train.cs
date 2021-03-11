@@ -12,8 +12,6 @@ namespace FirstLevelRailway
 
             foreach (var trainCall in trainCalls)
             {
-                Console.WriteLine(trainCall.Train + " " + trainCall.Call);
-                bool test = !trains.Exists(x => x.Name == trainCall.Train);
                 if (!trains.Exists(x => x.Name == trainCall.Train))
                 {
                     var newTrain = new Train() { Name = trainCall.Train };
