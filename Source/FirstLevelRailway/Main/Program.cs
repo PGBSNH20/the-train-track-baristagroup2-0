@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Transactions;
 
@@ -11,6 +10,13 @@ namespace FirstLevelRailway
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
+            TrackReader.ReadToRailChars();
+            var railChars = TrackReader.railChars;
+
+            foreach (var rc in railChars)
+            {
+                rc.Alter();
+            }
 
             var clock = new DigitalClock(leftPosition: (5, 5), tick_ns: 200);
             var charMover = new CharMover('x', (1, 1));
@@ -41,36 +47,6 @@ namespace FirstLevelRailway
                 train.Move();
                 Thread.Sleep(500);
             }
-        }
-    }
-    public static class ConsoleWriter
-    {
-        public static void Write(char chr, (int X, int Y) coord)
-        {
-            Console.SetCursorPosition(coord.X, coord.Y);
-            Console.Write(chr);
-        }
-    }
-  
-
-    public class CharMover
-    {
-        char Chr;
-        (int X, int Y) LastCoord;
-        public CharMover(char chr, (int X, int Y) startCoord)
-        {
-            Chr = chr;
-            LastCoord = startCoord;
-            Write(startCoord);
-        }
-        public void MoveRight()
-        {
-            Write((LastCoord.X++, LastCoord.Y));
-        }
-        private void Write((int X, int Y) coord)
-        {
-            Console.SetCursorPosition(coord.X, coord.Y);
-            Console.Write(Chr);
         }
     }
 }

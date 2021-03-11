@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TextFiles\timetable.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TextFiles\timetable.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="firstleveltimetable.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
