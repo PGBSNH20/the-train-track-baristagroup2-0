@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstLevelRailway
 {
     public static class TrackReader
     {
-        public static string FilePath = @"C:\Users\axels\Google Drive\Code\VS Code\Code-Dataatkomster-dotnet\the-train-track-baristagroup2-0\Source\FirstLevelRailway\TextFiles\timetable.txt";
+        public static string FilePath = @"TextFiles\timetable.txt";
         public static List<(char chr, int X, int Y)> CharCoordinates { get; set; }
         public static List<RailChar> railChars { get; set; } = new List<RailChar>();
-    public static List<(char chr, int X, int Y)> ReadToRailChars()
+        public static List<(char chr, int X, int Y)> ReadToRailChars()
         {
             var lines = File.ReadAllLines(FilePath);
             var charCoord = new List<(char chr, int X, int Y)>();
@@ -25,7 +21,6 @@ namespace FirstLevelRailway
                 {
                     if (chr != ' ')
                         railChars.Add(new RailChar((x, y), chr));
-                        //charCoord.Add((chr, x, y));
                     x++;
                 }
                 y++;
@@ -33,8 +28,6 @@ namespace FirstLevelRailway
             }
             return CharCoordinates = charCoord;
         }
-
-
         public static List<(char chr, int X, int Y)> Read()
         {
             var lines = File.ReadAllLines(FilePath);
@@ -46,7 +39,7 @@ namespace FirstLevelRailway
             {
                 foreach (char chr in line)
                 {
-                    if(chr != ' ')
+                    if (chr != ' ')
                         charCoord.Add((chr, x, y));
                     x++;
                 }

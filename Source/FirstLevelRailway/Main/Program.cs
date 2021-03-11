@@ -18,7 +18,7 @@ namespace FirstLevelRailway
                 rc.Alter();
             }
 
-            var clock = new DigitalClock(leftPosition: (5, 5), tick_ns: 200);
+            var clock = new DigitalClock(leftPosition: (5, 5), tick_ns: 100);
             var charMover = new CharMover('x', (1, 1));
             
             clock.CharMover = charMover;

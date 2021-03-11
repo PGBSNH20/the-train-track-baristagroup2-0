@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 
 namespace FirstLevelRailway
 {
@@ -34,6 +31,11 @@ namespace FirstLevelRailway
             int singleHourDigit = 0;
             int tenHourDigit = 0;
             string testTimeString;
+
+            bool first = true;
+            int green = 0;
+            var railChars = TrackReader.railChars;
+
             while (tick < maxTicks)
             {
                 Thread.Sleep(Tick_ns);
@@ -41,6 +43,20 @@ namespace FirstLevelRailway
                 singleMinuteDigit = singleMinute.IncrementDigit();
                 if (singleMinuteDigit == 0)
                 {
+                    if (green == railChars.Count)
+                    {
+                        railChars[^1].Alter();
+                        first = true;
+                        green = 0;
+                    }
+                    if (!first)
+                    {
+                        railChars[green - 1].Alter();
+                    }
+                    railChars[green].Alter();
+                    green++;
+                    first = false;
+
                     tenMinuteDigit = tenMinute.IncrementDigit();
                     if (tenMinuteDigit == 0)
                     {
@@ -57,26 +73,7 @@ namespace FirstLevelRailway
                         }
                     }
                 }
-                testTimeString = $"{tenHourDigit}{singleHourDigit}:{tenMinuteDigit}{singleMinuteDigit}"; 
-                if (testTimeString == "00:30")
-                {
-                    this.CharMover.MoveRight();
-                    //ConsoleWriter.Write('x',(10,10));
-
-                }
-                if (testTimeString == "00:31")
-                {
-                    this.CharMover.MoveRight();
-                    //ConsoleWriter.Write('x',(10,10));
-
-                }
-                if (testTimeString == "00:32")
-                {
-                    this.CharMover.MoveRight();
-                    //ConsoleWriter.Write('x',(10,10));
-
-                }
-
+                testTimeString = $"{tenHourDigit}{singleHourDigit}:{tenMinuteDigit}{singleMinuteDigit}";
                 tick++;
             }
         }

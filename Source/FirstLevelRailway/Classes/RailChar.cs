@@ -24,6 +24,7 @@ namespace FirstLevelRailway
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 ConsoleWriter.Write(Chr, Coord);
+                Console.ForegroundColor = ConsoleColor.White;
                 Altered = false;
             }
         }
