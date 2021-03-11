@@ -7,6 +7,11 @@ namespace TrainConsole
 {
    public static class ConsoleWriter
     {
+        public static void Write(char chr, (int X, int Y) coord)
+        {
+            Console.SetCursorPosition(coord.X, coord.Y);
+            Console.Write(chr);
+        }
         public static void Write(params (char chr, int X, int Y)[] charCoords)
         {
             foreach(var chrCoord in charCoords)
