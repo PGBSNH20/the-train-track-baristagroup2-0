@@ -10,12 +10,15 @@ namespace FirstLevelRailway
     {
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             var charMover = new CharMover('z', (5, 5));
+            var singleSecondsDigit = new SingleSecondsDigit((1, 1), 9);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
-                Thread.Sleep(500);
+                Thread.Sleep(100);
                 charMover.MoveRight();
+                singleSecondsDigit.IncrementDigit();
             }
 
             Console.ReadLine();
@@ -40,21 +43,35 @@ namespace FirstLevelRailway
             }
         }
     }
-    public class Clock
+    public class SingleSecondsDigit
     {
-        //00:01
-        //00:11
-        //23:59
-        //00:00
-        //0
-        //9
+        
+        int currentDigit = 0;
+        int lastDigit = 9;
+        public SingleSecondsDigit((int x, int y) fixedCoord, int lastDigit)
+        {
+            FixedCoord = fixedCoord;
+            this.lastDigit = lastDigit;
+        }
+        (int x, int y) FixedCoord;
 
-        //Single second count digit
-        //Write(char 0-9, position)
-        //MoveRight - SwitchDigit
-        //loop at 9
-        //thread sleep - takten
+        private void WriteDigit(int digit)
+        {
+            Console.SetCursorPosition(FixedCoord.x, FixedCoord.y);
+            Console.Write(digit);
+        }
+        public void IncrementDigit()
+        {
+            if (currentDigit > lastDigit)
+                currentDigit = 0;
+
+            WriteDigit(currentDigit);
+            currentDigit++;
+        }
+
+
     }
+
     public class CharMover
     {
         char Chr;
