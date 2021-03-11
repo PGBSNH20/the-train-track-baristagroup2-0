@@ -68,7 +68,7 @@ namespace FirstLevelRailway
         public void StartClock(int maxTicks)
         {
             int tick = 0;
-            bool past20 = true;
+            bool past20 = false;
 
             while (tick < maxTicks)
             {
@@ -78,17 +78,12 @@ namespace FirstLevelRailway
                     if (tenMinute.IncrementDigit() == 1)
                         if (singleHour.IncrementDigit() == 1)
                         {
-                            tenHour.IncrementDigit();
+                            if (3 == tenHour.IncrementDigit())
+                                singleHour.lastDigit = 3;
+                            else
+                                singleHour.lastDigit = 9;
 
-                                if (past20)
-                                {
-                                    singleHour.lastDigit = 3;
-                                }
-                                else
-                                {
-                                    singleHour.lastDigit = 9;
-                                }
-                                past20 = !past20;
+                            past20 = !past20;
                         }
                 tick++;
             }
