@@ -14,7 +14,7 @@ namespace TrainConsole
             if (name != null)
                 train.Name = name;
 
-            Railway.SetIdAddId(id, train);
+            Railway.SetIdAddId(train, id);
             Railway.RailwayItems.Add(train);
 
             return train;
@@ -24,7 +24,7 @@ namespace TrainConsole
             var station = new Station();
             if (name != null)
                 station.Name = name;
-            Railway.SetIdAddId(id, station);
+            Railway.SetIdAddId(station, id);
             Railway.RailwayItems.Add(station);
 
             return station;
@@ -34,7 +34,8 @@ namespace TrainConsole
             var rail = new Rail { Connections = new List<IRailwayPart>() };
             if (connections != null)
                 rail.Connections.AddRange(connections);
-            Railway.SetIdAddId(id, rail);
+            Railway.SetIdAddId(rail, id);
+            Railway.RailwayItems.Add(rail);
             return rail;
         }
         public static IRailSwitch AddSwitch(int? id = null, List<IRailwayPart> connections = null)
@@ -42,7 +43,8 @@ namespace TrainConsole
             var railSwitch = new RailSwitch { Connections = new List<IRailwayPart>() };
             if (connections != null)
                 railSwitch.Connections.AddRange(connections);
-            Railway.SetIdAddId(id, railSwitch);
+            Railway.SetIdAddId(railSwitch, id);
+            Railway.RailwayItems.Add(railSwitch);
             return railSwitch;
         }
         public static ICrossing AddCrossing(int? id = null, List<IRailwayPart> connections = null)
@@ -50,7 +52,8 @@ namespace TrainConsole
             var crossing = new Crossing { Connections = new List<IRailwayPart>() };
             if (connections != null)
                 crossing.Connections.AddRange(connections);
-            Railway.SetIdAddId(id, crossing);
+            Railway.SetIdAddId(crossing, id);
+            Railway.RailwayItems.Add(crossing);
             return crossing;
         }
     }

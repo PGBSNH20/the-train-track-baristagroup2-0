@@ -13,8 +13,7 @@ namespace TrainConsole
             var partData = TrainTrackReader.Read();
             var railParts = RailwayPartGenerator.Generate(partData);
             RailwayAssembler.Assemble(railParts);
-
-            ConsoleWriter.Write(partData);
+            ConsoleWriter.WriteRailway();
             Console.ReadLine();
 
             // Step 1:

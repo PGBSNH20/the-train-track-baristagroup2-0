@@ -18,21 +18,25 @@ namespace TrainConsole
                 {
                     var newRail = Factory.AddRail();
                     AddCharCoordParams(newRail, charCoord);
+                    railwayParts.Add(newRail);
                 }
                 if (TrainTrackReader.StationChars.Contains(charCoord.chr))
                 {
                     var newStation = Factory.AddStation();
                     AddCharCoordParams(newStation, charCoord);
+                    railwayParts.Add(newStation);
                 }
                 if (TrainTrackReader.CrossingChar == charCoord.chr)
                 {
                     var newCrossing = Factory.AddCrossing();
                     AddCharCoordParams(newCrossing, charCoord);
+                    railwayParts.Add(newCrossing);
                 }
                 if (TrainTrackReader.SwitchChars.Contains(charCoord.chr))
                 {
                     var newSwitch = Factory.AddSwitch();
                     AddCharCoordParams(newSwitch, charCoord);
+                    railwayParts.Add(newSwitch);
                 }
             }
             return railwayParts;
