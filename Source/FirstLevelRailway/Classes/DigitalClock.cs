@@ -29,23 +29,23 @@ namespace FirstLevelRailway
         {
             int tick = 0;
             bool past20 = false;
-            int singleMinuteDigit;
-            int tenMinuteDigit;
-            int singleHourMinuteDigit;
-            int tenHourDigit;
-
+            int singleMinuteDigit = 0;
+            int tenMinuteDigit = 0;
+            int singleHourDigit = 0;
+            int tenHourDigit = 0;
+            string testTimeString;
             while (tick < maxTicks)
             {
                 Thread.Sleep(Tick_ns);
 
-                singleHourMinuteDigit = singleMinute.IncrementDigit();
-                if (singleHourMinuteDigit == 0)
+                singleMinuteDigit = singleMinute.IncrementDigit();
+                if (singleMinuteDigit == 0)
                 {
                     tenMinuteDigit = tenMinute.IncrementDigit();
                     if (tenMinuteDigit == 0)
                     {
-                        singleHourMinuteDigit = singleHour.IncrementDigit();
-                        if (singleHourMinuteDigit == 0)
+                        singleHourDigit = singleHour.IncrementDigit();
+                        if (singleHourDigit == 0)
                         {
                             tenHourDigit = tenHour.IncrementDigit();
                             if (tenHourDigit == 2)
@@ -56,6 +56,12 @@ namespace FirstLevelRailway
                             past20 = !past20;
                         }
                     }
+                }
+                testTimeString = $"{tenHourDigit}{singleHourDigit}:{tenMinuteDigit}{singleMinuteDigit}"; 
+                if (testTimeString == "12:30")
+                {
+                    ConsoleWriter.Write('x',(10,10));
+
                 }
                 tick++;
             }
