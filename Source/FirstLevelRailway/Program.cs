@@ -5,21 +5,15 @@ using System.Transactions;
 
 namespace FirstLevelRailway
 {
-    
+
     class Program
     {
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            var charMover = new CharMover('z', (5, 5));
-            var singleSecondsDigit = new SingleSecondsDigit((1, 1), 9);
 
-            for (int i = 0; i < 20; i++)
-            {
-                Thread.Sleep(100);
-                charMover.MoveRight();
-                singleSecondsDigit.IncrementDigit();
-            }
+            var clock = new DigitalClock(leftPosition: (5, 5), tick_ns: 1);
+            clock.StartClock(maxTicks: 200000);
 
             Console.ReadLine();
             //var trainData = TrainCallLoader.Load();
@@ -43,33 +37,99 @@ namespace FirstLevelRailway
             }
         }
     }
-    public class SingleSecondsDigit
+    public static class ConsoleWriter
     {
-        
-        int currentDigit = 0;
-        int lastDigit = 9;
-        public SingleSecondsDigit((int x, int y) fixedCoord, int lastDigit)
+        public static void Write(char chr, (int X, int Y) coord)
         {
-            FixedCoord = fixedCoord;
-            this.lastDigit = lastDigit;
+            Console.SetCursorPosition(coord.X, coord.Y);
+            Console.Write(chr);
         }
-        (int x, int y) FixedCoord;
+    }
+    public class DigitalClock
+    {
+        (int x, int y) LeftPosition;
+        int Tick_ns;
 
-        private void WriteDigit(int digit)
+        SingleDigit singleMinute;
+        SingleDigit tenMinute;
+        SingleDigit singleHour;
+        SingleDigit tenHour;
+        public DigitalClock((int x, int y) leftPosition, int tick_ns)
         {
-            Console.SetCursorPosition(FixedCoord.x, FixedCoord.y);
-            Console.Write(digit);
+            LeftPosition = leftPosition;
+            Tick_ns = tick_ns;
+
+            singleMinute = new SingleDigit((LeftPosition.x + 4, LeftPosition.y), 9);
+            tenMinute = new SingleDigit((LeftPosition.x + 3, LeftPosition.y), 5);
+            singleHour = new SingleDigit((LeftPosition.x + 1, LeftPosition.y), 9);
+            tenHour = new SingleDigit(LeftPosition, 2);
+            ConsoleWriter.Write(':', (LeftPosition.x + 2, LeftPosition.y));
         }
-        public void IncrementDigit()
+        public void StartClock(int maxTicks)
         {
-            if (currentDigit > lastDigit)
-                currentDigit = 0;
+            int tick = 0;
+            bool past20 = true;
 
-            WriteDigit(currentDigit);
-            currentDigit++;
+            while (tick < maxTicks)
+            {
+                Thread.Sleep(Tick_ns);
+
+                if (singleMinute.IncrementDigit() == 1)
+                    if (tenMinute.IncrementDigit() == 1)
+                        if (singleHour.IncrementDigit() == 1)
+                        {
+                            tenHour.IncrementDigit();
+
+                                if (past20)
+                                {
+                                    singleHour.lastDigit = 3;
+                                }
+                                else
+                                {
+                                    singleHour.lastDigit = 9;
+                                }
+                                past20 = !past20;
+                        }
+                tick++;
+            }
         }
+        public class SingleDigit
+        {
+            int currentDigit = 0;
+            public int lastDigit = 9;
+            bool firstIteration = true;
+            public SingleDigit((int x, int y) fixedCoord, int lastDigit)
+            {
+                FixedCoord = fixedCoord;
+                this.lastDigit = lastDigit;
+                WriteDigit(0);
+            }
+            (int x, int y) FixedCoord;
 
+            private void WriteDigit(int digit)
+            {
+                Console.SetCursorPosition(FixedCoord.x, FixedCoord.y);
+                Console.Write(digit);
+            }
+            public int IncrementDigit()
+            {
+                bool pastLastDigit = currentDigit > lastDigit;
 
+                if (firstIteration == true)
+                {
+                    currentDigit = 1;
+                    firstIteration = false;
+                }
+
+                if (pastLastDigit == true)
+                    currentDigit = 0;
+
+                WriteDigit(currentDigit);
+                currentDigit++;
+
+                return currentDigit;
+            }
+        }
     }
 
     public class CharMover
