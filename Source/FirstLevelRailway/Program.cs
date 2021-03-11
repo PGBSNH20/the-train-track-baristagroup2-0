@@ -42,7 +42,18 @@ namespace FirstLevelRailway
     }
     public class Clock
     {
+        //00:01
+        //00:11
+        //23:59
+        //00:00
+        //0
+        //9
 
+        //Single second count digit
+        //Write(char 0-9, position)
+        //MoveRight - SwitchDigit
+        //loop at 9
+        //thread sleep - takten
     }
     public class CharMover
     {
