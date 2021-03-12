@@ -10,7 +10,7 @@ namespace TrainConsole
         {
 
             Console.WriteLine("Train track!");
-            var partData = TrainTrackReader.Read(FilePath);
+            var partData = TrainTrackReader.Read(File.ReadAllLines(FilePath));
             var railParts = RailwayPartGenerator.Generate(partData);
             RailwayAssembler.Assemble(railParts);
             ConsoleWriter.WriteRailway();

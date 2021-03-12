@@ -14,7 +14,7 @@ namespace TrainConsole
         public int CoordinateY { get; set; }
         public string Name { get; set; }
         public List<IRailwayPart> Route { get; set; }
-        public List<CheckPoint> Stops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<CheckPoint> Stops { get; set; }
 
         public void MoveForward()
         {

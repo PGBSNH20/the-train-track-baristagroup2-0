@@ -7,17 +7,14 @@ namespace TrainConsole
 {
     public static class TrainTrackReader
     {
-  
-
         public static List<(char chr, int X, int Y)> CharCoordinates { get; set; }
-        public static List<(char chr, int X, int Y)> Read(string filePath)
+        public static List<(char chr, int X, int Y)> Read(string[] inputLines)
         {
-            var lines = File.ReadAllLines(filePath);
             var charCoord = new List<(char chr, int X, int Y)>();
 
             int x = 0;
             int y = 0;
-            foreach (var line in lines)
+            foreach (var line in inputLines)
             {
                 foreach  (char chr in line)
                 {

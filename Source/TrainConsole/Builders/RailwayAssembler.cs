@@ -16,18 +16,20 @@ namespace TrainConsole
                     part.Connections.AddRange(LocatePartConnections(part));
             }
         }
-        private static List<IRailwayPart> LocatePartConnections(IRailwayPart part)
+        public static List<IRailwayPart> LocatePartConnections(IRailwayPart part)
         {
             var partConnections = new List<IRailwayPart>();
 
-            var up = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY+1));
-            var upRight = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var right = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var downRight = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var down = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var downLeft = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var left = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var leftUp = Railway.GetPartFromPosXY((part.CoordinateX, part.CoordinateY + 1));
+
+
+            var up = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY+1));
+            var upRight = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
+            var right = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
+            var downRight = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
+            var down = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
+            var downLeft = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
+            var left = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
+            var leftUp = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
 
             var tempItems = new List<IRailwayItem>() 
             { 
@@ -41,10 +43,6 @@ namespace TrainConsole
             }
 
             return partConnections;
-        }
-        public class PartLocator
-        {
-
         }
     }
 }

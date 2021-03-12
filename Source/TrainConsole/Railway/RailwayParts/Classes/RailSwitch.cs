@@ -12,6 +12,6 @@ namespace TrainConsole
         public char Char { get; set; }
         public int CoordinateX { get; set; }
         public int CoordinateY { get; set; }
-        public List<IRailwayPart> Connections { get; set; }
+        public List<IRailwayPart> Connections { get; set; } = new List<IRailwayPart>();
     }
 }

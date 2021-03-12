@@ -12,29 +12,6 @@ namespace TrainConsole
         public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
         public static List<IRailwayItem> RailwayItems { get; set; } = new List<IRailwayItem>();
         public static List<TimeTable> timeTables { get; set; } = new List<TimeTable>();
-        public static IRailwayItem GetPartFromId(int id)
-        {
-            try
-            {
-                return RailwayItems.Find(x => x.Id == id);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-        public static IRailwayItem GetPartFromPosXY((int X, int Y) coord)
-        {
-            try
-            {
-                return RailwayItems.Find(item => item.CoordinateX == coord.X && item.CoordinateY == coord.Y);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
         public static int SetIdAddId(IRailwayItem newPart, int? id = null)
         {
             var ids = RailwayItems.Select(x => x.Id).ToList();
