@@ -9,11 +9,11 @@ namespace TrainConsole
 {
     public class trackReader
     {
-        public static string FilePath = @"C:\Users\axels\Google Drive\Code\VS Code\Code-Dataatkomster-dotnet\the-train-track-baristagroup2-0\Source\TrainConsole\TextFiles\traintrack.txt";
+        
         public static List<(char chr, int X, int Y)> CharCoordinates { get; set; }
-        public static List<(char chr, int X, int Y)> Read()
+        public static List<(char chr, int X, int Y)> Read(string filePath)
         {
-            var lines = File.ReadAllLines(FilePath);
+            var lines = File.ReadAllLines(filePath);
             var charCoord = new List<(char chr, int X, int Y)>();
 
             int x = 0;

@@ -5,12 +5,12 @@ namespace TrainConsole
 {
     class Program
     {
-
+        public static string FilePath = @"TextFiles\traintrack.txt";
         static void Main(string[] args)
         {
 
             Console.WriteLine("Train track!");
-            var partData = TrainTrackReader.Read();
+            var partData = TrainTrackReader.Read(FilePath);
             var railParts = RailwayPartGenerator.Generate(partData);
             RailwayAssembler.Assemble(railParts);
             ConsoleWriter.WriteRailway();

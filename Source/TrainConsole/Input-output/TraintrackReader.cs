@@ -7,12 +7,12 @@ namespace TrainConsole
 {
     public static class TrainTrackReader
     {
-    public static string FilePath = @"TextFiles\traintrack.txt";
+  
 
         public static List<(char chr, int X, int Y)> CharCoordinates { get; set; }
-        public static List<(char chr, int X, int Y)> Read()
+        public static List<(char chr, int X, int Y)> Read(string filePath)
         {
-            var lines = File.ReadAllLines(FilePath);
+            var lines = File.ReadAllLines(filePath);
             var charCoord = new List<(char chr, int X, int Y)>();
 
             int x = 0;
@@ -24,7 +24,7 @@ namespace TrainConsole
                     //if (railwayChars.Contains(chr))
                     //    charCoord.Add((chr, x, y));
                     if (chr != ' ')
-                        charCoord.Add((chr, x, y));
+                        charCoord.Add((chr, (int)x, (int)y));
                     x++;
                 }
                 y++;

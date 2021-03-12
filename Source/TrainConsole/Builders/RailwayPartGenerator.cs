@@ -11,7 +11,7 @@ namespace TrainConsole
         public static char[] SwitchChars = new char[] { '<', '>' };
         public static char CrossingChar = '=';
         public static char[] RailChars = new char[] { '-', '/', '\\' };
-        public static char[] StationChars = Enumerable.Range(0, 9).Select(x => (char)x).ToArray();
+        public static char[] StationChars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         public static List<IRailwayPart> Generate(List<(char chr, int X, int Y)> CharCoordinates)
         {
             var railwayParts = new List<IRailwayPart>();

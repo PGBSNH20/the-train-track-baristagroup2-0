@@ -3,6 +3,8 @@ using System.Linq;
 using Xunit;
 using TrainConsole;
 using System.Collections.Generic;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace TrainEngine.Tests
 {
@@ -103,5 +105,77 @@ namespace TrainEngine.Tests
             var test = (int)'9';
             Assert.True(test == 57);
         }
+        [Fact]
+        public void Array_0Through5_ExpectNotEqual()
+        {
+            var array = Enumerable.Range(0, 5).Select(x => (char)x).ToArray();
+            var expectedArray = new char[] { '0', '1', '2', '3', '4'};
+
+            Assert.NotEqual(expectedArray, array);
+        }
+        [Fact]
+        public void Array_0Through5_ExpectEqual()
+        {
+            var array = Enumerable.Range(0, 5).ToList();
+            var charArray = array.Select(x => Char.Parse(x.ToString())).ToArray();
+
+            var expectedArray = new char[] { '0', '1', '2', '3', '4' };
+
+            Assert.Equal(expectedArray, charArray);
+        }
+        [Fact]
+        public void TrainTrackReader_Read_ExpectEqual()
+        {
+            var dataRead = TrainTrackReader.Read(@"testStation.txt");
+            var expected = new List<(char chr, int X, int Y)>
+            {
+                ('[', 0, 0),
+                ('1', 1, 0),
+                (']', 2, 0),
+            };
+            Assert.Equal(expected, dataRead);
+        }
+        [Fact]
+        public void RailwayPartGenerator_Generate_ExpectEqual()
+        {
+            Railway.RailwayItems.Clear();
+            var dataRead = TrainTrackReader.Read(@"testStation.txt");
+            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var expected = new List<IRailwayPart>
+            {
+                new Station()
+                {
+                    Char = '1',
+                    CoordinateX = 1,
+                    CoordinateY = 0,
+                    Id = 1
+                }
+            };
+            var railString = JsonConvert.SerializeObject(railParts);
+            var expString = JsonConvert.SerializeObject(expected);
+            Assert.Equal(expString, railString);
+        }
+        [Fact]
+        public void RailwayAssembler_Assemble_ExpectNotEqual()
+        {
+            Railway.RailwayItems.Clear();
+            var dataRead = TrainTrackReader.Read(@"testStation.txt");
+            var railParts = RailwayPartGenerator.Generate(dataRead);
+            RailwayAssembler.Assemble(railParts);
+            var expected = new List<IRailwayPart>
+            {
+                new Station()
+                {
+                    Char = '1',
+                    CoordinateX = 1,
+                    CoordinateY = 0,
+                    Id = 1
+                }
+            };
+            var railString = JsonConvert.SerializeObject(railParts);
+            var expString = JsonConvert.SerializeObject(expected);
+            Assert.NotEqual(expString, railString);
+        }
+
     }
 }
