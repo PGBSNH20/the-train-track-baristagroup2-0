@@ -8,31 +8,39 @@ namespace TrainConsole
 {
     public static class RailwayPartGenerator
     {
+        public static char[] SwitchChars = new char[] { '<', '>' };
+        public static char CrossingChar = '=';
+        public static char[] RailChars = new char[] { '-', '/', '\\' };
+        public static char[] StationChars = Enumerable.Range(0, 9).Select(x => (char)x).ToArray();
         public static List<IRailwayPart> Generate(List<(char chr, int X, int Y)> CharCoordinates)
         {
             var railwayParts = new List<IRailwayPart>();
+            var railwayChars = SwitchChars.ToList();
+            railwayChars.AddRange(RailChars);
+            railwayChars.Add(CrossingChar);
+            railwayChars.AddRange(StationChars);
 
             foreach (var charCoord in CharCoordinates)
             {
-                if (TrainTrackReader.RailChars.Contains(charCoord.chr))
+                if (RailChars.Contains(charCoord.chr))
                 {
                     var newRail = Factory.AddRail();
                     AddCharCoordParams(newRail, charCoord);
                     railwayParts.Add(newRail);
                 }
-                if (TrainTrackReader.StationChars.Contains(charCoord.chr))
+                if (StationChars.Contains(charCoord.chr))
                 {
                     var newStation = Factory.AddStation();
                     AddCharCoordParams(newStation, charCoord);
                     railwayParts.Add(newStation);
                 }
-                if (TrainTrackReader.CrossingChar == charCoord.chr)
+                if (CrossingChar == charCoord.chr)
                 {
                     var newCrossing = Factory.AddCrossing();
                     AddCharCoordParams(newCrossing, charCoord);
                     railwayParts.Add(newCrossing);
                 }
-                if (TrainTrackReader.SwitchChars.Contains(charCoord.chr))
+                if (SwitchChars.Contains(charCoord.chr))
                 {
                     var newSwitch = Factory.AddSwitch();
                     AddCharCoordParams(newSwitch, charCoord);

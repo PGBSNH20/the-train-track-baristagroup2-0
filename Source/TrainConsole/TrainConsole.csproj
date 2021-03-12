@@ -7,12 +7,21 @@
 
   <ItemGroup>
     <None Remove="TextFiles\timetable.txt" />
+    <None Remove="TextFiles\trains.txt" />
+    <None Remove="TextFiles\traintrack.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="TextFiles\timetable.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="TextFiles\trains.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="TextFiles\traintrack.txt" />
   </ItemGroup>
 
 </Project>
