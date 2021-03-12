@@ -9,7 +9,7 @@ using System.IO;
 
 namespace TrainEngine.Tests
 {
-    public class TestDrivenClockTests
+    public class TwentyFourHourClockTests
     {
         [Fact]
         public void Simple_Clock_Loop_AssertTrue()
