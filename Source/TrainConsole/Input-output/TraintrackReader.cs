@@ -31,7 +31,9 @@ namespace TrainConsole
             {
                 foreach  (char chr in line)
                 {
-                    if (railwayChars.Contains(chr))
+                    //if (railwayChars.Contains(chr))
+                    //    charCoord.Add((chr, x, y));
+                    if (chr != ' ')
                         charCoord.Add((chr, x, y));
                     x++;
                 }
