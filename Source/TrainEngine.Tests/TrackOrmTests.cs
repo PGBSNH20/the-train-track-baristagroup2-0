@@ -125,10 +125,6 @@ namespace TrainEngine.Tests
             Assert.Equal(expectedArray, charArray);
         }
        
-       
-    
-        
-      
         [Fact]
         public void Station_Generate_ExpectPropertyTrue()
         {
