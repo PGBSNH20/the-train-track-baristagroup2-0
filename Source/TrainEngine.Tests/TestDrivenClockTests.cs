@@ -23,25 +23,82 @@ namespace TrainEngine.Tests
             Assert.True(x == "8");
         }
         [Fact]
-        public void Simple_Clock_AssertCorrectString()
-        {
-            var clock = new TestDrivenClock();
-            clock.Tick(8);
-            Assert.True(clock.Time == new[] { "0", "8" });
-        }
-        [Fact]
         public void Simple_Clock_CorrectTick()
         {
-            var clock = new TestDrivenClock();
-            clock.Tick(8);
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(8);
             Assert.True(clock.Ticks == 8);
         }
         [Fact]
-        public void Simple_Clock_Switch_TenSecondDigit()
+        public void Simple_Clock_AssertCorrectString()
         {
-            var clock = new TestDrivenClock();
-            clock.Tick(10);
-            Assert.True(clock.Time == "10");
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(8);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "0", ":", "0", "8" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_Switch_TenSecondDigitToOne()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(10);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "0", ":", "1", "0" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_Switch_HourDigitToOne()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(60);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "1", ":", "0", "0" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_Switch_TenHourDigitToOne()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(600);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "1", "0", ":", "0", "0" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_Switch_TenHourDigitTo25()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(1500);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "2", "5", ":", "0", "0" });
+            Assert.False(equal);
+        }
+        [Fact]
+        public void Simple_Clock_1500Ticks_Assert()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(1500);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "1", ":", "0", "0" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_Assert23()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(1380);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "2", "3", ":", "0", "0" });
+            Assert.True(equal);
         }
     }
 }
