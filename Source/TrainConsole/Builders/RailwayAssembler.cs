@@ -20,26 +20,22 @@ namespace TrainConsole
         {
             var partConnections = new List<IRailwayPart>();
 
-
-
-            var up = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY+1));
-            var upRight = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var right = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var downRight = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var down = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var downLeft = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var left = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-            var leftUp = RailwayLocator.LocateWithPosXY((part.CoordinateX, part.CoordinateY + 1));
-
-            var tempItems = new List<IRailwayItem>() 
+            var tempList = new List<IRailwayPart>()
             { 
-                up, upRight, right, downRight, down, downLeft, left, leftUp
+                RailwayLocator.LocateUp(part),
+                RailwayLocator.LocateUpRight(part),
+                RailwayLocator.LocateRight(part),
+                RailwayLocator.LocateDownRight(part),
+                RailwayLocator.LocateDown(part),
+                RailwayLocator.LocateDownLeft(part),
+                RailwayLocator.LocateLeft(part),
+                RailwayLocator.LocateUpLeft(part),
             };
 
-            foreach(var item in tempItems)
+            foreach(var p in tempList)
             {
-                if (item != null)
-                    partConnections.Add((IRailwayPart)item);
+                if(p != null)
+                partConnections.Add(p);
             }
 
             return partConnections;

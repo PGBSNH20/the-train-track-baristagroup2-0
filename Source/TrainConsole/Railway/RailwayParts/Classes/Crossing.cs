@@ -13,5 +13,10 @@ namespace TrainConsole
         public int CoordinateX { get; set; }
         public int CoordinateY { get; set; }
         public List<IRailwayPart> Connections { get; set; } = new List<IRailwayPart>();
+
+        public void ConnectToClosest()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace TrainConsole
     public interface IRailwayPart : IRailwayItem
     {
         public List<IRailwayPart> Connections { get; set; }
+        //public void ConnectToClosest();
     }
 }

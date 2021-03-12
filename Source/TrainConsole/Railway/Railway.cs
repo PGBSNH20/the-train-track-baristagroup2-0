@@ -12,6 +12,18 @@ namespace TrainConsole
         public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
         public static List<IRailwayItem> RailwayItems { get; set; } = new List<IRailwayItem>();
         public static List<TimeTable> timeTables { get; set; } = new List<TimeTable>();
+        public static List<IRailwayPart> GetRailwayParts()
+        {
+            var partList = new List<IRailwayPart>();
+            foreach (var item in RailwayItems)
+            {
+                var type = item.GetType();
+                var test = type.IsAssignableTo(typeof(IRailwayPart));
+                if (test)
+                    partList.Add((IRailwayPart)item);
+            }
+            return partList;
+        }
         public static int SetIdAddId(IRailwayItem newPart, int? id = null)
         {
             var ids = RailwayItems.Select(x => x.Id).ToList();

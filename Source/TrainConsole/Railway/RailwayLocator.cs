@@ -15,8 +15,16 @@ namespace TrainConsole
                 return null;
             }
         }
-        public static IRailwayItem LocateWithPosXY((int X, int Y) coord)
+        public static IRailwayItem LocateWithPosXY((int X, int Y) coord, bool railwayParts = true)
         {
+            if (railwayParts == true)
+            {
+                var searchItems = Railway.GetRailwayParts();
+            }
+            else
+            {
+                var searchItems = Railway.RailwayItems;
+            }
             try
             {
                 return Railway.RailwayItems.Find(item => item.CoordinateX == coord.X && item.CoordinateY == coord.Y);
