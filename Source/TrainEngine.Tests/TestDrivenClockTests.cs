@@ -100,5 +100,66 @@ namespace TrainEngine.Tests
             var equal = Enumerable.SequenceEqual(time, new[] { "2", "3", ":", "0", "0" });
             Assert.True(equal);
         }
+
+        [Fact]
+        public void Simple_Clock_AssertMidnight()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(1440);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "0", ":", "0", "0" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_AssertMidnightTwoDays()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(2880);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "0", ":", "0", "0" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_AssertMidnight01TwoDays()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(2881);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "0", ":", "0", "1" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_AssertMidnight01()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(1441);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "0", "0", ":", "0", "1" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_AssertNextDay1111()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(2111);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "1", "1", ":", "1", "1" });
+            Assert.True(equal);
+        }
+        [Fact]
+        public void Simple_Clock_AssertNextDay2311()
+        {
+            var clock = new TwentyFourHourClock();
+            clock.Ticks = 0;
+            clock.TickTimes(2831);
+            var time = clock.Time;
+            var equal = Enumerable.SequenceEqual(time, new[] { "2", "3", ":", "1", "1" });
+            Assert.True(equal);
+        }
     }
 }
