@@ -25,7 +25,7 @@ namespace FirstLevelRailway
         public void StartClock(int maxTicks)
         {
             int tick = 0;
-            bool past20 = false;
+            //bool past20 = false;
             int singleMinuteDigit = 0;
             int tenMinuteDigit = 0;
             int singleHourDigit = 0;
@@ -69,15 +69,14 @@ namespace FirstLevelRailway
                             else
                                 singleHour.lastDigit = 9;
 
-                            past20 = !past20;
+                            //past20 = !past20;
                         }
                     }
                 }
+
                 testTimeString = $"{tenHourDigit}{singleHourDigit}:{tenMinuteDigit}{singleMinuteDigit}";
                 tick++;
             }
-        }
-
-        
+        }   
     }
 }
