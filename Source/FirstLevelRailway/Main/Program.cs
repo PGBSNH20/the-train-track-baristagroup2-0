@@ -9,8 +9,10 @@ namespace FirstLevelRailway
     {
         static void Main(string[] args)
         {
+            
             Thread thread1 = new Thread(new ThreadStart(moveThreads));
             thread1.Start();
+
             Console.CursorVisible = false;
             TrackReader.ReadToRailChars();
             var railChars = TrackReader.railChars;
