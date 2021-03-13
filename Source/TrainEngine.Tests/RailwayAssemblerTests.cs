@@ -23,15 +23,15 @@ namespace TrainEngine.Tests
             Railway.RailwayItems.Clear();
         }
         [Fact]
-        public void RailwayAssembler_LocatePartConnections_ExpectZero()
+        public void RailwayAssembler_LocatePartConnections_ExpectTwo()
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "[1]" });
             var railParts = RailwayPartsORM.Map(dataRead);
-            var station = railParts[0];
+            var station = railParts[1];
             var connections = RailwayAssembler.LocatePartConnections(station);
             var countConn = connections.Count;
-            Assert.True(connections.Count == 0);
+            Assert.True(connections.Count == 2);
         }
         [Fact]
         public void RailwayAssembler_LocatePartConnections_Expect1()

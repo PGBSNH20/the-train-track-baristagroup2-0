@@ -39,175 +39,27 @@ namespace TrainEngine.Tests
                 Chars = "2"
             };
 
-            bool exists = ScreenMemoryLayer.UnitExists(tryUnit);
+            bool exists = ScreenMemoryLayer.IsInDrawables(tryUnit);
             Assert.False(exists);
         }
-        [Fact]
-        public void ScreenMemoryLayer_Expect_Exist()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "2"
-            };
-
-            bool exists = ScreenMemoryLayer.UnitExists(tryUnit);
-            Assert.True(exists);
-        }
-        [Fact]
-        public void ScreenMemoryLayer_Expect_NoChange()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "1"
-            };
-
-            bool changed = ScreenMemoryLayer.UnitChanged(tryUnit);
-            Assert.False(changed);
-        }
-        [Fact]
-        public void ScreenMemoryLayer_Expect_Changed()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "2"
-            };
-
-            bool changed = ScreenMemoryLayer.UnitChanged(tryUnit);
-            Assert.True(changed);
-        }
-        [Fact]
-        public void ScreenMemoryLayer_Expect_NoReplace()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "1"
-            };
-
-            bool replace = ScreenMemoryLayer.TryReplace(tryUnit);
-            Assert.False(replace);
-        }
-        [Fact]
-        public void ScreenMemoryLayer_Expect_Replace()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "2"
-            };
-
-            bool replace = ScreenMemoryLayer.TryReplace(tryUnit);
-            Assert.True(replace);
-        }
-        [Fact]
-        public void ScreenMemoryLayer_ColorReplace_Expect_Replace()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "1",
-                Color = ConsoleColor.Green
-            };
-
-            bool replace = ScreenMemoryLayer.TryReplace(tryUnit);
-            Assert.True(replace);
-        }
-        [Fact]
-        public void ScreenMemoryLayer_Expect_ReplacedInList()
-        {
-            ScreenMemoryLayer.Drawables.Clear();
-            ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
-            {
-                CoordinateX = 0,
-                CoordinateY = 0,
-                Chars = "1",
-                Color = ConsoleColor.Green
-            };
-            ScreenMemoryLayer.TryReplace(tryUnit);
-            bool replace = tryUnit==ScreenMemoryLayer.Drawables[0];
-            Assert.True(replace);
-        }
+      
         [Fact]
         public void ScreenMemoryLayer_tryAppend_Expect_2()
         {
             ScreenMemoryLayer.Drawables.Clear();
             ScreenMemoryLayer.Drawables.Add(
-                new DrawableRailwayPart()
-                {
-                    CoordinateX = 0,
-                    CoordinateY = 0,
-                    Chars = "1"
-                });
-            var tryUnit = new DrawableRailwayPart()
+            new DrawableRailwayPart()
             {
-                CoordinateX = 1,
+                CoordinateX = 0,
                 CoordinateY = 0,
                 Chars = "1",
-                Color = ConsoleColor.Green
+            });
+
+            var tryUnit = new DrawableRailwayPart()
+            {
+                CoordinateX = 2,
+                CoordinateY = 2,
+                Chars = "2",
             };
             ScreenMemoryLayer.TryAppendUnit(tryUnit);
             var units = ScreenMemoryLayer.Drawables;
@@ -216,6 +68,7 @@ namespace TrainEngine.Tests
         [Fact]
         public void ScreenMemoryLayer_tryAppend_Expect_1()
         {
+            ScreenMemoryLayer.Drawables.Clear();
             ScreenMemoryLayer.Drawables.Add(
                 new DrawableRailwayPart()
                 {
@@ -233,6 +86,27 @@ namespace TrainEngine.Tests
             ScreenMemoryLayer.TryAppendUnit(tryUnit);
             var units = ScreenMemoryLayer.Drawables;
             Assert.True(units.Count == 1);
+        }
+        [Fact]
+        public void ScreenMemoryLayer_tryAppDrawn_Expect_Same()
+        {
+            var first = new DrawableRailwayPart()
+            {
+                CoordinateX = 0,
+                CoordinateY = 0,
+                Chars = "1",
+                IsDrawn = true
+            };
+            ScreenMemoryLayer.Drawables.Add(first);
+            var tryUnit = new DrawableRailwayPart()
+            {
+                CoordinateX = 0,
+                CoordinateY = 0,
+                Chars = "1"
+            };
+            ScreenMemoryLayer.TryAppendUnit(tryUnit);
+            var units = ScreenMemoryLayer.Drawables;
+            Assert.True(units[0] == first);
         }
         [Fact]
         public void ScreenMemoryLayer_AppendRailway_Expect()
@@ -249,6 +123,76 @@ namespace TrainEngine.Tests
             Assert.True(units.Count == 1);
         }
 
+        [Fact]
+        public void ScreenMemoryLayer_IsInDrawables_ExpectTrue()
+        {
+            var rail = new Rail()
+            {
+                CoordinateX = 1,
+                CoordinateY = 1,
+                Char = '-'
+            };
+            var item = DrawableRailwayPart.ConvertPart(rail);
+            ScreenMemoryLayer.Drawables.Add(item);
+            bool isInDrawables = ScreenMemoryLayer.IsInDrawables(item);
+            Assert.True(isInDrawables);
+        }
+        [Fact]
+        public void ScreenMemoryLayer_IsNotInDrawables_ExpectFalse()
+        {
+            var rail = new Rail()
+            {
+                CoordinateX = 1,
+                CoordinateY = 1,
+                Char = '-'
+            };
+            var item = DrawableRailwayPart.ConvertPart(rail);
+            bool isInDrawables = ScreenMemoryLayer.IsInDrawables(item);
+            Assert.False(isInDrawables);
+        }
+        [Fact]
+        public void ScreenMemoryLayer_IsInDrawablesTrainRail_ExpectTrue()
+        {
+            var rail = new Rail()
+            {
+                CoordinateX = 1,
+                CoordinateY = 1,
+                Char = '-'
+            };
+            var item = DrawableRailwayPart.ConvertPart(rail);
+            var station = new Station()
+            {
+                CoordinateX = 1,
+                CoordinateY = 1,
+                Char = '-'
+            };
+            var item2 = DrawableRailwayPart.ConvertPart(station);
 
+            ScreenMemoryLayer.Drawables.Add(item);
+            bool isInDrawables = ScreenMemoryLayer.IsInDrawables(item2);
+            Assert.True(isInDrawables);
+        }
+        [Fact]
+        public void ScreenMemoryLayer_IsInDrawablesTrainRail_ExpectFalse()
+        {
+            var rail = new Rail()
+            {
+                CoordinateX = 1,
+                CoordinateY = 1,
+                Char = '-'
+            };
+            var item = DrawableRailwayPart.ConvertPart(rail);
+            var station = new Station()
+            {
+                CoordinateX = 1,
+                CoordinateY = 1,
+                Char = '+'
+            };
+            var item2 = DrawableRailwayPart.ConvertPart(station);
+
+            ScreenMemoryLayer.Drawables.Add(item);
+            bool isInDrawables = ScreenMemoryLayer.IsInDrawables(item2);
+            Assert.False(isInDrawables);
+        }
     }
 }

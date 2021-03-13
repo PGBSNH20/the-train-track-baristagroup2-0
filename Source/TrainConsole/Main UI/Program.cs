@@ -9,7 +9,7 @@ namespace TrainConsole
         public static string simpleTrackPath = @"TextFiles\simpleTrack.txt";
         static void Main(string[] args)
         {
-
+            Console.CursorVisible = false;
             var partData = TrainTrackReader.Read(File.ReadAllLines(simpleTrackPath));
             var railParts = RailwayPartsORM.Map(partData);
             RailwayAssembler.Assemble(railParts);

@@ -15,7 +15,7 @@ namespace TrainEngine.Tests
         [Fact]
         public void TrainTrackReader_ReadFile_ExpectEqual()
         {
-            var dataRead = TrainConsole.TrainTrackReader.Read(File.ReadAllLines(@"testStation.txt"));
+            var dataRead = TrainTrackReader.Read(File.ReadAllLines(@"testStation.txt"));
             var expected = new List<(char chr, int X, int Y)>
             {
                 ('[', 0, 0),

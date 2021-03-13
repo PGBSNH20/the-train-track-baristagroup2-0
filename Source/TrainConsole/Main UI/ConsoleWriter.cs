@@ -7,15 +7,14 @@ namespace TrainConsole
 {
     public static class ConsoleWriter
     {
-        public static void RefreshScreen()
-        {
-
-        }
         public static void Write(IDrawable drawable)
         {
+            if (drawable.IsDrawn == true) return;
+
             Console.ForegroundColor = drawable.Color;
             Console.SetCursorPosition(drawable.CoordinateX, drawable.CoordinateY);
             Console.Write(drawable.Chars);
+            drawable.IsDrawn = true;
             Console.ForegroundColor = ConsoleColor.White;
         }
         public static void Write(char chr, (int X, int Y) coord)

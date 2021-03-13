@@ -28,7 +28,7 @@ namespace TrainEngine.Tests
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
             var railParts = RailwayPartsORM.Map(dataRead);
-            var station = RailwayLocator.LocateWithId(1);
+            var station = RailwayLocator.LocateWithId(2);
             Assert.IsAssignableFrom<IStation>(station);
         }
         [Fact]
@@ -118,8 +118,8 @@ namespace TrainEngine.Tests
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
             var railParts = RailwayPartsORM.Map(dataRead);
-            var station = RailwayLocator.LocateWithId(1);
-            Assert.IsNotType<Rail>(station);
+            var rail = RailwayLocator.LocateWithId(1);
+            Assert.IsNotType<Station>(rail);
         }
         [Fact]
         public void RailwayLocator_LocateWithId_ExpectFromStation()
@@ -127,7 +127,7 @@ namespace TrainEngine.Tests
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
             var railParts = RailwayPartsORM.Map(dataRead);
-            var station = RailwayLocator.LocateWithId(1);
+            var station = RailwayLocator.LocateWithId(2);
             Assert.IsAssignableFrom<Station>(station);
         }
         [Fact]
@@ -149,13 +149,13 @@ namespace TrainEngine.Tests
             Assert.IsAssignableFrom<Station>(station);
         }
         [Fact]
-        public void RailwayLocator_LocateWithPosXY_ExpectNull()
+        public void RailwayLocator_LocateWithPosXY_ExpectRail()
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
             var railParts = RailwayPartsORM.Map(dataRead);
-            var station = RailwayLocator.LocateWithPosXY((0, 0));
-            Assert.True(station == null);
+            var rail = RailwayLocator.LocateWithPosXY((0, 0));
+            Assert.IsType<Rail>(rail);
         }
         [Fact]
         public void RailwayLocator_LocateWithId_ExpectNull()

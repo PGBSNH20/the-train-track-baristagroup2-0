@@ -30,13 +30,27 @@ namespace TrainEngine.Tests
             var railParts = RailwayPartsORM.Map(dataRead);
             var expected = new List<IRailwayPart>
             {
+                new Rail()
+                {
+                    Char = '[',
+                    CoordinateX = 0,
+                    CoordinateY = 0,
+                    Id = 1
+                },
                 new Station()
                 {
                     Char = '1',
                     CoordinateX = 1,
                     CoordinateY = 0,
-                    Id = 1
-                }
+                    Id = 2
+                },
+                 new Rail()
+                {
+                    Char = ']',
+                    CoordinateX = 2,
+                    CoordinateY = 0,
+                    Id = 3
+                },
             };
             var railString = JsonConvert.SerializeObject(railParts);
             var expString = JsonConvert.SerializeObject(expected);

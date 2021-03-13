@@ -9,5 +9,7 @@ namespace TrainConsole
         public int CoordinateY { get; set; }
         public string Chars { get; set; }
         public ConsoleColor Color { get; set; }
+        public bool IsDrawn { get; set; }
+        public bool IsSame(IDrawable drawable);
     }
 }
