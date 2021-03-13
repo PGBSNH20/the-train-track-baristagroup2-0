@@ -10,14 +10,24 @@ using TrainConsole;
 
 namespace TrainEngine.Tests
 {
-    public class RailwayGeneratorTests
+    public class RailwayPartORMTests : IDisposable
     {
+        public RailwayPartORMTests()
+        {
+            ScreenMemoryLayer.Drawables.Clear();
+            Railway.RailwayItems.Clear();
+        }
+        public void Dispose()
+        {
+            ScreenMemoryLayer.Drawables.Clear();
+            Railway.RailwayItems.Clear();
+        }
         [Fact]
         public void RailwayPartGenerator_Generate_ExpectEqual()
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var expected = new List<IRailwayPart>
             {
                 new Station()
@@ -37,7 +47,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "-1-" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             Assert.True(railParts.Count == 3);
         }
         [Fact]
@@ -45,7 +55,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "-1-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             Assert.True(Railway.RailwayItems.Count == 3);
         }
         [Fact]
@@ -53,7 +63,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "-1-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var items = Railway.RailwayItems;
             Assert.IsType<Station>(items[1]);
         }

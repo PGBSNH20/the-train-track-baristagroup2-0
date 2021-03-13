@@ -11,7 +11,7 @@ namespace TrainConsole
         {
 
             var partData = TrainTrackReader.Read(File.ReadAllLines(simpleTrackPath));
-            var railParts = RailwayPartGenerator.Generate(partData);
+            var railParts = RailwayPartsORM.Map(partData);
             RailwayAssembler.Assemble(railParts);
             ConsoleWriter.WriteRailway();
 

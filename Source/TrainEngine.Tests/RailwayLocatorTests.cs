@@ -10,14 +10,24 @@ using System.IO;
 
 namespace TrainEngine.Tests
 {
-    public class RailwayLocatorTests
+    public class RailwayLocatorTests : IDisposable
     {
+        public RailwayLocatorTests()
+        {
+            ScreenMemoryLayer.Drawables.Clear();
+            Railway.RailwayItems.Clear();
+        }
+        public void Dispose()
+        {
+            ScreenMemoryLayer.Drawables.Clear();
+            Railway.RailwayItems.Clear();
+        }
         [Fact]
         public void RailwayLocator_LocateWithId_ExpectFromIStation()
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithId(1);
             Assert.IsAssignableFrom<IStation>(station);
         }
@@ -26,7 +36,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithId(1);
             Assert.IsAssignableFrom<IRailwayItem>(station);
         }
@@ -35,7 +45,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithId(1);
             Assert.IsAssignableFrom<IRailwayPart>(station);
         }
@@ -44,7 +54,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var rail = Railway.RailwayItems[0];
             Assert.IsAssignableFrom<IRail>(rail);
         }
@@ -53,7 +63,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var rail = Railway.RailwayItems[0];
             Assert.IsType<Rail>(rail);
         }
@@ -62,7 +72,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "=" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var crossing = Railway.RailwayItems[0];
             Assert.IsType<Crossing>(crossing);
         }
@@ -71,7 +81,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "<" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var railSwitch = Railway.RailwayItems[0];
             Assert.IsType<RailSwitch>(railSwitch);
         }
@@ -80,7 +90,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { ">" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var railSwitch = Railway.RailwayItems[0];
             Assert.IsType<RailSwitch>(railSwitch);
         }
@@ -89,7 +99,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "\\" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var rail = Railway.RailwayItems[0];
             Assert.IsType<Rail>(rail);
         }
@@ -98,7 +108,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "/" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var rail = Railway.RailwayItems[0];
             Assert.IsType<Rail>(rail);
         }
@@ -107,7 +117,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithId(1);
             Assert.IsNotType<Rail>(station);
         }
@@ -116,7 +126,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithId(1);
             Assert.IsAssignableFrom<Station>(station);
         }
@@ -125,7 +135,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithPosXY((1, 0));
             Assert.IsAssignableFrom<IStation>(station);
         }
@@ -134,7 +144,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithPosXY((1, 0));
             Assert.IsAssignableFrom<Station>(station);
         }
@@ -143,7 +153,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithPosXY((0, 0));
             Assert.True(station == null);
         }
@@ -152,7 +162,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = RailwayLocator.LocateWithId(99);
             Assert.True(station == null);
         }
@@ -161,7 +171,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-->", "-=-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var station = Railway.RailwayItems[5];
             var up = RailwayLocator.LocateUp((IRailwayPart)station);
             Assert.IsType<RailSwitch>(up);
@@ -171,7 +181,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "--<", "-=-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var crossing = Railway.RailwayItems[4];
             var upRight = RailwayLocator.LocateUpRight((IRailwayPart)crossing);
             Assert.IsType<RailSwitch>(upRight);
@@ -181,7 +191,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-1-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var rail = Railway.RailwayItems[0];
             var right = RailwayLocator.LocateRight((IRailwayPart)rail);
             Assert.IsType<Station>(right);
@@ -191,7 +201,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "111", "1-1" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var station = Railway.RailwayItems[0];
             var downRight = RailwayLocator.LocateDownRight((IRailwayPart)station);
             Assert.IsType<Rail>(downRight);
@@ -202,7 +212,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-1-", "-=-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var station = Railway.RailwayItems[1];
             var down = RailwayLocator.LocateDown((IRailwayPart)station);
             Assert.IsType<Crossing>(down);
@@ -212,7 +222,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "---", "=--" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var rail = Railway.RailwayItems[1];
             var downLeft = RailwayLocator.LocateDownLeft((IRailwayPart)rail);
             Assert.IsType<Crossing>(downLeft);
@@ -222,7 +232,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-1-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var station = Railway.RailwayItems[1];
             var left = RailwayLocator.LocateLeft((IRailwayPart)station);
             Assert.IsType<Rail>(left);
@@ -232,7 +242,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "=<=", "===" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var crossing = Railway.RailwayItems[5];
             var upLeft = RailwayLocator.LocateUpLeft((IRailwayPart)crossing);
             Assert.IsType<RailSwitch>(upLeft);
@@ -242,7 +252,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "=<=", "===" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var station = Railway.RailwayItems[0];
             var upLeft = RailwayLocator.LocateUpLeft((IRailwayPart)station);
 

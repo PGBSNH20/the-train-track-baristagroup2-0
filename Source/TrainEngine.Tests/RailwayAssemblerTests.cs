@@ -9,16 +9,25 @@ using System.IO;
 
 namespace TrainEngine.Tests
 {
-    public class RailwayAssemblerTests
+    public class RailwayAssemblerTests : IDisposable
 
     {
-  
+        public RailwayAssemblerTests()
+        {
+            ScreenMemoryLayer.Drawables.Clear();
+            Railway.RailwayItems.Clear();
+        }
+        public void Dispose()
+        {
+            ScreenMemoryLayer.Drawables.Clear();
+            Railway.RailwayItems.Clear();
+        }
         [Fact]
         public void RailwayAssembler_LocatePartConnections_ExpectZero()
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[0];
             var connections = RailwayAssembler.LocatePartConnections(station);
             var countConn = connections.Count;
@@ -29,7 +38,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "1-" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[0];
             var connections = RailwayAssembler.LocatePartConnections(station);
             Assert.True(connections.Count == 1);
@@ -39,7 +48,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "-1-" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[1];
             var connections = RailwayAssembler.LocatePartConnections(station);
             Assert.True(connections.Count == 2);
@@ -49,7 +58,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "---", "-1-", "---" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[4];
             var connections = RailwayAssembler.LocatePartConnections(station);
             Assert.True(connections.Count == 8);
@@ -59,7 +68,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "[1]" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             try
             {
                 RailwayAssembler.Assemble(railParts);
@@ -74,7 +83,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "---", "-1-", "---" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[4];
             RailwayAssembler.Assemble(railParts);
 
@@ -85,7 +94,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "1" });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[0];
             RailwayAssembler.Assemble(railParts);
 
@@ -96,7 +105,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "  /", " / ", "/  " });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var rail = railParts[1];
             RailwayAssembler.Assemble(railParts);
 
@@ -107,7 +116,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "   ", " / ", "1  " });
-            var railParts = RailwayPartGenerator.Generate(dataRead);
+            var railParts = RailwayPartsORM.Map(dataRead);
             var rail = railParts[0];
             RailwayAssembler.Assemble(railParts);
             var station = rail.Connections[0];

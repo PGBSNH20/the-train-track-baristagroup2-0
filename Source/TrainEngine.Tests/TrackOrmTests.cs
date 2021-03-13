@@ -130,7 +130,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "-1-" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
 
             Assert.True(Railway.RailwayItems[1].CoordinateX == 1);
         }
@@ -140,7 +140,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "=<=", "===" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var parts = Railway.GetRailwayParts();
             Assert.True(parts.Count == 6);
         }
@@ -149,7 +149,7 @@ namespace TrainEngine.Tests
         {
             Railway.RailwayItems.Clear();
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "=<=", "===" });
-            RailwayPartGenerator.Generate(dataRead);
+            RailwayPartsORM.Map(dataRead);
             var parts = Railway.GetRailwayParts();
             Railway.RailwayItems.Add(new Train());
             Assert.False(parts.Count == Railway.RailwayItems.Count);

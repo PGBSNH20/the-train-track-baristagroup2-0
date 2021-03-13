@@ -5,8 +5,19 @@ using System.Linq;
 
 namespace TrainConsole
 {
-   public static class ConsoleWriter
+    public static class ConsoleWriter
     {
+        public static void RefreshScreen()
+        {
+
+        }
+        public static void Write(IDrawable drawable)
+        {
+            Console.ForegroundColor = drawable.Color;
+            Console.SetCursorPosition(drawable.CoordinateX, drawable.CoordinateY);
+            Console.Write(drawable.Chars);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         public static void Write(char chr, (int X, int Y) coord)
         {
             Console.SetCursorPosition(coord.X, coord.Y);
