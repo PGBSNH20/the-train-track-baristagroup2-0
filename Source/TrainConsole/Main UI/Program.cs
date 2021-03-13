@@ -10,14 +10,19 @@ namespace TrainConsole
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            var partData = TrainTrackReader.Read(File.ReadAllLines(simpleTrackPath));
+            var partData = TrainTrackReader.Read(File.ReadAllLines(advancedTrackPath));
             var railParts = RailwayPartsORM.Map(partData);
             RailwayAssembler.Assemble(railParts);
-            ConsoleWriter.WriteRailway();
-
+            ScreenMemoryLayer.AppendRailwayDrawables();
+            RefreshScreen();
 
 
             Console.ReadLine();
+        }
+        public static void RefreshScreen()
+        {
+            foreach (var drawable in ScreenMemoryLayer.Drawables)
+                ConsoleWriter.Write(drawable);
         }
     }
 }

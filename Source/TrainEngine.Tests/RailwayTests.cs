@@ -26,7 +26,7 @@ namespace TrainEngine.Tests
         {
             var charCoord = TrainTrackReader.Read(new string[] { "---", "111", "<<<" });
             RailwayPartsORM.Map(charCoord);
-            ScreenMemoryLayer.AppendRailway();
+            ScreenMemoryLayer.AppendRailwayDrawables();
             int units = ScreenMemoryLayer.Drawables.Count;
             Assert.True(units == 9);
         }
@@ -35,7 +35,7 @@ namespace TrainEngine.Tests
         {
             var charCoord = TrainTrackReader.Read(new string[] { "- -", "1 1", "< <" });
             RailwayPartsORM.Map(charCoord);
-            ScreenMemoryLayer.AppendRailway();
+            ScreenMemoryLayer.AppendRailwayDrawables();
             int units = ScreenMemoryLayer.Drawables.Count;
             Assert.True(units == 6);
         }

@@ -17,11 +17,13 @@ namespace TrainConsole
             drawable.IsDrawn = true;
             Console.ForegroundColor = ConsoleColor.White;
         }
+        [Obsolete]
         public static void Write(char chr, (int X, int Y) coord)
         {
             Console.SetCursorPosition(coord.X, coord.Y);
             Console.Write(chr);
         }
+        [Obsolete]
         public static void Write(params (char chr, int X, int Y)[] charCoords)
         {
             foreach(var chrCoord in charCoords)
@@ -30,6 +32,7 @@ namespace TrainConsole
                 Console.Write(chrCoord.chr);
             }
         }
+        [Obsolete]
         public static void WriteRailway()
         {
             var railwayItems = Railway.RailwayItems;
@@ -38,6 +41,7 @@ namespace TrainConsole
                 Write(GetCharCoordFromItem(item));
             }
         }
+        [Obsolete]
         private static (char chr, int X, int Y) GetCharCoordFromItem(IRailwayItem item)
             => (item.Char, item.CoordinateX, item.CoordinateY);
     }

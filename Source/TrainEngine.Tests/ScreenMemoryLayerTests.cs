@@ -61,7 +61,7 @@ namespace TrainEngine.Tests
                 CoordinateY = 2,
                 Chars = "2",
             };
-            ScreenMemoryLayer.TryAppendUnit(tryUnit);
+            ScreenMemoryLayer.TryAppend(tryUnit);
             var units = ScreenMemoryLayer.Drawables;
             Assert.True(units.Count == 2);
         }
@@ -83,7 +83,7 @@ namespace TrainEngine.Tests
                 Chars = "1",
                 Color = ConsoleColor.Green
             };
-            ScreenMemoryLayer.TryAppendUnit(tryUnit);
+            ScreenMemoryLayer.TryAppend(tryUnit);
             var units = ScreenMemoryLayer.Drawables;
             Assert.True(units.Count == 1);
         }
@@ -104,7 +104,7 @@ namespace TrainEngine.Tests
                 CoordinateY = 0,
                 Chars = "1"
             };
-            ScreenMemoryLayer.TryAppendUnit(tryUnit);
+            ScreenMemoryLayer.TryAppend(tryUnit);
             var units = ScreenMemoryLayer.Drawables;
             Assert.True(units[0] == first);
         }
@@ -118,7 +118,7 @@ namespace TrainEngine.Tests
                 Char = '-'
             };
             Railway.RailwayItems.Add(rail);
-            ScreenMemoryLayer.AppendRailway();
+            ScreenMemoryLayer.AppendRailwayDrawables();
             var units = ScreenMemoryLayer.Drawables;
             Assert.True(units.Count == 1);
         }
