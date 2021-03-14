@@ -14,6 +14,7 @@ namespace FirstLevelRailway
         }
         public void Alter()
         {
+            
             if (!Altered)
             {
                 Console.ForegroundColor = ConsoleColor.White;
@@ -27,6 +28,7 @@ namespace FirstLevelRailway
                 Console.ForegroundColor = ConsoleColor.White;
                 Altered = false;
             }
+            
         }
     }
 }
