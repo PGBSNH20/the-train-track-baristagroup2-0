@@ -14,12 +14,12 @@ namespace TrainEngine.Tests
     {
         public RailwayLocatorTests()
         {
-            ScreenMemoryLayer.Drawables.Clear();
+            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         public void Dispose()
         {
-            ScreenMemoryLayer.Drawables.Clear();
+            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         [Fact]

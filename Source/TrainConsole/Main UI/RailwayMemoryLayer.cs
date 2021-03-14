@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace TrainConsole
 {
-    public static class ScreenMemoryLayer
+    public static class RailwayMemoryLayer
     {
         public static List<IDrawable> Drawables = new List<IDrawable>();
         public static void AppendRailwayDrawables()
@@ -34,6 +34,5 @@ namespace TrainConsole
 
             Drawables.Add(tryUnit);
         }
-      
     }
 }

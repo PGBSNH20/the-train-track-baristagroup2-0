@@ -13,12 +13,12 @@ namespace TrainEngine.Tests
     {
         public RailwayTests()
         {
-            ScreenMemoryLayer.Drawables.Clear();
+            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         public void Dispose()
         {
-            ScreenMemoryLayer.Drawables.Clear();
+            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         [Fact]
@@ -26,8 +26,8 @@ namespace TrainEngine.Tests
         {
             var charCoord = TrainTrackReader.Read(new string[] { "---", "111", "<<<" });
             RailwayPartsORM.Map(charCoord);
-            ScreenMemoryLayer.AppendRailwayDrawables();
-            int units = ScreenMemoryLayer.Drawables.Count;
+            RailwayMemoryLayer.AppendRailwayDrawables();
+            int units = RailwayMemoryLayer.Drawables.Count;
             Assert.True(units == 9);
         }
         [Fact]
@@ -35,8 +35,8 @@ namespace TrainEngine.Tests
         {
             var charCoord = TrainTrackReader.Read(new string[] { "- -", "1 1", "< <" });
             RailwayPartsORM.Map(charCoord);
-            ScreenMemoryLayer.AppendRailwayDrawables();
-            int units = ScreenMemoryLayer.Drawables.Count;
+            RailwayMemoryLayer.AppendRailwayDrawables();
+            int units = RailwayMemoryLayer.Drawables.Count;
             Assert.True(units == 6);
         }
 
