@@ -12,10 +12,9 @@ namespace TrainConsole
         public int Ticks { get; set; } = 0;
         public int GetDays()
             => Ticks / 1440;
-        public void Tick()
+        public static string ConvertTicks(int ticks)
         {
-            Ticks++;
-            int thisDayTicks = Ticks % 1440;
+            int thisDayTicks = ticks % 1440;
             int hours = thisDayTicks / 60;
             int min = thisDayTicks % 60;
 
@@ -25,7 +24,12 @@ namespace TrainConsole
             string m = min.ToString();
             if (m.Length == 1)
                 m = "0" + m;
-            Time = h + ":" + m;
+            return h + ":" + m;
+        }
+        public void Tick()
+        {
+            Ticks++;
+            Time = ConvertTicks(Ticks);
         }
         public void TickTimes(int times)
         {
