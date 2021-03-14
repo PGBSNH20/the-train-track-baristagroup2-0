@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace TrainConsole
 {
-    public class Train : ITrain, IRailwayItem
+    public class Train
     {
-        public int Id { get; set; }
-        public char Char { get; set; }
-        public int CoordinateX { get; set; }
-        public int CoordinateY { get; set; }
-        public string Name { get; set; }
+        public int Speed_TickPerPart { get; set; }
+        public TrainDisplayer trainDisplayer { get; set; }
+        public IClock Clock { get; set; }
         public List<IRailwayPart> Route { get; set; }
-        public List<CheckPoint> Stops { get; set; }
-
-        public void MoveForward()
+        public int RouteIndex { get => RouteIndex; set 
+            {
+                trainDisplayer.Display(Route, value);
+                RouteIndex = value;
+            } }
+        public Train(IClock clock, List<IRailwayPart> route, int speed_TickPerPart, int routeIndex = 0)
         {
-            throw new NotImplementedException();
+            Speed_TickPerPart = speed_TickPerPart;
+            Clock = clock;
+            Route = route;
+            RouteIndex = routeIndex;
         }
-
-        //public IRailwayPart NextPosition
-        public void Start()
+        public void StartThread()
         {
-            Console.WriteLine("Starting train");
+            int startTime = Clock.Ticks;
+            while (true)
+            {
+                int index = (Clock.Ticks - startTime) / Speed_TickPerPart;
+                if (RouteIndex < index)
+                {
+                    RouteIndex = index;
+                }
+                Thread.Sleep(100);
+            }
         }
     }
 }

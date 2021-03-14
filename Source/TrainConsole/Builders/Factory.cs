@@ -10,7 +10,7 @@ namespace TrainConsole
     {
         public static ITrain AddTrain(int? id = null, string name = null)
         {
-            var train = new Train();
+            var train = new OldTrain();
             if (name != null)
                 train.Name = name;
 

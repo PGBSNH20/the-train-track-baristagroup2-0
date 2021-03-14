@@ -9,16 +9,16 @@ namespace TrainConsole
 {
    public class file
     {
-        public List<Train> filePathTrains(string trainsFilePath)
+        public List<OldTrain> filePathTrains(string trainsFilePath)
         {
-            var trainList = new List<Train>();
+            var trainList = new List<OldTrain>();
             string[] lines = File.ReadAllLines(trainsFilePath);
 
             foreach (var line in lines)
             {
                 string[] parts = line.Split(',');
 
-                var trainsInList = new Train
+                var trainsInList = new OldTrain
                 {
                     Id = int.Parse(parts[0]),
                     Name = parts[1],

@@ -151,7 +151,7 @@ namespace TrainEngine.Tests
             var dataRead = TrainConsole.TrainTrackReader.Read(new string[] { "=<=", "===" });
             RailwayPartsORM.Map(dataRead);
             var parts = Railway.GetRailwayParts();
-            Railway.RailwayItems.Add(new Train());
+            Railway.RailwayItems.Add(new OldTrain());
             Assert.False(parts.Count == Railway.RailwayItems.Count);
         }
     }
