@@ -11,10 +11,10 @@ namespace FirstLevelRailway
         private int trainSpeed;
         private int distanceToGoal;
 
-        public Train(int trainSpeed, int distanceToGoal)
+        public Train(int trainSpeed)
         {
             this.trainSpeed = trainSpeed;
-            this.distanceToGoal = distanceToGoal;
+            //this.distanceToGoal = distanceToGoal;
         }
 
         interface ITrain

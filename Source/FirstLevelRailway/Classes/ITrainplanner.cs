@@ -14,15 +14,15 @@ namespace FirstLevelRailway
 
     public class TrainPlanner : ITrainplanner
     {
-        public Train Train { get; }
+        public int TimeTableID { get; }
         public string DepartureAtStation;
         public string StartTime { get; set; }
         public string ArriveAtStation { get; set; }
         public string ArrivalTime { get; set; }
 
-        public TrainPlanner(Train train)
+        public TrainPlanner(int timeTableID)
         {
-            Train = train;
+            TimeTableID = timeTableID;
         }
 
         public ITrainplanner StartTrainAt(string departureStation, string startTime)
@@ -40,11 +40,13 @@ namespace FirstLevelRailway
 
         public ITrainplanner FollowSchedule(TrainPlanner timeTable)
         {
+            //tåg som ska följa given tabell
             throw new NotImplementedException();
         }
 
         public ITrainplanner ToPlan()
         {
+            
             Console.WriteLine("You time table have been saved");
             return this;
         }

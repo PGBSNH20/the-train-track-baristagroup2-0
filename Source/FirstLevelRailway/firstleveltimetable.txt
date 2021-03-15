@@ -1,14 +1,4 @@
-﻿TrainName,Calls
-Red Dragon,Avgår från Alingsås
-Red Dragon,Nästa anhalt Partille
-Red Dragon,Stannar i Partille
-Red Dragon,Nästa anhalt Göteborg
-Red Dragon,Stannar i Göteborg
-Black Dragon,Avgår från Uddevalla
-Black Dragon,Nästa anhalt Munkedal
-Black Dragon,Stannar i Munkedal
-Black Dragon,Nästa anhalt Dingle
-Black Dragon,Stannar i Dingle
-Yellow Dragon,Avgår från Strömstad
-Yellow Dragon,Nästa anhalt Skee
-Yellow Dragon,Stannar i Skee
+﻿TimeTableID,StartStation,StartTime,ArrivalStation,ArrivalTime
+1,Gothenburg,11:15,Partille,11:25
+1,Partille,11:27,Lerum,11:36
+1,Lerum,11:38,Stenkullen,11:43

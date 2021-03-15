@@ -9,6 +9,10 @@ namespace FirstLevelRailway
     {
         static void Main(string[] args)
         {
+            var trainhej = new Train(120);
+            var timeTable1 = new TrainPlanner(1)
+                .StartTrainAt("Gothenburg", "11:00")
+                .ArriveTrainAt("Partille", "11:15");
             
             Thread thread1 = new Thread(new ThreadStart(moveThreads));
             thread1.Start();
@@ -44,14 +48,14 @@ namespace FirstLevelRailway
             //    thread.Start();
             //}
         }
-        static void TrainThread(Train train)
-        {
-            foreach (var m in train.Route)
-            {
-                train.Move();
-                Thread.Sleep(500);
-            }
-        }
+        //static void TrainThread(Train train)
+        //{
+        //    foreach (var m in train.Route)
+        //    {
+        //        train.Move();
+        //        Thread.Sleep(500);
+        //    }
+        //}
         static void moveThreads()
         {
             int x = 0;
