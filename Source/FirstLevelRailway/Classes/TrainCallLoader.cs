@@ -5,10 +5,6 @@ using System.Linq;
 
 namespace FirstLevelRailway
 {
-
-
-
-
     public static class TrainCallLoader
     {
         public static string timeTablePath = @"firstleveltimetable.txt";
