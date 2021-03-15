@@ -1,10 +1,6 @@
-﻿using System;
-using System.Linq;
-using Xunit;
+﻿using Xunit;
 using FirstLevelRailway;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 using System.IO;
 
 namespace TrainEngine.Tests
