@@ -9,10 +9,9 @@ namespace FirstLevelRailway
     class Program
     {
         public static List<IMemoryLayer> Layers = new List<IMemoryLayer>();
-
         static void Main(string[] args)
         {
-            var trainhej = new Train(120);
+            var trainhej = new Train();
             var timeTable1 = new TrainPlanner(1)
                 .StartTrainAt("Gothenburg", "11:00")
                 .ArriveTrainAt("Partille", "11:15");
