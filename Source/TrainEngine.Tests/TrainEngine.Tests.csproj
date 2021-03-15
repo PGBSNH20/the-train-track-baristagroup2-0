@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ORM\TimeTableOrmTestFile.txt" />
     <None Remove="testStation.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ORM\TimeTableOrmTestFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Railway\test-track.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -10,12 +10,10 @@ namespace FirstLevelRailway
         //List.where => i = i.timeTable == 1
         public List<TrainPlanner> TimeTables { get; set; }
         private string WorkFile;
-
         public TimeTableORM(string filePath)
         {
             WorkFile = filePath;
             TimeTables = new List<TrainPlanner>();
-
         }
         public void Load(int timeTableID)
         {
@@ -56,7 +54,8 @@ namespace FirstLevelRailway
 
             }
             Console.WriteLine($"{trainPlan.Count} is saved to {WorkFile}");
-            File.WriteAllText(WorkFile, fileContent.ToString());
+
+            File.AppendAllText(WorkFile, fileContent.ToString());
         }
     }
 }
