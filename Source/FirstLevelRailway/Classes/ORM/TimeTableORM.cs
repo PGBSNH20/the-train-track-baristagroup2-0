@@ -39,11 +39,7 @@ namespace FirstLevelRailway
                 {
                     continue;
                 }
-
             }
-
-
-
         }
 
         public void Save()
