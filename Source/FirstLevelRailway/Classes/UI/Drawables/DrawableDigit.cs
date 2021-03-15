@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace TrainConsole
+namespace FirstLevelRailway
 {
     public class DrawableDigit : IDrawable
     {

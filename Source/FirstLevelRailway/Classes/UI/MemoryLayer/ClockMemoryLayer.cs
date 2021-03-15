@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TrainConsole
+namespace FirstLevelRailway
 {
     public class ClockMemoryLayer : IMemoryLayer
     {
