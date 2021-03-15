@@ -15,7 +15,7 @@ namespace FirstLevelRailway
 
     public class TrainPlanner : ITrainplanner
     {
-        public int TimeTableID { get; }
+        public int TimeTableID { get; set; }
         public string DepartureAtStation;
         public string StartTime { get; set; }
         public string ArriveAtStation { get; set; }

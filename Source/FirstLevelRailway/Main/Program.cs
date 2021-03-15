@@ -16,7 +16,18 @@ namespace FirstLevelRailway
             var timeTable1 = new TrainPlanner(1)
                 .StartTrainAt("Gothenburg", "11:00")
                 .ArriveTrainAt("Partille", "11:15");
-            
+
+            var hej = new TimeTableORM(@"firstleveltimetable.txt");
+            hej.Load(1);
+            foreach (var item in hej.TimeTables)
+            {
+                Console.WriteLine(item.TimeTableID);
+
+            }
+
+            //Thread thread1 = new Thread(new ThreadStart(moveThreads));
+            //thread1.Start();
+
             Console.CursorVisible = false;
             Thread clockThread = CreateClockThread(100);
             clockThread.Start();
@@ -26,6 +37,13 @@ namespace FirstLevelRailway
                 Thread.Sleep(200);
                 RefreshScreen();
             }
+
+
+            //var charMover = new CharMover('x', (1, 1));
+
+            //clock.CharMover = charMover;
+
+            //clock.StartClock(maxTicks: 200000);
 
             Console.ReadLine();
         }
@@ -46,7 +64,7 @@ namespace FirstLevelRailway
             var clockLayer = new ClockMemoryLayer();
             Layers.Add(clockLayer);
             var clock = new TwentyFourHourClock();
-            var timeDisplay = new TimeDisplayer(0, 0, clockLayer);
+            var timeDisplay = new TimeDisplayer(10, 0, clockLayer);
             var timeKeeper = new TimeKeeper(clock, timeDisplay, ns_per_tick);
             return new Thread(new ThreadStart(() => timeKeeper.StartTime(null)));
         }
@@ -66,8 +84,10 @@ namespace FirstLevelRailway
                 x++;
                 Console.WriteLine(x);
 
+                //    }
+                //    Console.WriteLine("done");
+                //}
             }
-            Console.WriteLine("done");
         }
     }
 }

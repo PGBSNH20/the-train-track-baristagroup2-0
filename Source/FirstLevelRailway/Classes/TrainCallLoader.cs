@@ -1,53 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Linq;
 
 namespace FirstLevelRailway
 {
-    public interface ITimeTableORM
-    {
-        List<TrainPlanner> TimeTables { get; set; }
-        void Load();
-        void Save();
-
-    }
-
-    public class TimeTableORM : ITimeTableORM
-    {
-
-        public List<TrainPlanner> TimeTables { get; set; }
-        private string WorkFile;
-        public TimeTableORM(string filePath)
-        {
-            WorkFile = filePath;
-            TimeTables = new List<TrainPlanner>();
-
-        }
-        public void Load(int timeTableID)
-        {
-            var trainPlanner = new TrainPlanner(timeTableID);
-            string[] lines = File.ReadAllLines(WorkFile);
-            TimeTables = new List<TrainPlanner>();
-
-            foreach (var line in lines)
-            {
-                var splittedContent = line.Split(new[] { ',' });
-
-                trainPlanner.DepartureAtStation = splittedContent[1];
-
-            }
-
-
-
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-    }
 
 
 

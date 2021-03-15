@@ -1,4 +1,3 @@
-﻿TimeTableID,StartStation,StartTime,ArrivalStation,ArrivalTime
-1,Gothenburg,11:15,Partille,11:25
+﻿1,Gothenburg,11:15,Partille,11:25
 1,Partille,11:27,Lerum,11:36
 1,Lerum,11:38,Stenkullen,11:43
