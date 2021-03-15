@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TextFiles\timetable.txt" />
+    <None Remove="TextFiles\Simple-track.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="TextFiles\timetable.txt">
+    <Content Include="TextFiles\Simple-track.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

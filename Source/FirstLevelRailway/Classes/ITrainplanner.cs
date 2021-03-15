@@ -4,6 +4,7 @@ using System.Text;
 
 namespace FirstLevelRailway
 {
+
     public interface ITrainplanner
     {
         ITrainplanner FollowSchedule(TrainPlanner timeTable);
@@ -46,6 +47,7 @@ namespace FirstLevelRailway
 
         public ITrainplanner ToPlan()
         {
+            //TODO write to file
             
             Console.WriteLine("You time table have been saved");
             return this;

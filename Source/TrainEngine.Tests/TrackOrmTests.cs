@@ -37,53 +37,5 @@ namespace TrainEngine.Tests
         //    // Assert
         //    Assert.Equal(3, result.NumberOfTrackParts);
         //}
-        [Fact]
-        public void Select_TimeTable_NotExpectTimeTable()
-        {
-            var timeTables = new List<TimeTable>()
-            {
-                new TimeTable(){TrainId = 2 },
-                new TimeTable(){TrainId = 1 },
-                new TimeTable(){TrainId = 3 },
-            };
-            var x = timeTables.Select(x => x.TrainId == 1);
-            Assert.IsNotType<TimeTable>(x);
-        }
-        [Fact]
-        public void Select_TimeTable_ExpectTimeTable()
-        {
-            var timeTables = new List<TimeTable>()
-            {
-                new TimeTable(){TrainId = 2 },
-                new TimeTable(){TrainId = 1 },
-                new TimeTable(){TrainId = 3 },
-            };
-            var x = timeTables.Select(x => x.TrainId == 1).First();
-            Assert.IsType<bool>(x);
-        }
-        [Fact]
-        public void Select_TimeTable_ExpectTimeTable2()
-        {
-            var timeTables = new List<TimeTable>()
-            {
-                new TimeTable(){TrainId = 2 },
-                new TimeTable(){TrainId = 1 },
-                new TimeTable(){TrainId = 3 },
-            };
-            var x = timeTables.Find(x => x.TrainId == 1);
-            Assert.IsType<TimeTable>(x);
-        }
-        [Fact]
-        public void Select_TimeTable_ExpectTimeTable3()
-        {
-            var timeTables = new List<TimeTable>()
-            {
-                new TimeTable(){TrainId = 2 },
-                new TimeTable(){TrainId = 1 },
-                new TimeTable(){TrainId = 3 },
-            };
-            var x = timeTables.First(x => x.TrainId == 1);
-            Assert.IsType<TimeTable>(x);
-        }
     }
 }
