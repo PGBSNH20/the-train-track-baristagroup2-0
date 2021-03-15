@@ -6,7 +6,7 @@ namespace FirstLevelRailway
     {
         List<TrainPlanner> TimeTables { get; set; }
         void Load(int timeTableID);
-        void Save();
+        void Save(List<TrainPlanner> trainPlan);
 
     }
 }

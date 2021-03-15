@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace FirstLevelRailway
 {
@@ -9,6 +10,7 @@ namespace FirstLevelRailway
         //List.where => i = i.timeTable == 1
         public List<TrainPlanner> TimeTables { get; set; }
         private string WorkFile;
+
         public TimeTableORM(string filePath)
         {
             WorkFile = filePath;
@@ -20,7 +22,7 @@ namespace FirstLevelRailway
             string[] lines = File.ReadAllLines(WorkFile);
             TimeTables = new List<TrainPlanner>();
 
-
+            // TODO exceptionhandling
             foreach (var line in lines)
             {
                 string[] splittedContent = line.Split(',');
@@ -46,9 +48,19 @@ namespace FirstLevelRailway
 
         }
 
-        public void Save()
+        public void Save(List<TrainPlanner> trainPlan)
         {
-            throw new NotImplementedException();
+            StringBuilder fileContent = new StringBuilder();
+
+            foreach (var item in trainPlan)
+            {
+                fileContent.AppendLine(
+                    $"{item.TimeTableID.ToString()},{item.DepartureAtStation},{item.StartTime},{item.ArriveAtStation},{item.ArrivalTime}");
+                
+
+            }
+            Console.WriteLine($"{trainPlan.Count} is saved to {WorkFile}");
+            File.WriteAllText(WorkFile, fileContent.ToString());
         }
     }
 }

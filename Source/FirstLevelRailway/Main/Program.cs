@@ -13,17 +13,25 @@ namespace FirstLevelRailway
         static void Main(string[] args)
         {
             var trainhej = new Train(120);
-            var timeTable1 = new TrainPlanner(1)
+            var timeTable1 = new TrainPlanner(2)
                 .StartTrainAt("Gothenburg", "11:00")
-                .ArriveTrainAt("Partille", "11:15");
+                .ArriveTrainAt("Partille", "11:15")
+                .ToPlan();
+
+            var testTimeTable = new TrainPlanner(2)
+                .StartTrainAt("Stenkullen", "12:00")
+                .ArriveTrainAt("Lerum", "12:15")
+                .ToPlan();
+
+
 
             var hej = new TimeTableORM(@"firstleveltimetable.txt");
-            hej.Load(1);
-            foreach (var item in hej.TimeTables)
-            {
-                Console.WriteLine(item.TimeTableID);
+            hej.Save(new List<TrainPlanner>(){testTimeTable});
+            //foreach (var item in hej.TimeTables)
+            //{
+            //    Console.WriteLine(item.TimeTableID);
 
-            }
+            //}
 
             //Thread thread1 = new Thread(new ThreadStart(moveThreads));
             //thread1.Start();

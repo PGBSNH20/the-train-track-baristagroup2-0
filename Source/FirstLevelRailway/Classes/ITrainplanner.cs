@@ -10,7 +10,7 @@ namespace FirstLevelRailway
         ITrainplanner FollowSchedule(TrainPlanner timeTable);
         ITrainplanner StartTrainAt(string departureStation, string startTime);
         ITrainplanner ArriveTrainAt(string arriveAtStation, string arrivalTime);
-        ITrainplanner ToPlan();
+        TrainPlanner ToPlan();
     }
 
     public class TrainPlanner : ITrainplanner
@@ -45,7 +45,7 @@ namespace FirstLevelRailway
             throw new NotImplementedException();
         }
 
-        public ITrainplanner ToPlan()
+        public TrainPlanner ToPlan()
         {
             //TODO write to file
             
