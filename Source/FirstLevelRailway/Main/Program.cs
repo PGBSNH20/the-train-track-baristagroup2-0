@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Transactions;
 
@@ -7,6 +8,8 @@ namespace FirstLevelRailway
 
     class Program
     {
+        public static List<IMemoryLayer> Layers = new List<IMemoryLayer>();
+
         static void Main(string[] args)
         {
             var trainhej = new Train(120);
@@ -14,39 +17,38 @@ namespace FirstLevelRailway
                 .StartTrainAt("Gothenburg", "11:00")
                 .ArriveTrainAt("Partille", "11:15");
             
-            //Thread thread1 = new Thread(new ThreadStart(moveThreads));
-            //thread1.Start();
-
             Console.CursorVisible = false;
-            TrackReader.ReadToRailChars();
-            var railChars = TrackReader.railChars;
+            Thread clockThread = CreateClockThread(100);
+            clockThread.Start();
 
-            //foreach (var rc in railChars)
-            //{
-            //    rc.Alter();
-            //}
-
-            
-            //var charMover = new CharMover('x', (1, 1));
-
-            //clock.CharMover = charMover;
-
-            //clock.StartClock(maxTicks: 200000);
+            while (true)
+            {
+                Thread.Sleep(200);
+                RefreshScreen();
+            }
 
             Console.ReadLine();
+        }
 
-
-            //var trainData = TrainCallLoader.Load();
-            //var trains = Train.GenerateFrom(trainData);
-            //var trainThreads = new List<Thread>();
-            //foreach (var train in trains)
-            //{
-            //    trainThreads.Add( new Thread(new ThreadStart(() => TrainThread(train))));
-            //}
-            //foreach (var thread in trainThreads)
-            //{
-            //    thread.Start();
-            //}
+        public static void RefreshScreen()
+        {
+            foreach (var layer in Layers)
+            {
+                for (int i = 0; i < layer.Drawables.Count; i++)
+                {
+                    if (layer.Drawables[i] != null)
+                        ConsoleWriter.Write(layer.Drawables[i]);
+                }
+            }
+        }
+        public static Thread CreateClockThread(int ns_per_tick)
+        {
+            var clockLayer = new ClockMemoryLayer();
+            Layers.Add(clockLayer);
+            var clock = new TwentyFourHourClock();
+            var timeDisplay = new TimeDisplayer(0, 0, clockLayer);
+            var timeKeeper = new TimeKeeper(clock, timeDisplay, ns_per_tick);
+            return new Thread(new ThreadStart(() => timeKeeper.StartTime(null)));
         }
         //static void TrainThread(Train train)
         //{
@@ -63,9 +65,9 @@ namespace FirstLevelRailway
             {
                 x++;
                 Console.WriteLine(x);
-                
-        //    }
-        //    Console.WriteLine("done");
-        //}
+
+            }
+            Console.WriteLine("done");
+        }
     }
 }
