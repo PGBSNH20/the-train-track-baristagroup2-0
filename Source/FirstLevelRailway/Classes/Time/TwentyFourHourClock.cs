@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstLevelRailway
 {
-    public class TwentyFourHourClock
+    public class TwentyFourHourClock : IClock
     {
         public string Time { get; set; } = "00:00";
         public int Ticks { get; set; } = 0;
