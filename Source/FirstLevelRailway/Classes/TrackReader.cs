@@ -5,7 +5,7 @@ namespace FirstLevelRailway
 {
     public static class TrackReader
     {
-        public static string FilePath = @"TextFiles\timetable.txt";
+        public static string FilePath = @"TextFiles\Simple-track.txt";
         public static List<(char chr, int X, int Y)> CharCoordinates { get; set; }
         public static List<RailChar> railChars { get; set; } = new List<RailChar>();
         public static List<(char chr, int X, int Y)> ReadToRailChars()
