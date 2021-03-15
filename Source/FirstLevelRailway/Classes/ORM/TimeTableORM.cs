@@ -49,12 +49,11 @@ namespace FirstLevelRailway
             foreach (var item in trainPlan)
             {
                 fileContent.AppendLine(
-                    $"{item.TimeTableID.ToString()},{item.DepartureAtStation},{item.StartTime},{item.ArriveAtStation},{item.ArrivalTime}");
-                
+                    $"{item.TimeTableID},{item.DepartureAtStation},{item.StartTime},{item.ArriveAtStation},{item.ArrivalTime}");
+
 
             }
-            Console.WriteLine($"{trainPlan.Count} is saved to {WorkFile}");
-
+            Console.WriteLine($"{trainPlan.Count} is saved to {WorkFile}String{fileContent}");
             File.AppendAllText(WorkFile, fileContent.ToString());
         }
     }
