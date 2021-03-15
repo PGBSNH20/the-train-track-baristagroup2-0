@@ -18,7 +18,7 @@ namespace TrainConsole
             while(true)
             {
                 key = Console.ReadKey(true);
-                Thread.Sleep(200);
+                Thread.Sleep(100);
                 if (key.Key == StartStopKey)
                 {
                     train.IsStopped = !train.IsStopped;

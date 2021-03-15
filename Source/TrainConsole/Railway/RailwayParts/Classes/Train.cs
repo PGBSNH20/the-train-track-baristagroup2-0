@@ -20,25 +20,18 @@ namespace TrainConsole
             Route = route;
             this.trainDisplayer = trainDisplayer;
         }
-        public void StopAtStation()
+        public void StartThread(int timeDriven = 0)
         {
-            Thread.Sleep(500);
-            StartThread();
-        }
-        public void StartThread()
-        {
-            int startTime = Clock.Ticks;
+            int startTime = Clock.Ticks - timeDriven;
             trainDisplayer.Display(Route, RouteIndex);
-
             while (RouteIndex < Route.Count - 1)
             {
                 if (IsStopped == true)
                 {
+                    timeDriven = Clock.Ticks - startTime;
                     while (IsStopped)
-                    {
                         Thread.Sleep(200);
-                    }
-                    StartThread();
+                    StartThread(timeDriven);
                 }
                 int driveTime = (Clock.Ticks - startTime);
                 double partsPerMin = (Speed_km_per_hour / 60.0) / Railway.PartLength_km;
@@ -52,7 +45,8 @@ namespace TrainConsole
                     trainDisplayer.Display(Route, index);
                     if (Route[index].GetType() == typeof(Station))
                     {
-                        StopAtStation();
+                        timeDriven = Clock.Ticks - startTime;
+                        Thread.Sleep(500);
                     }
                 }
                 Thread.Sleep(200);
