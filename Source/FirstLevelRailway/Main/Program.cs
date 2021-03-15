@@ -24,7 +24,7 @@ namespace FirstLevelRailway
 
 
 
-            var hej = new TimeTableORM(@"firstleveltimetable.txt");
+            var hej = new TimeTableORM(@"../../../firstleveltimetable.txt");
             hej.Save(new List<TrainPlanner>(){testTimeTable});
             //foreach (var item in hej.TimeTables)
             //{
