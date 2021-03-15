@@ -41,11 +41,7 @@ namespace FirstLevelRailway
                 {
                     continue;
                 }
-
             }
-
-
-
         }
 
         public void Save(List<TrainPlanner> trainPlan)
