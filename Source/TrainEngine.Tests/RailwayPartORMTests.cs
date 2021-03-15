@@ -14,12 +14,10 @@ namespace TrainEngine.Tests
     {
         public RailwayPartORMTests()
         {
-            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         public void Dispose()
         {
-            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         [Fact]

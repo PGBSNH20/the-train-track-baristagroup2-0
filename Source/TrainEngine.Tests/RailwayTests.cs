@@ -9,34 +9,26 @@ using System.IO;
 
 namespace TrainEngine.Tests
 {
-    public class RailwayTests : IDisposable
+    public class RailwayTests
     {
-        public RailwayTests()
-        {
-            RailwayMemoryLayer.Drawables.Clear();
-            Railway.RailwayItems.Clear();
-        }
-        public void Dispose()
-        {
-            RailwayMemoryLayer.Drawables.Clear();
-            Railway.RailwayItems.Clear();
-        }
         [Fact]
         public void RailwayTestFull_9Parts()
         {
+            var layer = new RailwayMemoryLayer();
             var charCoord = TrainTrackReader.Read(new string[] { "---", "111", "<<<" });
             RailwayPartsORM.Map(charCoord);
-            RailwayMemoryLayer.AppendRailwayDrawables();
-            int units = RailwayMemoryLayer.Drawables.Count;
+            layer.AppendRailwayDrawables();
+            int units = layer.Drawables.Count;
             Assert.True(units == 9);
         }
         [Fact]
         public void RailwayTestFull_6Parts()
         {
+            var layer = new RailwayMemoryLayer();
             var charCoord = TrainTrackReader.Read(new string[] { "- -", "1 1", "< <" });
             RailwayPartsORM.Map(charCoord);
-            RailwayMemoryLayer.AppendRailwayDrawables();
-            int units = RailwayMemoryLayer.Drawables.Count;
+            layer.AppendRailwayDrawables();
+            int units = layer.Drawables.Count;
             Assert.True(units == 6);
         }
 

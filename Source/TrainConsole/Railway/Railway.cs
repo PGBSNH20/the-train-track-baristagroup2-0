@@ -8,6 +8,7 @@ namespace TrainConsole
 {
     public static class Railway
     {
+        public const double PartLength_km = 10.0;
         public static string Name { get; set; } = "Trans-Siberian Railway";
         public static List<TrainPlan> TrainPlans { get; set; } = new List<TrainPlan>();
         public static List<IRailwayItem> RailwayItems { get; set; } = new List<IRailwayItem>();

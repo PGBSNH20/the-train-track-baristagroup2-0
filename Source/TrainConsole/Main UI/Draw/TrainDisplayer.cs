@@ -9,15 +9,22 @@ namespace TrainConsole
         {
             RailwayLayer = railwayLayer;
         }
+        private IDrawable LastDrawn { get; set; }
         public void Display(List<IRailwayPart> route, int index)
         {
             if (index != 0)
             {
-                var drawPart = DrawableRailwayPart.ConvertPart(route[index - 1]);
-                RailwayLayer.TryAppend(drawPart);
+                LastDrawn.Color = System.ConsoleColor.White;
+                LastDrawn.IsDrawn = false;
             }
-            var trainPart = DrawableRailwayPart.ConvertPart(route[index]);
+            var railwayPart = route[index];
+            var trainPart = DrawableRailwayPart.ConvertPart(railwayPart);
+
             trainPart.Color = System.ConsoleColor.Green;
+            if (railwayPart.GetType() == typeof(Station))
+                trainPart.Color = System.ConsoleColor.Red;
+
+            LastDrawn = trainPart;
             RailwayLayer.TryAppend(trainPart);
         }
     }

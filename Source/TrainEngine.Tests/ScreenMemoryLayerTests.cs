@@ -13,19 +13,23 @@ namespace TrainEngine.Tests
     {
         public ScreenMemoryLayerTests()
         {
-            RailwayMemoryLayer.Drawables.Clear();
+            var layer = new RailwayMemoryLayer();
+            layer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         public void Dispose()
         {
-            RailwayMemoryLayer.Drawables.Clear();
+            var layer = new RailwayMemoryLayer();
+
+            layer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         [Fact]
         public void ScreenMemoryLayer_Expect_NotExist()
         {
-            RailwayMemoryLayer.Drawables.Clear();
-            RailwayMemoryLayer.Drawables.Add(
+            var layer = new RailwayMemoryLayer();
+            layer.Drawables.Clear();
+            layer.Drawables.Add(
                 new DrawableRailwayPart()
                 {
                     CoordinateX = 0,
@@ -39,15 +43,16 @@ namespace TrainEngine.Tests
                 Chars = "2"
             };
 
-            bool exists = RailwayMemoryLayer.IsInDrawables(tryUnit);
+            bool exists = layer.IsInDrawables(tryUnit);
             Assert.False(exists);
         }
       
         [Fact]
         public void ScreenMemoryLayer_tryAppend_Expect_2()
         {
-            RailwayMemoryLayer.Drawables.Clear();
-            RailwayMemoryLayer.Drawables.Add(
+            var layer = new RailwayMemoryLayer();
+            layer.Drawables.Clear();
+            layer.Drawables.Add(
             new DrawableRailwayPart()
             {
                 CoordinateX = 0,
@@ -61,15 +66,16 @@ namespace TrainEngine.Tests
                 CoordinateY = 2,
                 Chars = "2",
             };
-            RailwayMemoryLayer.TryAppend(tryUnit);
-            var units = RailwayMemoryLayer.Drawables;
+            layer.TryAppend(tryUnit);
+            var units = layer.Drawables;
             Assert.True(units.Count == 2);
         }
         [Fact]
         public void ScreenMemoryLayer_tryAppend_Expect_1()
         {
-            RailwayMemoryLayer.Drawables.Clear();
-            RailwayMemoryLayer.Drawables.Add(
+            var layer = new RailwayMemoryLayer();
+            layer.Drawables.Clear();
+            layer.Drawables.Add(
                 new DrawableRailwayPart()
                 {
                     CoordinateX = 0,
@@ -83,13 +89,14 @@ namespace TrainEngine.Tests
                 Chars = "1",
                 Color = ConsoleColor.Green
             };
-            RailwayMemoryLayer.TryAppend(tryUnit);
-            var units = RailwayMemoryLayer.Drawables;
+            layer.TryAppend(tryUnit);
+            var units = layer.Drawables;
             Assert.True(units.Count == 1);
         }
         [Fact]
         public void ScreenMemoryLayer_tryAppDrawn_Expect_Same()
         {
+            var layer = new RailwayMemoryLayer();
             var first = new DrawableRailwayPart()
             {
                 CoordinateX = 0,
@@ -97,20 +104,21 @@ namespace TrainEngine.Tests
                 Chars = "1",
                 IsDrawn = true
             };
-            RailwayMemoryLayer.Drawables.Add(first);
+            layer.Drawables.Add(first);
             var tryUnit = new DrawableRailwayPart()
             {
                 CoordinateX = 0,
                 CoordinateY = 0,
                 Chars = "1"
             };
-            RailwayMemoryLayer.TryAppend(tryUnit);
-            var units = RailwayMemoryLayer.Drawables;
+            layer.TryAppend(tryUnit);
+            var units = layer.Drawables;
             Assert.True(units[0] == first);
         }
         [Fact]
         public void ScreenMemoryLayer_AppendRailway_Expect()
         {
+            var layer = new RailwayMemoryLayer();
             var rail = new Rail()
             {
                 CoordinateX = 1,
@@ -118,14 +126,15 @@ namespace TrainEngine.Tests
                 Char = '-'
             };
             Railway.RailwayItems.Add(rail);
-            RailwayMemoryLayer.AppendRailwayDrawables();
-            var units = RailwayMemoryLayer.Drawables;
+            layer.AppendRailwayDrawables();
+            var units = layer.Drawables;
             Assert.True(units.Count == 1);
         }
 
         [Fact]
         public void ScreenMemoryLayer_IsInDrawables_ExpectTrue()
         {
+            var layer = new RailwayMemoryLayer();
             var rail = new Rail()
             {
                 CoordinateX = 1,
@@ -133,13 +142,14 @@ namespace TrainEngine.Tests
                 Char = '-'
             };
             var item = DrawableRailwayPart.ConvertPart(rail);
-            RailwayMemoryLayer.Drawables.Add(item);
-            bool isInDrawables = RailwayMemoryLayer.IsInDrawables(item);
+            layer.Drawables.Add(item);
+            bool isInDrawables = layer.IsInDrawables(item);
             Assert.True(isInDrawables);
         }
         [Fact]
         public void ScreenMemoryLayer_IsNotInDrawables_ExpectFalse()
         {
+            var layer = new RailwayMemoryLayer();
             var rail = new Rail()
             {
                 CoordinateX = 1,
@@ -147,12 +157,13 @@ namespace TrainEngine.Tests
                 Char = '-'
             };
             var item = DrawableRailwayPart.ConvertPart(rail);
-            bool isInDrawables = RailwayMemoryLayer.IsInDrawables(item);
+            bool isInDrawables = layer.IsInDrawables(item);
             Assert.False(isInDrawables);
         }
         [Fact]
         public void ScreenMemoryLayer_IsInDrawablesTrainRail_ExpectTrue()
         {
+            var layer = new RailwayMemoryLayer();
             var rail = new Rail()
             {
                 CoordinateX = 1,
@@ -168,13 +179,14 @@ namespace TrainEngine.Tests
             };
             var item2 = DrawableRailwayPart.ConvertPart(station);
 
-            RailwayMemoryLayer.Drawables.Add(item);
-            bool isInDrawables = RailwayMemoryLayer.IsInDrawables(item2);
+            layer.Drawables.Add(item);
+            bool isInDrawables = layer.IsInDrawables(item2);
             Assert.True(isInDrawables);
         }
         [Fact]
         public void ScreenMemoryLayer_IsInDrawablesTrainRail_ExpectFalse()
         {
+            var layer = new RailwayMemoryLayer();
             var rail = new Rail()
             {
                 CoordinateX = 1,
@@ -190,8 +202,8 @@ namespace TrainEngine.Tests
             };
             var item2 = DrawableRailwayPart.ConvertPart(station);
 
-            RailwayMemoryLayer.Drawables.Add(item);
-            bool isInDrawables = RailwayMemoryLayer.IsInDrawables(item2);
+            layer.Drawables.Add(item);
+            bool isInDrawables = layer.IsInDrawables(item2);
             Assert.False(isInDrawables);
         }
     }

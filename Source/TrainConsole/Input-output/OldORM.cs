@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TrainConsole
 {
-   public class file
+   public class OldORM
     {
         public List<OldTrain> filePathTrains(string trainsFilePath)
         {

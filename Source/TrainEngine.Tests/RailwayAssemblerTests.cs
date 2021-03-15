@@ -14,18 +14,15 @@ namespace TrainEngine.Tests
     {
         public RailwayAssemblerTests()
         {
-            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         public void Dispose()
         {
-            RailwayMemoryLayer.Drawables.Clear();
             Railway.RailwayItems.Clear();
         }
         [Fact]
         public void RailwayAssembler_LocatePartConnections_ExpectTwo()
         {
-            Railway.RailwayItems.Clear();
             var dataRead = TrainTrackReader.Read(new string[] { "[1]" });
             var railParts = RailwayPartsORM.Map(dataRead);
             var station = railParts[1];
