@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Transactions;
 
@@ -9,34 +10,30 @@ namespace FirstLevelRailway
     class Program
     {
         public static List<IMemoryLayer> Layers = new List<IMemoryLayer>();
+        public static IClock Clock { get; set; }
         static void Main(string[] args)
         {
+            var read = TrackReader.Read(File.ReadAllLines(@"TestFiles/Simple-track.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            RailwayAssembler.Assemble(parts);
+
             var trainhej = new Train();
-            var timeTable1 = new TrainPlanner(1)
-                .StartTrainAt("Gothenburg", "11:00")
-                .ArriveTrainAt("Partille", "11:15")
+            var timeTable1 = new TrainPlanner(5)
+                .StartTrainAt("1", "11:00")
+                .ArriveTrainAt("2", "11:15")
                 .ToPlan();
 
-            var testTimeTable = new TrainPlanner(2)
-                .StartTrainAt("Stenkullen", "12:00")
-                .ArriveTrainAt("Lerum", "12:15")
+             var timeTable2 = new TrainPlanner(5)
+                 .StartTrainAt("2", "12:00")
+                .ArriveTrainAt("3", "12:15")
                 .ToPlan();
 
 
-
-            var hej = new TimeTableORM(@"../../../firstleveltimetable.txt");
-            hej.Save(new List<TrainPlanner>(){testTimeTable});
-            //foreach (var item in hej.TimeTables)
-            //{
-            //    Console.WriteLine(item.TimeTableID);
-
-            //}
-
-            //Thread thread1 = new Thread(new ThreadStart(moveThreads));
-            //thread1.Start();
 
             Console.CursorVisible = false;
-            Thread clockThread = CreateClockThread(100);
+            var clock = new TwentyFourHourClock();
+            Clock = clock;
+            Thread clockThread = CreateClockThread(100, clock);
             clockThread.Start();
 
             while (true)
@@ -52,7 +49,7 @@ namespace FirstLevelRailway
 
             //clock.StartClock(maxTicks: 200000);
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         public static void RefreshScreen()
@@ -66,11 +63,10 @@ namespace FirstLevelRailway
                 }
             }
         }
-        public static Thread CreateClockThread(int ns_per_tick)
+        public static Thread CreateClockThread(int ns_per_tick, IClock clock)
         {
             var clockLayer = new ClockMemoryLayer();
             Layers.Add(clockLayer);
-            var clock = new TwentyFourHourClock();
             var timeDisplay = new TimeDisplayer(10, 0, clockLayer);
             var timeKeeper = new TimeKeeper(clock, timeDisplay, ns_per_tick);
             return new Thread(new ThreadStart(() => timeKeeper.StartTime(null)));

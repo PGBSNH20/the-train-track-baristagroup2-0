@@ -24,8 +24,14 @@ namespace FirstLevelRailway
             foreach (var line in lines)
             {
                 string[] splittedContent = line.Split(',');
-                if (true)
+<<<<<<< Updated upstream
+
+=======
+                if (string.IsNullOrEmpty(line.Trim()))
+                    continue;
+                if (File.Exists(WorkFile))
                 {
+>>>>>>> Stashed changes
                     var trainPlanner = new TrainPlanner(timeTableID);
                     trainPlanner.TimeTableID = int.Parse(splittedContent[0]);
                     trainPlanner.DepartureAtStation = splittedContent[1];
@@ -34,11 +40,7 @@ namespace FirstLevelRailway
                     trainPlanner.ArrivalTime = splittedContent[4];
                     TimeTables.Add(trainPlanner);
                     Console.WriteLine(trainPlanner.ArriveAtStation);
-                }
-                else
-                {
-                    continue;
-                }
+
             }
         }
 
