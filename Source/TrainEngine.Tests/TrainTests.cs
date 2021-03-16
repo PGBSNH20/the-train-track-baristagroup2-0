@@ -13,7 +13,7 @@ namespace TrainEngine.Tests
         {
             var trainPlanner = new TrainPlanner(1);
             trainPlanner.StartTrainAt("1", "05:00");
-            var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.StartTime);
+            var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.DepartureTime);
             Assert.True(ticks == 300);
         }
         [Fact]
@@ -21,7 +21,7 @@ namespace TrainEngine.Tests
         {
             var trainPlanner = new TrainPlanner(1);
             trainPlanner.StartTrainAt("1", "05:00");
-            var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.StartTime);
+            var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.DepartureTime);
             Assert.True(ticks == 300);
         }
     }

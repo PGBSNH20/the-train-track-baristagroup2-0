@@ -13,7 +13,7 @@ namespace FirstLevelRailway
         public static IClock Clock { get; set; }
         static void Main(string[] args)
         {
-            var read = TrackReader.Read(File.ReadAllLines(@"TestFiles/Simple-track.txt"));
+            var read = TrackReader.Read(File.ReadAllLines(@"TextFiles/Simple-track.txt"));
             var parts = RailwayPartsORM.Map(read);
             RailwayAssembler.Assemble(parts);
 
@@ -28,6 +28,8 @@ namespace FirstLevelRailway
                 .ArriveTrainAt("3", "12:15")
                 .ToPlan();
 
+            var testOfList = new TrainPlanner(1);
+            testOfList.createStationTimeList();
 
 
             Console.CursorVisible = false;

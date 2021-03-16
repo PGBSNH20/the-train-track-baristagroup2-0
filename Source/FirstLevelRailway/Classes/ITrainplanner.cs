@@ -25,13 +25,13 @@ namespace FirstLevelRailway
      * 3 : 11:00
      * 
      */
-
     public class TrainPlanner : ITrainplanner
     {
+        public List<(string, string)> stationTimeList = new List<(string, string)>() { };
         public int TimeTableID { get; set; }
-        public string DepartureAtStation;
-        public string StartTime { get; set; }
-        public string ArriveAtStation { get; set; }
+        public string DepatureStationID;
+        public string DepartureTime { get; set; }
+        public string ArrivalStationID { get; set; }
         public string ArrivalTime { get; set; }
 
         public TrainPlanner(int timeTableID)
@@ -39,15 +39,26 @@ namespace FirstLevelRailway
             TimeTableID = timeTableID;
         }
 
+        public void createStationTimeList()
+        {
+            var hejsan = new TimeTableORM(@"../../../firstleveltimetable.txt");
+            hejsan.Load(1);
+            for (int i = 0; i < hejsan.TimeTables.Count; i++)
+            {
+                stationTimeList.Add((hejsan.TimeTables[i].DepatureStationID, hejsan.TimeTables[i].DepartureTime)); //departure
+                stationTimeList.Add((hejsan.TimeTables[i].ArrivalStationID, hejsan.TimeTables[i].ArrivalTime)); //arrival
+            }
+        }
+
         public ITrainplanner StartTrainAt(string departureStation, string startTime)
         {
-            DepartureAtStation = departureStation;
-            StartTime = startTime;
+            DepatureStationID = departureStation;
+            DepartureTime = startTime;
             return this;
         }
         public ITrainplanner ArriveTrainAt(string arriveAtStation, string time)
         {
-            ArriveAtStation = arriveAtStation;
+            ArrivalStationID = arriveAtStation;
             ArrivalTime = time; 
             return this;
         }

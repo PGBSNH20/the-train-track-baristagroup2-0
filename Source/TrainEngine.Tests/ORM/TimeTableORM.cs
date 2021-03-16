@@ -23,20 +23,20 @@ namespace TrainEngine.Tests
             File.AppendAllText("TimeTableOrmTestfile.txt", fileContent.ToString());
             
         }
-        [Fact]
-        public void stringbuilder_test_WriteToFile()
-        {
-            string filePath = @"ORM/TimeTableOrmTestFile.txt";
+        //[Fact]
+        //public void stringbuilder_test_WriteToFile()
+        //{
+        //    string filePath = @"ORM/TimeTableOrmTestFile.txt";
 
-            StringBuilder fileContent = new StringBuilder();
-            fileContent.AppendLine(
-                $"test");
-            string output = fileContent.ToString();
-            File.AppendAllText(filePath, )
-            Assert.True("test" == output);
-            //File.AppendAllText(filePath, fileContent.ToString());
-            //string 
-        }
+        //    StringBuilder fileContent = new StringBuilder();
+        //    fileContent.AppendLine(
+        //        $"test");
+        //    string output = fileContent.ToString();
+        //    File.AppendAllText(filePath, )
+        //    Assert.True("test" == output);
+        //    //File.AppendAllText(filePath, fileContent.ToString());
+        //    //string 
+        //}
         [Fact]
         public void test1()
         {
