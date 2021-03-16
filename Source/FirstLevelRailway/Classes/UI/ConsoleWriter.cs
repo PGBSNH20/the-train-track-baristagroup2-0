@@ -40,6 +40,7 @@ namespace FirstLevelRailway
         }
         public static void ReplaceWithColor(IRailwayPart part, ConsoleColor color)
         {
+            if (part == null) return;
             Console.ForegroundColor = color;
             Console.SetCursorPosition(part.CoordinateX, part.CoordinateY);
             Console.Write(part.Char);

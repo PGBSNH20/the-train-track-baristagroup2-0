@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="ORM\TimeTableOrmTestFile.txt" />
     <None Remove="testStation.txt" />
+    <None Remove="TrainTestTrack.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Railway\test-track.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TrainTestTrack.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

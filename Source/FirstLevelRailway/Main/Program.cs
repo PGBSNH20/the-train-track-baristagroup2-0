@@ -20,7 +20,6 @@ namespace FirstLevelRailway
             Railway.AppendParts(parts);
             ConsoleWriter.WriteParts(parts);
 
-            var trainhej = new Train();
             var timeTable1 = new TrainPlanner(5)
                 .StartTrainAt("1", "11:00")
                 .ArriveTrainAt("2", "11:15")
@@ -33,25 +32,16 @@ namespace FirstLevelRailway
 
             var testOfList = new TrainPlanner(1);
 
-            //var timeList = new List<(string ID, string Time)>
-            //{
-            //    ("1", "00:00"),
-            //    ("2", "00:30"),
-            //    ("3", "00:40"),
-            //};
-            var train = new Train();
-            train.ConvertTimes(timeList);
-
             var testORM = new TimeTableORM();
             testORM.Load(5);
-            
-
             var listTest = testOfList.createStationTimeList();
-            trainhej.ConvertTimes(listTest);
+            var train = new Train();
+            train.ConvertStationTimes(listTest);
+            //RouteDivider.AddTimedRails(train);
 
             var clock = new TwentyFourHourClock();
             Clock = clock;
-            Thread clockThread = CreateClockThread(100, clock);
+            Thread clockThread = CreateClockThread(500, clock);
             clockThread.Start();
 
             while (true)

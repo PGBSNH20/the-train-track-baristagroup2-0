@@ -10,7 +10,7 @@ namespace FirstLevelRailway
         public string Name { get; set; }
         public List<(IRailwayPart Part, int Ticks)> Route { get; set; }
         public int Index { get; private set; } = 0;
-        public void ConvertTimes(List<(string StationID, string Time)> timesAndPlaces) 
+        public void ConvertStationTimes(List<(string StationID, string Time)> timesAndPlaces) 
         { 
             var route = new List<(IRailwayPart Part, int Ticks)>(); 
             foreach(var tp in timesAndPlaces)
