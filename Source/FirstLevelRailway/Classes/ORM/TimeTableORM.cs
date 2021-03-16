@@ -9,10 +9,10 @@ namespace FirstLevelRailway
     {
         //List.where => i = i.timeTable == 1
         public List<TrainPlanner> TimeTables { get; set; }
-        private string WorkFile;
-        public TimeTableORM(string filePath)
+        private string WorkFile = @"../../../firstleveltimetable.txt";
+        public TimeTableORM()
         {
-            WorkFile = filePath;
+            
             TimeTables = new List<TrainPlanner>();
         }
         public void Load(int timeTableID)

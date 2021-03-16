@@ -32,8 +32,12 @@ namespace FirstLevelRailway
                 .ToPlan();
 
             var testOfList = new TrainPlanner(1);
-            testOfList.createStationTimeList();
 
+            var testORM = new TimeTableORM();
+            testORM.Load(5);
+            
+
+            testOfList.createStationTimeList();
 
             var clock = new TwentyFourHourClock();
             Clock = clock;
