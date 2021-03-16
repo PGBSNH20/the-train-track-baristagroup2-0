@@ -27,7 +27,7 @@ namespace TrainEngine.Tests
         public void test1()
         {
             var timetableorm = new TimeTableORM();
-            var trainplans = new List<TrainPlanner>() { new TrainPlanner(1) };
+            var trainplans = new List<TimeTableBuilder>() { new TimeTableBuilder(1) };
             timetableorm.Save(trainplans);
 
         }

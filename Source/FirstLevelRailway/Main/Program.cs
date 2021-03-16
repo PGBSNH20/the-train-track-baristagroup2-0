@@ -20,17 +20,17 @@ namespace FirstLevelRailway
             Railway.AppendParts(parts);
             ConsoleWriter.WriteParts(parts);
 
-            var timeTable1 = new TrainPlanner(5)
+            var timeTable1 = new TimeTableBuilder(5)
                 .StartTrainAt("1", "11:00")
                 .ArriveTrainAt("2", "11:15")
                 .ToPlan();
 
-             var timeTable2 = new TrainPlanner(5)
+             var timeTable2 = new TimeTableBuilder(5)
                  .StartTrainAt("2", "12:00")
                 .ArriveTrainAt("3", "12:15")
                 .ToPlan();
 
-            var testOfList = new TrainPlanner(1);
+            var testOfList = new TimeTableBuilder(1);
 
             var testORM = new TimeTableORM();
             testORM.Load(5);
@@ -47,7 +47,6 @@ namespace FirstLevelRailway
             while (true)
             {
                 Thread.Sleep(200);
-
                 train.RunTrain(false);
                 RefreshScreen();
             }

@@ -12,7 +12,7 @@ namespace TrainEngine.Tests
         [Fact]
         public void TickFromTrainPlanner_ExpectTrue()
         {
-            var trainPlanner = new TrainPlanner(1);
+            var trainPlanner = new TimeTableBuilder(1);
             trainPlanner.StartTrainAt("1", "05:00");
             var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.DepartureTime);
             Assert.True(ticks == 300);
@@ -230,7 +230,7 @@ namespace TrainEngine.Tests
         [Fact]
         public void TickAndStation_TrainPlanner_ExpectTrue()
         {
-            var trainPlanner = new TrainPlanner(1);
+            var trainPlanner = new TimeTableBuilder(1);
             trainPlanner.StartTrainAt("1", "05:00");
             var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.DepartureTime);
             Assert.True(ticks == 300);

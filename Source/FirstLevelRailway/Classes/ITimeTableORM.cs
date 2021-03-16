@@ -4,9 +4,9 @@ namespace FirstLevelRailway
 {
     public interface ITimeTableORM
     {
-        List<TrainPlanner> TimeTables { get; set; }
+        List<TimeTableBuilder> TimeTables { get; set; }
         void Load(int timeTableID);
-        void Save(List<TrainPlanner> trainPlan);
+        void Save(List<TimeTableBuilder> trainPlan);
 
     }
 }

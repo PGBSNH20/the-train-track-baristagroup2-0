@@ -9,9 +9,9 @@ namespace FirstLevelRailway
     {
         ITrainplanner StartTrainAt(string departureStation, string startTime);
         ITrainplanner ArriveTrainAt(string arriveAtStation, string arrivalTime);
-        TrainPlanner ToPlan();
+        TimeTableBuilder ToPlan();
     }
-    public class TrainPlanner : ITrainplanner
+    public class TimeTableBuilder : ITrainplanner
     {
         public List<(string, string)> stationTimeList = new List<(string, string)>() { };
         public int TimeTableID { get; set; }
@@ -20,7 +20,7 @@ namespace FirstLevelRailway
         public string ArrivalStationID { get; set; }
         public string ArrivalTime { get; set; }
 
-        public TrainPlanner(int timeTableID)
+        public TimeTableBuilder(int timeTableID)
         {
             TimeTableID = timeTableID;
         }
@@ -50,7 +50,7 @@ namespace FirstLevelRailway
             ArrivalTime = time; 
             return this;
         }
-        public TrainPlanner ToPlan()
+        public TimeTableBuilder ToPlan()
         {
             //Console.WriteLine("You time table have been saved");
             return this;

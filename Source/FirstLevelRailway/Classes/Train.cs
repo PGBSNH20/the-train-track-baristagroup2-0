@@ -22,13 +22,18 @@ namespace FirstLevelRailway
             Route = route;
         }
         public void RunTrain(bool endlessLoop = true, int sleep = 400)
-        {            
+        {
+            string clearLine = "\r" + new string(' ', Console.WindowWidth) + "\r";
+            
             while (true)
             {
                 if (Program.Clock.Ticks >= Route[^1].Ticks)
-                { 
+                {
                     Index = Route.Count - 1;
                     ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
+                    Console.SetCursorPosition(0, 10);
+                    Console.Write(clearLine);
+                    Console.Write($"Train has arrived at end station.");
                     return;
                 }
                 
@@ -36,10 +41,21 @@ namespace FirstLevelRailway
                 {
                     Index++;
                     ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
+                    Console.SetCursorPosition(0, 10);
+                    if(Index < Route.Count - 2)
+                    {
+                        Console.Write(clearLine);
+                        Console.Write($"Train has reached station {this.Route[Index].Part.Char.ToString()}. Next stop, station {(int)Char.GetNumericValue(this.Route[Index].Part.Char) + 1}!");
+                    }
+                    
                 }
                 if(Index == 0)
                 {
                     ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
+                    Thread.Sleep(300);
+                    Console.SetCursorPosition(0, 10);
+                    Console.Write(clearLine);
+                    Console.Write($"Train departing from station {this.Route[Index].Part.Char.ToString()}");
                 }
 
                 if (endlessLoop == false) return;

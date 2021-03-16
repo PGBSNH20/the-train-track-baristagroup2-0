@@ -8,17 +8,16 @@ namespace FirstLevelRailway
     public class TimeTableORM : ITimeTableORM
     {
         //List.where => i = i.timeTable == 1
-        public List<TrainPlanner> TimeTables { get; set; }
+        public List<TimeTableBuilder> TimeTables { get; set; }
         private string WorkFile = @"../../../firstleveltimetable.txt";
         public TimeTableORM()
         {
-            
-            TimeTables = new List<TrainPlanner>();
+            TimeTables = new List<TimeTableBuilder>();
         }
         public void Load(int timeTableID)
         {
             string[] lines = File.ReadAllLines(WorkFile);
-            TimeTables = new List<TrainPlanner>();
+            TimeTables = new List<TimeTableBuilder>();
 
             // TODO exceptionhandling
             foreach (var line in lines)
@@ -29,21 +28,17 @@ namespace FirstLevelRailway
                     continue;
                 if (File.Exists(WorkFile))
                 {
-
-                    var trainPlanner = new TrainPlanner(timeTableID);
-                    trainPlanner.TimeTableID = int.Parse(splittedContent[0]);
-                    trainPlanner.DepatureStationID = splittedContent[1];
-                    trainPlanner.DepartureTime = splittedContent[2];
-                    trainPlanner.ArrivalStationID = splittedContent[3];
-                    trainPlanner.ArrivalTime = splittedContent[4];
-                    TimeTables.Add(trainPlanner);
-                    
-
+                    var timeTables = new TimeTableBuilder(timeTableID);
+                    timeTables.TimeTableID = int.Parse(splittedContent[0]);
+                    timeTables.DepatureStationID = splittedContent[1];
+                    timeTables.DepartureTime = splittedContent[2];
+                    timeTables.ArrivalStationID = splittedContent[3];
+                    timeTables.ArrivalTime = splittedContent[4];
+                    TimeTables.Add(timeTables);
                 }
             }
-
         }
-        public void Save(List<TrainPlanner> trainPlan)
+        public void Save(List<TimeTableBuilder> trainPlan)
         {
             StringBuilder fileContent = new StringBuilder();
 
