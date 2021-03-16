@@ -13,6 +13,19 @@ namespace FirstLevelRailway
         TrainPlanner ToPlan();
     }
 
+    /*
+     *Tåget Behöver: 
+     * 
+     * List<int,string>()
+     * 
+     * 1 : 00:00
+     * 1 : 08:00
+     * 2 : 10:00
+     * 2 : 10:05
+     * 3 : 11:00
+     * 
+     */
+
     public class TrainPlanner : ITrainplanner
     {
         public int TimeTableID { get; set; }
