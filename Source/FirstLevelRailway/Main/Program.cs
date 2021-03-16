@@ -7,15 +7,18 @@ using System.Transactions;
 namespace FirstLevelRailway
 {
 
-    class Program
+    public class Program
     {
         public static List<IMemoryLayer> Layers = new List<IMemoryLayer>();
         public static IClock Clock { get; set; }
         static void Main(string[] args)
         {
-            var read = TrackReader.Read(File.ReadAllLines(@"TestFiles/Simple-track.txt"));
+            Console.CursorVisible = false;
+
+            var read = TrackReader.Read(File.ReadAllLines(@"TextFiles/Simple-track.txt"));
             var parts = RailwayPartsORM.Map(read);
-            RailwayAssembler.Assemble(parts);
+            Railway.AppendParts(parts);
+
 
             var trainhej = new Train();
             var timeTable1 = new TrainPlanner(5)
@@ -30,11 +33,12 @@ namespace FirstLevelRailway
 
 
 
-            Console.CursorVisible = false;
             var clock = new TwentyFourHourClock();
             Clock = clock;
             Thread clockThread = CreateClockThread(100, clock);
             clockThread.Start();
+
+
 
             while (true)
             {

@@ -34,7 +34,7 @@ namespace FirstLevelRailway
 
             foreach(var p in tempList)
             {
-                if(p != null)
+                //if(p != null)
                 partConnections.Add(p);
             }
 

@@ -16,13 +16,15 @@ namespace FirstLevelRailway
     /*
      *Tåget Behöver: 
      * 
-     * List<int,string>()
+     * List<(string, string)>()
      * 
-     * 1 : 00:00
-     * 1 : 08:00
-     * 2 : 10:00
-     * 2 : 10:05
-     * 3 : 11:00
+     * 1, 00:00
+     * rail
+     * 2, 10:00
+     * rail
+     * 3, 10:05
+     * rail
+     * 4, 11:00
      * 
      */
 

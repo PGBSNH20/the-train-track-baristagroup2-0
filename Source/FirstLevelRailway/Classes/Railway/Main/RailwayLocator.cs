@@ -15,16 +15,9 @@ namespace FirstLevelRailway
         //        return null;
         //    }
         //}
-        public static IRailwayPart LocateWithPosXY((int X, int Y) coord, bool railwayParts = true)
+        public static IRailwayPart LocateWithPosXY((int X, int Y) coord)
         {
-            if (railwayParts == true)
-            {
-                var searchParts = Railway.GetRailwayParts();
-            }
-            else
-            {
                 var searchParts = Railway.RailwayParts;
-            }
             try
             {
                 return Railway.RailwayParts.Find(item => item.CoordinateX == coord.X && item.CoordinateY == coord.Y);
