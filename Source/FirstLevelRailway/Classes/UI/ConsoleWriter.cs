@@ -38,5 +38,12 @@ namespace FirstLevelRailway
             drawable.IsDrawn = true;
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public static void ReplaceWithColor(IRailwayPart part, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.SetCursorPosition(part.CoordinateX, part.CoordinateY);
+            Console.Write(part.Char);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }

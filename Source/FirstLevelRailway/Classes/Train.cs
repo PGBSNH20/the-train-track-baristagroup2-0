@@ -22,20 +22,26 @@ namespace FirstLevelRailway
             Route = route;
         }
         public void RunTrain(bool endlessLoop = true, int sleep = 400)
-        {
-            
+        {            
             while (true)
             {
                 if (Program.Clock.Ticks >= Route[^1].Ticks)
-                {
+                { 
                     Index = Route.Count - 1;
+                    ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
                     return;
                 }
                 
                 if (Program.Clock.Ticks > Route[Index + 1].Ticks)
                 {
                     Index++;
+                    ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
                 }
+                if(Index == 0)
+                {
+                    ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
+                }
+
                 if (endlessLoop == false) return;
                 else
                 {

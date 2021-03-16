@@ -32,7 +32,15 @@ namespace FirstLevelRailway
                 .ToPlan();
 
             var testOfList = new TrainPlanner(1);
-            testOfList.createStationTimeList();
+
+            //var timeList = new List<(string ID, string Time)>
+            //{
+            //    ("1", "00:00"),
+            //    ("2", "00:30"),
+            //    ("3", "00:40"),
+            //};
+            var train = new Train();
+            train.ConvertTimes(timeList);
 
 
             var clock = new TwentyFourHourClock();
@@ -43,6 +51,8 @@ namespace FirstLevelRailway
             while (true)
             {
                 Thread.Sleep(200);
+
+                train.RunTrain(false);
                 RefreshScreen();
             }
         }
