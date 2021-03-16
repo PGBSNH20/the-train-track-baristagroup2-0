@@ -20,31 +20,31 @@ namespace TrainEngine.Tests
             string output = fileContent.ToString();
             output = output.TrimEnd();
             Assert.True("test" == output);
+            File.AppendAllText("TimeTableOrmTestfile.txt", fileContent.ToString());
+            
+        }
+        [Fact]
+        public void stringbuilder_test_WriteToFile()
+        {
+            string filePath = @"ORM/TimeTableOrmTestFile.txt";
+
+            StringBuilder fileContent = new StringBuilder();
+            fileContent.AppendLine(
+                $"test");
+            string output = fileContent.ToString();
+            File.AppendAllText(filePath, )
+            Assert.True("test" == output);
             //File.AppendAllText(filePath, fileContent.ToString());
             //string 
         }
-        //[Fact]
-        //public void stringbuilder_test_WriteToFile()
-        //{
-        //    string filePath = @"ORM/TimeTableOrmTestFile.txt";
+        [Fact]
+        public void test1()
+        {
+            var timetableorm = new TimeTableORM("TimeTableOrmTestFile.txt");
+            var trainplans = new List<TrainPlanner>() { new TrainPlanner(1) };
+            timetableorm.Save(trainplans);
 
-        //    StringBuilder fileContent = new StringBuilder();
-        //    fileContent.AppendLine(
-        //        $"test");
-        //    string output = fileContent.ToString();
-        //    File.AppendAllText(filePath, )
-        //    Assert.True("test" == output);
-        //    //File.AppendAllText(filePath, fileContent.ToString());
-        //    //string 
-        //}
-        //[Fact]
-        //public void Test1()
-        //{
-        //    var timeTableORM = new TimeTableORM("fff");
-        //    var trainPlans = new List<TrainPlanner>() { new TrainPlanner(1) };
-        //    timeTableORM.Save(trainPlans);
-
-        //}
+        }
     }
 
 }
