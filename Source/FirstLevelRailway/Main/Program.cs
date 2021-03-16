@@ -13,8 +13,6 @@ namespace FirstLevelRailway
         public static IClock Clock { get; set; }
         static void Main(string[] args)
         {
-            Console.CursorVisible = false;
-
             var read = TrackReader.Read(File.ReadAllLines(@"TextFiles/Simple-track.txt"));
             var parts = RailwayPartsORM.Map(read);
             Railway.AppendParts(parts);

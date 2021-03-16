@@ -225,9 +225,9 @@ namespace TrainEngine.Tests
             }
             var index = train.Index;
             Assert.True(1 == index);
-        public void TickAndStation_TrainPlanner_ExpectTrue()
-        {
-            var trainPlanner = new TrainPlanner(1);
+            public void TickAndStation_TrainPlanner_ExpectTrue()
+            {
+                var trainPlanner = new TrainPlanner(1);
             trainPlanner.StartTrainAt("1", "05:00");
             var ticks = TwentyFourHourClock.TimeToTicks(trainPlanner.DepartureTime);
             Assert.True(ticks == 300);

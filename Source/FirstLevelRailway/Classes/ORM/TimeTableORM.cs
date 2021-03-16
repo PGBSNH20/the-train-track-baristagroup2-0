@@ -30,7 +30,6 @@ namespace FirstLevelRailway
                 if (File.Exists(WorkFile))
                 {
 
->>>>>>> Stashed changes
                     var trainPlanner = new TrainPlanner(timeTableID);
                     trainPlanner.TimeTableID = int.Parse(splittedContent[0]);
                     trainPlanner.DepatureStationID = splittedContent[1];
