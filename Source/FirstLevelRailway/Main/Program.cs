@@ -37,7 +37,8 @@ namespace FirstLevelRailway
             testORM.Load(5);
             
 
-            testOfList.createStationTimeList();
+            var listTest = testOfList.createStationTimeList();
+            trainhej.ConvertTimes(listTest);
 
             var clock = new TwentyFourHourClock();
             Clock = clock;
