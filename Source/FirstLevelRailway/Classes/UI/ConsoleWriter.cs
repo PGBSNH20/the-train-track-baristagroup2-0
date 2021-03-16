@@ -18,6 +18,16 @@ namespace FirstLevelRailway
                 Console.Write(coord.chr);
             }
         }
+        public static void WriteParts(List<IRailwayPart> parts)
+        {
+            foreach (var part in parts)
+            {
+                Console.SetCursorPosition(part.CoordinateX, part.CoordinateY);
+                Console.Write(part.Char);
+            }
+            Console.SetCursorPosition(0, 10);
+
+        }
         public static void Write(IDrawable drawable)
         {
             if (drawable.IsDrawn == true) return;

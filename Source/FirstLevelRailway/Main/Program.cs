@@ -13,10 +13,12 @@ namespace FirstLevelRailway
         public static IClock Clock { get; set; }
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
+
             var read = TrackReader.Read(File.ReadAllLines(@"TextFiles/Simple-track.txt"));
             var parts = RailwayPartsORM.Map(read);
             Railway.AppendParts(parts);
-
+            ConsoleWriter.WriteParts(parts);
 
             var trainhej = new Train();
             var timeTable1 = new TrainPlanner(5)
@@ -71,7 +73,7 @@ namespace FirstLevelRailway
         {
             var clockLayer = new ClockMemoryLayer();
             Layers.Add(clockLayer);
-            var timeDisplay = new TimeDisplayer(10, 0, clockLayer);
+            var timeDisplay = new TimeDisplayer(10, 1, clockLayer);
             var timeKeeper = new TimeKeeper(clock, timeDisplay, ns_per_tick);
             return new Thread(new ThreadStart(() => timeKeeper.StartTime(null)));
         }
