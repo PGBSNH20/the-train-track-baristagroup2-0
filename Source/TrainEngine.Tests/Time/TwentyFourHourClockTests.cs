@@ -211,5 +211,49 @@ namespace TrainEngine.Tests
             int ticksToParse = ticks % 1440;
             Assert.True(ticksToParse == 8);
         }
+        [Fact]
+        public void Modulus_TimeToTick_ExpectOne()
+        {
+            string time = "00:01";
+            int ticks = int.Parse(time[^1].ToString());
+            Assert.True(ticks == 1);
+        }
+        [Fact]
+        public void Modulus_TimeToTick_Expect59()
+        {
+            string time = "00:59";
+            int singleTicks = int.Parse(time[^1].ToString());
+            int tenTicks = 10 * int.Parse(time[^2].ToString());
+            int ticks = tenTicks + singleTicks;
+            Assert.True(ticks == 59);
+        }
+        [Fact]
+        public void Modulus_TimeToTick_Expect119()
+        {
+            string time = "01:59";
+            int singleTicks = int.Parse(time[^1].ToString());
+            int tenTicks = 10 * int.Parse(time[^2].ToString());
+            int sixtyTicks = 60 * int.Parse(time[^4].ToString());
+            int ticks = tenTicks + singleTicks + sixtyTicks;
+            Assert.True(ticks == 119);
+        }
+        [Fact]
+        public void Modulus_TimeToTick_Expect719()
+        {
+            string time = "11:59";
+            int singleTicks = int.Parse(time[^1].ToString());
+            int tenTicks = 10 * int.Parse(time[^2].ToString());
+            int sixtyTicks = 60 * int.Parse(time[^4].ToString());
+            int sixhundredTicks = 600 * int.Parse(time[^5].ToString());
+            int ticks =sixhundredTicks + sixtyTicks + tenTicks + singleTicks;
+            Assert.True(ticks == 719);
+        }
+        [Fact]
+        public void Modulus_TimeToTick_Method_Expect719()
+        {
+            string time = "11:59";
+            int ticks = TwentyFourHourClock.TimeToTicks(time);
+            Assert.True(ticks == 719);
+        }
     }
 }

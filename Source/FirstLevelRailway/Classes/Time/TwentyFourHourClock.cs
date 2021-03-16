@@ -12,6 +12,15 @@ namespace FirstLevelRailway
         public int Ticks { get; set; } = 0;
         public int GetDays()
             => Ticks / 1440;
+        public static int TimeToTicks(string digitalFormat)
+        {
+            int singleTicks = int.Parse(digitalFormat[^1].ToString());
+            int tenTicks = 10 * int.Parse(digitalFormat[^2].ToString());
+            int sixtyTicks = 60 * int.Parse(digitalFormat[^4].ToString());
+            int sixhundredTicks = 600 * int.Parse(digitalFormat[^5].ToString());
+            return sixhundredTicks + sixtyTicks + tenTicks + singleTicks;
+        }
+
         public static string ConvertTicks(int ticks)
         {
             int thisDayTicks = ticks % 1440;
