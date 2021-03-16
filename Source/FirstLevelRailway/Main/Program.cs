@@ -31,6 +31,8 @@ namespace FirstLevelRailway
                 .ArriveTrainAt("3", "12:15")
                 .ToPlan();
 
+            var testOfList = new TrainPlanner(1);
+            testOfList.createStationTimeList();
 
 
             var clock = new TwentyFourHourClock();

@@ -20,8 +20,8 @@ namespace TrainEngine.Tests
             string output = fileContent.ToString();
             output = output.TrimEnd();
             Assert.True("test" == output);
-            //File.AppendAllText(filePath, fileContent.ToString());
-            //string 
+            File.AppendAllText("TimeTableOrmTestfile.txt", fileContent.ToString());
+            
         }
         //[Fact]
         //public void stringbuilder_test_WriteToFile()
@@ -37,14 +37,14 @@ namespace TrainEngine.Tests
         //    //File.AppendAllText(filePath, fileContent.ToString());
         //    //string 
         //}
-        //[Fact]
-        //public void Test1()
-        //{
-        //    var timeTableORM = new TimeTableORM("fff");
-        //    var trainPlans = new List<TrainPlanner>() { new TrainPlanner(1) };
-        //    timeTableORM.Save(trainPlans);
+        [Fact]
+        public void test1()
+        {
+            var timetableorm = new TimeTableORM("TimeTableOrmTestFile.txt");
+            var trainplans = new List<TrainPlanner>() { new TrainPlanner(1) };
+            timetableorm.Save(trainplans);
 
-        //}
+        }
     }
 
 }

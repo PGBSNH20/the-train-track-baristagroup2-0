@@ -25,18 +25,25 @@ namespace FirstLevelRailway
             {
                 string[] splittedContent = line.Split(',');
 
+                if (string.IsNullOrEmpty(line.Trim()))
+                    continue;
+                if (File.Exists(WorkFile))
+                {
+
+>>>>>>> Stashed changes
                     var trainPlanner = new TrainPlanner(timeTableID);
                     trainPlanner.TimeTableID = int.Parse(splittedContent[0]);
-                    trainPlanner.DepartureAtStation = splittedContent[1];
-                    trainPlanner.StartTime = splittedContent[2];
-                    trainPlanner.ArriveAtStation = splittedContent[3];
+                    trainPlanner.DepatureStationID = splittedContent[1];
+                    trainPlanner.DepartureTime = splittedContent[2];
+                    trainPlanner.ArrivalStationID = splittedContent[3];
                     trainPlanner.ArrivalTime = splittedContent[4];
                     TimeTables.Add(trainPlanner);
-                    Console.WriteLine(trainPlanner.ArriveAtStation);
+                    
 
+                }
             }
-        }
 
+        }
         public void Save(List<TrainPlanner> trainPlan)
         {
             StringBuilder fileContent = new StringBuilder();
@@ -44,7 +51,7 @@ namespace FirstLevelRailway
             foreach (var item in trainPlan)
             {
                 fileContent.AppendLine(
-                    $"{item.TimeTableID},{item.DepartureAtStation},{item.StartTime},{item.ArriveAtStation},{item.ArrivalTime}");
+                    $"{item.TimeTableID},{item.DepatureStationID},{item.DepartureTime},{item.ArrivalStationID},{item.ArrivalTime}");
 
 
             }
