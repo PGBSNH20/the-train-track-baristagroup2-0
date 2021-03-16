@@ -42,6 +42,12 @@ namespace FirstLevelRailway
             var train = new Train();
             train.ConvertTimes(timeList);
 
+            var testORM = new TimeTableORM();
+            testORM.Load(5);
+            
+
+            var listTest = testOfList.createStationTimeList();
+            trainhej.ConvertTimes(listTest);
 
             var clock = new TwentyFourHourClock();
             Clock = clock;

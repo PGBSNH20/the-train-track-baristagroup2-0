@@ -41,15 +41,17 @@ namespace FirstLevelRailway
             TimeTableID = timeTableID;
         }
 
-        public void createStationTimeList()
+        public List<(string, string)> createStationTimeList()
         {
-            var stationORM = new TimeTableORM(@"../../../firstleveltimetable.txt");
+            List<(string, string)> stationTimeList = new List<(string, string)>() { };
+            var stationORM = new TimeTableORM();
             stationORM.Load(1);
             for (int i = 0; i < stationORM.TimeTables.Count; i++)
             {
                 stationTimeList.Add((stationORM.TimeTables[i].DepatureStationID, stationORM.TimeTables[i].DepartureTime)); //departure
                 stationTimeList.Add((stationORM.TimeTables[i].ArrivalStationID, stationORM.TimeTables[i].ArrivalTime)); //arrival
             }
+            return stationTimeList;
         }
 
         public ITrainplanner StartTrainAt(string departureStation, string startTime)
