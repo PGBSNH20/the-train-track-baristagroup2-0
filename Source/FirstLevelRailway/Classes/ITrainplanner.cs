@@ -43,12 +43,12 @@ namespace FirstLevelRailway
 
         public void createStationTimeList()
         {
-            var hejsan = new TimeTableORM(@"../../../firstleveltimetable.txt");
-            hejsan.Load(1);
-            for (int i = 0; i < hejsan.TimeTables.Count; i++)
+            var stationORM = new TimeTableORM(@"../../../firstleveltimetable.txt");
+            stationORM.Load(1);
+            for (int i = 0; i < stationORM.TimeTables.Count; i++)
             {
-                stationTimeList.Add((hejsan.TimeTables[i].DepatureStationID, hejsan.TimeTables[i].DepartureTime)); //departure
-                stationTimeList.Add((hejsan.TimeTables[i].ArrivalStationID, hejsan.TimeTables[i].ArrivalTime)); //arrival
+                stationTimeList.Add((stationORM.TimeTables[i].DepatureStationID, stationORM.TimeTables[i].DepartureTime)); //departure
+                stationTimeList.Add((stationORM.TimeTables[i].ArrivalStationID, stationORM.TimeTables[i].ArrivalTime)); //arrival
             }
         }
 
