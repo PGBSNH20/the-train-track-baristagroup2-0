@@ -40,22 +40,11 @@ namespace FirstLevelRailway
             Thread clockThread = CreateClockThread(100, clock);
             clockThread.Start();
 
-
-
             while (true)
             {
                 Thread.Sleep(200);
                 RefreshScreen();
             }
-
-
-            //var charMover = new CharMover('x', (1, 1));
-
-            //clock.CharMover = charMover;
-
-            //clock.StartClock(maxTicks: 200000);
-
-            //Console.ReadLine();
         }
 
         public static void RefreshScreen()
@@ -76,27 +65,6 @@ namespace FirstLevelRailway
             var timeDisplay = new TimeDisplayer(10, 1, clockLayer);
             var timeKeeper = new TimeKeeper(clock, timeDisplay, ns_per_tick);
             return new Thread(new ThreadStart(() => timeKeeper.StartTime(null)));
-        }
-        //static void TrainThread(Train train)
-        //{
-        //    foreach (var m in train.Route)
-        //    {
-        //        train.Move();
-        //        Thread.Sleep(500);
-        //    }
-        //}
-        static void moveThreads()
-        {
-            int x = 0;
-            while (x < 20)
-            {
-                x++;
-                Console.WriteLine(x);
-
-                //    }
-                //    Console.WriteLine("done");
-                //}
-            }
         }
     }
 }
