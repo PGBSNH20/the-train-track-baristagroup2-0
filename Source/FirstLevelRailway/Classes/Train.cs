@@ -21,6 +21,26 @@ namespace FirstLevelRailway
             }
             Route = route;
         }
+        public List<(IRailwayPart Part, int Ticks)> RailWithTicksBetween(int stationAIndex, int stationBIndex, int diffToAdd)
+        {
+            var rails = RouteDivider.GetRailsRightOf((Station)Route[stationAIndex].Part);
+            var railsWithTicks = RouteDivider.GetRailsWithTicks(Route[stationAIndex].Ticks, Route[stationBIndex].Ticks + diffToAdd, rails);
+            return railsWithTicks;
+        }
+        public void AddRailTimes()
+        {
+            var newList = new List<(IRailwayPart Part, int Ticks)>();
+            int diff = 0;
+            for (int i = 0; i < Route.Count; i++)
+            {
+                newList.Add(Route[i]);
+                if (i >= Route.Count - 1) break;
+                if (i > 0) diff = Route[i].Ticks;
+                var railsBetweenWithTicks = RailWithTicksBetween(i, i + 1, diff);
+                newList.AddRange(railsBetweenWithTicks);
+            }
+            Route = newList;
+        }
         public void RunTrain(bool endlessLoop = true, int sleep = 400)
         {
             string clearLine = "\r" + new string(' ', Console.WindowWidth) + "\r";

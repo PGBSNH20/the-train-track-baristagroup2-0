@@ -191,42 +191,42 @@ namespace TrainEngine.Tests
             var index = train.Index;
             Assert.True(1 == index);
         }
-        [Fact]
-        public void _3Stations_RuntTrain_900_ExpectTrue()
-        {
-            Railway.RailwayParts.Clear();
+        //[Fact]
+        //public void _3Stations_RuntTrain_900_ExpectTrue()
+        //{
+        //    Railway.RailwayParts.Clear();
 
-            var station = new Station();
-            station.Char = '1';
-            Railway.RailwayParts.Add(station);
+        //    var station = new Station();
+        //    station.Char = '1';
+        //    Railway.RailwayParts.Add(station);
 
-            var station2 = new Station();
-            station2.Char = '2';
-            Railway.RailwayParts.Add(station2);
+        //    var station2 = new Station();
+        //    station2.Char = '2';
+        //    Railway.RailwayParts.Add(station2);
 
-            var station3 = new Station();
-            station3.Char = '3';
-            Railway.RailwayParts.Add(station3);
+        //    var station3 = new Station();
+        //    station3.Char = '3';
+        //    Railway.RailwayParts.Add(station3);
 
-            var train = new Train();
-            var timesToConvert = new List<(string StationID, string Time)>
-            {
-                ("1", "00:00"),
-                ("2", "12:00"),
-                ("3", "20:00")
-            };
-            train.ConvertStationTimes(timesToConvert);
-            var clock = new TwentyFourHourClock();
-            Program.Clock = clock;
+        //    var train = new Train();
+        //    var timesToConvert = new List<(string StationID, string Time)>
+        //    {
+        //        ("1", "00:00"),
+        //        ("2", "12:00"),
+        //        ("3", "20:00")
+        //    };
+        //    train.ConvertStationTimes(timesToConvert);
+        //    var clock = new TwentyFourHourClock();
+        //    Program.Clock = clock;
 
-            for (int i = 0; i < 900; i++)
-            {
-                clock.Tick();
-                train.RunTrain(false);
-            }
-            var index = train.Index;
-            Assert.True(1 == index);
-        }
+        //    for (int i = 0; i < 900; i++)
+        //    {
+        //        clock.Tick();
+        //        train.RunTrain(false);
+        //    }
+        //    var index = train.Index;
+        //    Assert.True(1 == index);
+        //}
         [Fact]
         public void TickAndStation_TrainPlanner_ExpectTrue()
         {
@@ -773,8 +773,65 @@ namespace TrainEngine.Tests
 
             Assert.True(actualTicks.Except(expectedTicks).ToList().Count == 0);
         }
+        //[Fact]
+        //public void Station2_3_TicksBetween_CompareList_ExpectTrue()
+        //{
+        //    Railway.RailwayParts.Clear();
+        //    var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+        //    var parts = RailwayPartsORM.Map(read);
+        //    Railway.AppendParts(parts);
+
+        //    var timeList = new List<(string ID, string Time)>
+        //    {
+        //        ("1", "00:00"),
+        //        ("2", "00:40"),
+        //        ("3", "00:50")
+        //    };
+        //    var train = new Train();
+        //    var route = train.Route;
+        //    route.Clear();
+
+        //    train.ConvertStationTimes(timeList);
+        //    var station1WithTicks = train.Route[1];
+        //    var station2WithTicks = train.Route[2];
+        //    var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
+        //    var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+
+        //    var expectedTicks = new List<int> { 42, 44, 46, 48 };
+
+        //    var actualTicks = railsWithTicks.Select(x => x.Ticks).ToList();
+
+        //    Assert.True(actualTicks.Except(expectedTicks).ToList().Count == 0);
+        //}
+        //[Fact]
+        //public void Train_AddSomeRailsToRoute_ExpectTrue()
+        //{
+        //    Railway.RailwayParts.Clear();
+        //    var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+        //    var parts = RailwayPartsORM.Map(read);
+        //    Railway.AppendParts(parts);
+
+        //    var timeList = new List<(string ID, string Time)>
+        //    {
+        //        ("1", "00:00"),
+        //        ("2", "00:40"),
+        //        ("3", "00:50")
+        //    };
+        //    var train = new Train();
+        //    var route = train.Route;
+        //    route.Clear();
+
+        //    train.ConvertStationTimes(timeList);
+        //    var list = train.RailWithTicksBetween(0, 1);
+
+        //    var expectedTicks = new List<int> { 10, 20, 30};
+
+        //    var actualTicks = list.Select(x => x.Ticks).ToList();
+
+        //    //Assert.True(actualTicks.Except(expectedTicks).ToList().Count == 0);
+        //}
         [Fact]
-        public void Station2_3_TicksBetween_CompareList_ExpectTrue()
+        public void Train_AddSomeRailsToRouteAll_ExpectTrue()
         {
             Railway.RailwayParts.Clear();
             var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
@@ -792,16 +849,11 @@ namespace TrainEngine.Tests
             route.Clear();
 
             train.ConvertStationTimes(timeList);
-            var station1WithTicks = train.Route[1];
-            var station2WithTicks = train.Route[2];
-            var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
-            var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+            train.AddRailTimes();
 
-            var expectedTicks = new List<int> { 42, 44, 46, 48 };
+            var trainRoute = train.Route;
 
-            var actualTicks = railsWithTicks.Select(x => x.Ticks).ToList();
-
-            Assert.True(actualTicks.Except(expectedTicks).ToList().Count == 0);
+            Assert.True(trainRoute.Count == 5);
         }
     }
 }
