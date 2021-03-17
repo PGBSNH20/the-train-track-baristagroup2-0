@@ -39,7 +39,8 @@ namespace FirstLevelRailway
                 var railsBetweenWithTicks = RailWithTicksBetween(i, i + 1, diff);
                 newList.AddRange(railsBetweenWithTicks);
             }
-            Route = newList;
+            this.Route = newList;
+            var route = Route;
         }
         public void RunTrain(bool endlessLoop = true, int sleep = 400)
         {
@@ -57,7 +58,7 @@ namespace FirstLevelRailway
                     return;
                 }
                 
-                if (Program.Clock.Ticks > Route[Index + 1].Ticks)
+                if (Program.Clock.Ticks >= Route[Index + 1].Ticks)
                 {
                     Index++;
                     ConsoleWriter.ReplaceWithColor(Route[Index].Part, ConsoleColor.Green);
