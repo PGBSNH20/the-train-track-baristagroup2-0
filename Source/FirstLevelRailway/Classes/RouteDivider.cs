@@ -31,6 +31,13 @@ namespace FirstLevelRailway
             }
             train.Route = newRouteList;
         }
+        public static List<(IRailwayPart Part, int Ticks)> GetRouteStationRails((IRailwayPart Part, int Ticks) stationWithTicks, int endTick)
+        {
+            var rails = GetRailsRightOf((Station)stationWithTicks.Part);
+            var partsWithTicks = GetRailsWithTicks(stationWithTicks.Ticks, endTick, rails);
+            //partsWithTicks.Insert(0, stationWithTicks);
+            return partsWithTicks;
+        }
         public static List<IRailwayPart> GetRailsRightOf(Station stationA)
         {
 
@@ -68,7 +75,7 @@ namespace FirstLevelRailway
             foreach (var rail in rails)
             {
                 add += railIncrement;
-                ticksAndRails.Add((rail, (int)Math.Floor(add)));
+                ticksAndRails.Add((rail, (int)Math.Floor(add) + leftStationTicks));
             }
 
             return ticksAndRails;

@@ -97,7 +97,8 @@ namespace FirstLevelRailway
 
             var train = new Train();
             train.ConvertStationTimes(stationTimes);
-            train.AddRailTimes();
+            train.GetFullRoute();
+
             var clock = new TwentyFourHourClock();
             Clock = clock;
             Thread clockThread = CreateClockThread(500, clock);
