@@ -31,7 +31,7 @@ namespace FirstLevelRailway
             }
             train.Route = newRouteList;
         }
-        private static List<IRailwayPart> GetRailsRightOf(Station stationA)
+        public static List<IRailwayPart> GetRailsRightOf(Station stationA)
         {
 
             bool isRunning = true;
@@ -43,6 +43,7 @@ namespace FirstLevelRailway
             {
                 int nextX = stationA.CoordinateX + x;
                 var partToRight = Railway.RailwayParts.Find(x => x.CoordinateX == nextX);
+                if (partToRight == null) return null;
                 if (partToRight.GetType() == typeof(Station))
                 {
                     isRunning = false;
@@ -55,6 +56,22 @@ namespace FirstLevelRailway
                 }
             }
             return rails;
+        }
+        public static List<(IRailwayPart Part, int Ticks)> GetRailsWithTicks(int leftStationTicks, int rightStationTicks, List<IRailwayPart> rails)
+        {
+            var ticksAndRails = new List<(IRailwayPart Part, int Ticks)>();
+
+            double divide = rails.Count + 1.0;
+            double railIncrement = (rightStationTicks - leftStationTicks) / divide;
+
+            double add = 0;
+            foreach (var rail in rails)
+            {
+                add += railIncrement;
+                ticksAndRails.Add((rail, (int)Math.Floor(add)));
+            }
+
+            return ticksAndRails;
         }
     }
 }

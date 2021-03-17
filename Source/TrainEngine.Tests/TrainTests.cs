@@ -549,5 +549,259 @@ namespace TrainEngine.Tests
 
             Assert.True(5 == train.Route.Count);
         }
+        [Fact]
+        public void Stations3()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            train.ConvertStationTimes(timeList);
+            Assert.True(train.Route.Count == 3);
+        }
+        [Fact]
+        public void Stations3_RouteDivide()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            train.ConvertStationTimes(timeList);
+            var station1 = train.Route.Find(x => x.Part.Char == '1');
+            var rails1 = RouteDivider.GetRailsRightOf((Station)station1.Part);
+            Assert.True(rails1.Count == 3);
+        }
+        [Fact]
+        public void Stations3_RouteDivide_station2()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            train.ConvertStationTimes(timeList);
+            var station1 = train.Route.Find(x => x.Part.Char == '2').Part;
+            var rails1 = RouteDivider.GetRailsRightOf((Station)station1);
+            Assert.True(rails1.Count == 4);
+        }
+        [Fact]
+        public void Stations3_Find_station3()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            train.ConvertStationTimes(timeList);
+            var route = train.Route;
+            var station3 = route.Find(x => x.Part.Char == '3').Part;
+           Assert.IsType<Station>(station3);
+        }
+        [Fact]
+        public void Stations3_RightRails_RouteDivider_station3()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            train.ConvertStationTimes(timeList);
+            var route = train.Route;
+            var station3 = route.Find(x => x.Part.Char == '3').Part;
+            var rails = RouteDivider.GetRailsRightOf((Station)station3);
+            Assert.True(rails == null);
+        }
+        [Fact]
+        public void Stations3_RightRails_RouteDivider_station2()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            train.ConvertStationTimes(timeList);
+            var route = train.Route;
+            var station3 = route.Find(x => x.Part.Char == '2').Part;
+            var rails = RouteDivider.GetRailsRightOf((Station)station3);
+            Assert.True(rails.Count == 4);
+        }
+        [Fact]
+        public void Stations3_RightRails_RouteDivider_RailsWithTicks()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            var route = train.Route;
+            route.Clear();
+            train.ConvertStationTimes(timeList);
+            var station1WithTicks = train.Route[0];
+            var station2WithTicks = train.Route[1];
+            var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
+            var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+            Assert.True(railsWithTicks.Count==3);
+        }
+        [Fact]
+        public void Station1_2_RailsBetweenWithTicks_Expect10()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+
+            var route = train.Route;
+            route.Clear();
+            train.ConvertStationTimes(timeList);
+            var station1WithTicks = train.Route[0];
+            var station2WithTicks = train.Route[1];
+            var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
+            var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+            Assert.True(railsWithTicks[0].Ticks == 10);
+        }
+        [Fact]
+        public void Station1_2_RailsBetweenWithTicks_Expect30()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            var route = train.Route;
+            route.Clear();
+
+            train.ConvertStationTimes(timeList);
+            var station1WithTicks = train.Route[0];
+            var station2WithTicks = train.Route[1];
+            var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
+            var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+            Assert.True(railsWithTicks[^1].Ticks == 30);
+        }
+        [Fact]
+        public void Station1_2_TicksBetween_CompareList_ExpectTrue()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            var route = train.Route;
+            route.Clear();
+
+            train.ConvertStationTimes(timeList);
+            var station1WithTicks = train.Route[0];
+            var station2WithTicks = train.Route[1];
+            var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
+            var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+
+            var expectedTicks = new List<int> {10, 20, 30};
+
+            var actualTicks = railsWithTicks.Select(x => x.Ticks).ToList();
+
+            Assert.True(actualTicks.Except(expectedTicks).ToList().Count == 0);
+        }
+        [Fact]
+        public void Station2_3_TicksBetween_CompareList_ExpectTrue()
+        {
+            Railway.RailwayParts.Clear();
+            var read = TrackReader.Read(File.ReadAllLines(@"TrainTestTrack3Stations.txt"));
+            var parts = RailwayPartsORM.Map(read);
+            Railway.AppendParts(parts);
+
+            var timeList = new List<(string ID, string Time)>
+            {
+                ("1", "00:00"),
+                ("2", "00:40"),
+                ("3", "00:50")
+            };
+            var train = new Train();
+            var route = train.Route;
+            route.Clear();
+
+            train.ConvertStationTimes(timeList);
+            var station1WithTicks = train.Route[1];
+            var station2WithTicks = train.Route[2];
+            var rails = RouteDivider.GetRailsRightOf((Station)station1WithTicks.Part);
+            var railsWithTicks = RouteDivider.GetRailsWithTicks(station1WithTicks.Ticks, station2WithTicks.Ticks, rails);
+
+            var expectedTicks = new List<int> { 42, 44, 46, 48 };
+
+            var actualTicks = railsWithTicks.Select(x => x.Ticks).ToList();
+
+            Assert.True(actualTicks.Except(expectedTicks).ToList().Count == 0);
+        }
     }
 }

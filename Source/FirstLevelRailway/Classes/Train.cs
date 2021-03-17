@@ -8,7 +8,7 @@ namespace FirstLevelRailway
     public class Train
     {
         public string Name { get; set; }
-        public List<(IRailwayPart Part, int Ticks)> Route { get; set; }
+        public List<(IRailwayPart Part, int Ticks)> Route { get; set; } = new List<(IRailwayPart Part, int Ticks)>();
         public int Index { get; private set; } = 0;
         public void ConvertStationTimes(List<(string StationID, string Time)> timesAndPlaces) 
         { 
